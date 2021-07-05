@@ -15,7 +15,7 @@
               <label for="password">パスワード</label>
               <input id="password" type="password" class="form-control" />
             </div>
-            <NuxtLink to="/top" tag="button" class="btn btn-secondary btn-block rounded-0 text-white font-weight-bold">サインイン</NuxtLink>
+            <NuxtLink to="/" tag="button" class="btn btn-secondary btn-block rounded-0 text-white font-weight-bold">サインイン</NuxtLink>
           </div>
         </div>
       </div>
