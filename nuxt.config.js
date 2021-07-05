@@ -63,7 +63,7 @@ export default {
     babel: {
       babelrc: false,
       compact: false,
-      presets({ isServer }, [preset, options]) {
+      presets ({ isServer }, [preset, options]) {
         options.loose = true;
       }
     },

@@ -12,8 +12,7 @@ module.exports = {
     'plugin:nuxt/recommended'
   ],
   globals: {
-    "$": false,
-    "jQuery": false
+    '$': false
   },
   plugins: [
     'vue'
@@ -24,12 +23,9 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 'off',
     'vue/multiline-html-element-content-newline': 'off',
     'vue/max-attributes-per-line': 'off',
-    'semi': 'off',
     'no-unused-vars': 'off',
-    'vue/html-self-closing': ['error', {
-      'html': {
-        'void': 'always'
-      }
-    }]
+    'vue/html-self-closing': 'off',
+    'semi': 'off',
+    'quote-props': 'off'
   }
 }
