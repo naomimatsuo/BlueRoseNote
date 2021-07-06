@@ -8,7 +8,7 @@
     <div
       class="jumbotron text-white text-center bg-primary border border-info mt-2 mb-2"
     >
-      <h1>Blue Rose Note</h1>
+      <h1>BLUE ROSE NOTE</h1>
       <p class="title text-success">SNS for your Health</p>
       <NuxtLink to="/signUp" tag="button" class="btn btn-light btn-lg">登録する</NuxtLink>
     </div>
@@ -64,7 +64,7 @@ export default {
 
 @media screen and (max-width: 899px) {
   .rose__img_left {
-    left:35vw;
+    left:33.5vw;
   }
 }
 

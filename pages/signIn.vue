@@ -2,7 +2,7 @@
   <div class="container fluid">
     <div class="row mt-4">
       <div class="container d-flex justify-content-center">
-        <img src="/icon.svg" width="70" height="70" alt="" />
+        <img src="/icon.svg" width="50" height="50" alt="" />
       </div>
     </div>
     <div class="row mt-3">
@@ -10,12 +10,12 @@
         <div class="card border-secondary rounded-0" style="min-width: 20rem;border-width:3px">
           <div class="card-body">
             <label for="email">メールアドレス</label>
-            <input id="email" type="email" class="form-control" />
+            <input id="email" v-model="mailAddress" type="email" class="form-control" />
             <div class="mt-2 mb-4">
               <label for="password">パスワード</label>
-              <input id="password" type="password" class="form-control" />
+              <input id="password" v-model="passWords" type="password" class="form-control" />
             </div>
-            <NuxtLink to="/" tag="button" class="btn btn-secondary btn-block rounded-0 text-white font-weight-bold">サインイン</NuxtLink>
+            <button type="button" class="btn btn-secondary btn-block rounded-0 text-white font-weight-bold" @click="signIn">サインイン</button>
           </div>
         </div>
       </div>
@@ -24,10 +24,27 @@
 </template>
 
 <script>
+import { Auth } from 'aws-amplify';
+
 export default {
+  data () {
+    return {
+      mailAddress: null,
+      passWords: null
+    }
+  },
   head () {
     return {
       title: 'Sign In BLUE ROSE NOTE'
+    }
+  },
+  methods: {
+    async signIn () {
+      try {
+        const user = await Auth.signIn(this.mailAddress, this.passWords);
+        this.$store.commit('update', user);
+        this.$router.push('/top');
+      } catch (error) {}
     }
   }
 }
