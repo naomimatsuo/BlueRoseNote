@@ -80,6 +80,7 @@
 
 export default {
   layout: 'user',
+  middleware: 'authenticated',
   data () {
     const now = new Date();
     const nowYear = now.getFullYear();

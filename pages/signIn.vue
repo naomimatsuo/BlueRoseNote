@@ -43,6 +43,9 @@ export default {
       try {
         const user = await Auth.signIn(this.mailAddress, this.passWords);
         this.$store.commit('update', user);
+        this.$cookies.set('client_id', user.pool.clientId, {
+          expires: new Date(new Date().getTime() + 1000 * 3600 * 24 * 30)
+        });
         this.$router.push('/top');
       } catch (error) {}
     }

@@ -133,6 +133,16 @@
             <strong class="pc__item">プロフィール</strong>
           </NuxtLink>
         </li>
+        <li class="list-group-item bg-transparent border-0 px-0 py-1">
+          <button type="button" class="btn btn-lg btn-outline-primary btn-block rounded-0 border-0 p-2" @click="signOut">
+            <span class="float-left ml-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+              </svg>
+            </span>
+            <strong class="pc__item">ログアウト</strong>
+          </button>
+        </li>
       </ul>
       <div class="container mx-1">
         <Nuxt />
@@ -149,6 +159,10 @@ export default {
     },
     openPhoneBurger () {
       $('.phoneburger-container').removeClass('phoneburger-container-back');
+    },
+    signOut () {
+      this.$cookies.removeAll();
+      this.$router.push('/top');
     }
   }
 }

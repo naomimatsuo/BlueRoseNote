@@ -7,6 +7,7 @@
 <script>
 export default {
   layout: 'user',
+  middleware: 'authenticated',
   head () {
     return {
       title: 'メール相談'

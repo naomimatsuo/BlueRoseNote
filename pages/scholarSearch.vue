@@ -58,6 +58,7 @@
 <script>
 export default {
   layout: 'user',
+  middleware: 'authenticated',
   head () {
     return {
       title: '論文検索'

@@ -39,6 +39,7 @@
 <script>
 export default {
   layout: 'user',
+  middleware: 'authenticated',
   data () {
     return {
       showRecordTab: true,

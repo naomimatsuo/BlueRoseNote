@@ -44,6 +44,7 @@ export default {
     RecordMedicine
   },
   layout: 'user',
+  middleware: 'authenticated',
   data () {
     return {
       showRecordTweet: true,
