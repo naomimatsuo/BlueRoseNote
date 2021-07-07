@@ -7,8 +7,11 @@
     </div>
     <div class="row mt-3">
       <div class="container d-flex justify-content-center">
-        <div class="card border-secondary rounded-0" style="min-width: 20rem;border-width:3px;">
+        <div class="card border-secondary rounded-0" style="min-width: 25rem;border-width:3px;">
           <div class="card-body">
+            <div class="alert alert-secondary" role="alert">
+              メールを確認してください。
+            </div>
             <div class="mt-1 mb-2">
               <label for="email">メールアドレス</label>
               <input id="email" v-model="mailAddress" type="email" class="form-control" />

@@ -7,7 +7,7 @@
     </div>
     <div class="row mt-3">
       <div class="container d-flex justify-content-center">
-        <div class="card border-secondary rounded-0" style="min-width: 20rem;border-width:3px">
+        <div class="card border-secondary rounded-0" style="min-width: 25rem;border-width:3px">
           <div class="card-body">
             <label for="email">メールアドレス</label>
             <input id="email" v-model="mailAddress" type="email" class="form-control" />
