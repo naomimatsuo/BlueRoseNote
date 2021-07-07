@@ -162,7 +162,7 @@ export default {
     },
     signOut () {
       this.$cookies.removeAll();
-      this.$router.push('/top');
+      this.$router.push('/');
     }
   }
 }
