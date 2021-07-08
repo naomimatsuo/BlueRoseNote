@@ -44,7 +44,7 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    ['cookie-universal-nuxt', { alias: 'cookies'}],
+    ['cookie-universal-nuxt', { alias: 'cookies' }]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
