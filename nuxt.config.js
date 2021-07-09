@@ -17,7 +17,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     { src: '~/assets/scss/app.scss', lang: 'scss' },
-    { src: 'croppie/croppie.css', lang: 'css'}
+    { src: 'croppie/croppie.css', lang: 'css' }
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
