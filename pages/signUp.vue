@@ -7,7 +7,7 @@
     </div>
     <div class="row mt-3">
       <div class="container d-flex justify-content-center">
-        <div class="card border-secondary rounded-0" style="max-width: 31rem;border-width:3px;">
+        <div class="card border-secondary rounded-0 cl-sm-12 col-md-6 col-lg-5" style="border-width:3px;">
           <div class="card-body">
             <!-- <div class="mt-1 mb-2">
               <label for="userName">ユーザ名</label>

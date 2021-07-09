@@ -173,7 +173,7 @@ export default {
   position: absolute;
   top: 0px;
   right: 0;
-  z-index: 99;
+  z-index: 98;
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -186,7 +186,7 @@ export default {
   left: 0px;
   width: 16rem;
   transition: 1s;
-  z-index: 100;
+  z-index: 99;
   pointer-events: auto;
   background-color: #85b8c9;
 }
