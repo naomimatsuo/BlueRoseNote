@@ -1,0 +1,42 @@
+{
+  "paths": [
+    {
+      "name": "/UserProfile",
+      "lambdaFunction": "getUserProfile",
+      "privacy": {
+        "private": true,
+        "auth": [
+          "/POST",
+          "/GET",
+          "/PUT",
+          "/PATCH",
+          "/DELETE"
+        ]
+      },
+      "policyResourceName": "/UserProfile"
+    }
+  ],
+  "resourceName": "BlueRoseNoteAPIs",
+  "apiName": "BlueRoseNoteAPIs",
+  "functionArns": [
+    {
+      "lambdaFunction": "getUserProfile"
+    }
+  ],
+  "privacy": {
+    "auth": 1,
+    "unauth": 0,
+    "authRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-authRole",
+    "unAuthRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "getUserProfile",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}

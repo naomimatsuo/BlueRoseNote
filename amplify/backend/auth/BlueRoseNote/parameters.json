@@ -1,7 +1,7 @@
 {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "bluerofdba2841",
+    "resourceNameTruncated": "bluero81b22287",
     "userPoolName": "BlueRoseNote",
     "autoVerifiedAttributes": [
         "email"
@@ -29,9 +29,9 @@
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "BlueRofdba2841_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "BlueRo81b22287_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "fdba2841",
+    "sharedId": "81b22287",
     "resourceName": "BlueRoseNote",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {

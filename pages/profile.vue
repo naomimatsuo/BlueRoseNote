@@ -2,11 +2,11 @@
   <div class="row mx-0">
     <div class="card rounded-0 w-100">
       <div id="backImgDiv" class="bg-gray">
-        <img id="backImgImg" style="width:100%;height:100%" />
+        <img id="backImgTarget" :src="backImg" style="width:100%;height:100%;" />
         <!-- back-img -->
         <div class="d-flex justify-content-center">
-          <input id="backImg" type="file" accept="image/png, image/jpeg" style="visibility:hidden" @change="backImgOnChange" />
-          <button type="button" onclick="$('#backImg').click();" class="btn btn-secondary rounded-circle" style="position:absolute;top:45%">
+          <input id="backImgInput" type="file" accept="image/png, image/jpeg" style="visibility:hidden" @change="backImgOnChange" />
+          <button type="button" onclick="$('#backImgInput').click();" class="btn btn-secondary rounded-circle" style="position:absolute;top:45%">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 18 18">
               <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
               <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
@@ -16,9 +16,9 @@
         <!-- self img -->
         <div class="rounded-circle bg-white container-selfpic p-1">
           <div id="selfImgDiv" class="rounded-circle bg-gray v-100 h-100 d-flex justify-content-center">
-            <img id="selfImgImg" />
-            <input id="selfImg" type="file" accept="image/png, image/jpeg" style="visibility:hidden" @change="selfImgOnChange" />
-            <button type="button" onclick="$('#selfImg').click();" class="btn btn-secondary rounded-circle" style="position:absolute;top:43%">
+            <img id="selfImgTarget" :src="selfImg" />
+            <input id="selfImgInput" type="file" accept="image/png, image/jpeg" style="visibility:hidden" @change="selfImgOnChange" />
+            <button type="button" onclick="$('#selfImgInput').click();" class="btn btn-secondary rounded-circle" style="position:absolute;top:43%">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 18 18">
                 <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
                 <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
@@ -35,34 +35,34 @@
               <input id="userName" v-model="userName" type="text" class="form-control" />
             </div>
             <div class="mb-2">
-              <label for="selfInfo" class="mb-0"><small>自己紹介</small></label>
-              <textarea id="selfInfo" v-model="selfInfo" type="text" class="form-control" rows="3" />
+              <label for="description" class="mb-0"><small>自己紹介</small></label>
+              <textarea id="description" v-model="description" type="text" class="form-control" rows="3" />
             </div>
             <div class="mb-2">
-              <label for="homeplace" class="mb-0"><small>場所</small></label>
-              <input id="homeplace" v-model="homeplace" type="text" class="form-control" />
+              <label for="location" class="mb-0"><small>場所</small></label>
+              <input id="location" v-model="location" type="text" class="form-control" />
             </div>
             <div class="mb-2">
-              <label for="homeplace" class="mb-0"><small>性別</small></label>
+              <label class="mb-0"><small>性別</small></label>
               <div class="row mx-1">
                 <div class="form-check form-check-inline">
-                  <input id="sex1" class="form-check-input" type="radio" name="sexOptions" value="0" />
-                  <label class="form-check-label" for="sex1">男性</label>
+                  <input id="gender1" v-model="gender" class="form-check-input" type="radio" value="1" />
+                  <label class="form-check-label" for="gender1">男性</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input id="sex2" class="form-check-input" type="radio" name="sexOptions" value="1" />
-                  <label class="form-check-label" for="sex2">女性</label>
+                  <input id="gender2" v-model="gender" class="form-check-input" type="radio" value="2" />
+                  <label class="form-check-label" for="gender2">女性</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input id="sex3" class="form-check-input" type="radio" name="sexOptions" value="2" />
-                  <label class="form-check-label" for="sex3">その他</label>
+                  <input id="gender3" v-model="gender" class="form-check-input" type="radio" value="0" />
+                  <label class="form-check-label" for="gender3">その他</label>
                 </div>
               </div>
             </div>
             <div class="mb-2">
               <label for="userHeight" class="mb-0"><small>身長</small></label>
               <div class="input-group">
-                <input id="userHeight" type="text" class="form-control" aria-describedby="height-addon" />
+                <input id="userHeight" v-model="userHeight" type="text" class="form-control" aria-describedby="height-addon" />
                 <div class="input-group-append">
                   <span id="height-addon" class="input-group-text bg-transparent">cm</span>
                 </div>
@@ -71,7 +71,7 @@
             <div class="mb-2">
               <label for="userWeight" class="mb-0"><small>体重</small></label>
               <div class="input-group">
-                <input id="userWeight" type="text" class="form-control" aria-describedby="weight-addon" />
+                <input id="userWeight" v-model="userWeight" type="text" class="form-control" aria-describedby="weight-addon" />
                 <div class="input-group-append">
                   <span id="weight-addon" class="input-group-text bg-transparent">kg</span>
                 </div>
@@ -81,24 +81,24 @@
               <label class="mb-0"><small>生年月日</small></label>
               <div class="row mx-1">
                 <div class="col-sm-4 col-md-3 pl-0">
-                  <select class="custom-select">
+                  <select v-model="birthYear" class="custom-select">
                     <option v-for="no in yearRange" :key="no" :value="no">{{ no }}年</option>
                   </select>
                 </div>
                 <div class="col-sm-4 col-md-3 pl-0">
-                  <select class="custom-select">
+                  <select v-model="birthMonth" class="custom-select">
                     <option v-for="no in 12" :key="no" :value="no">{{ no }}月</option>
                   </select>
                 </div>
                 <div class="col-sm-4 col-md-3 pl-0">
-                  <select class="custom-select">
+                  <select v-model="birthDate" class="custom-select">
                     <option v-for="no in 31" :key="no" :value="no">{{ no }}日</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="row justify-content-end mr-0">
-              <button type="button" class="btn btn-primary rounded-0 text-white px-4">保存</button>
+              <button type="button" class="btn btn-primary rounded-0 text-white px-4" @click="updateProfile">保存</button>
             </div>
           </div>
         </div>
@@ -149,6 +149,7 @@
 </template>
 
 <script>
+import { API } from 'aws-amplify';
 import croppie from 'croppie';
 
 export default {
@@ -167,10 +168,16 @@ export default {
 
     return {
       userName: null,
-      selfInfo: null,
-      homeplace: null,
-      userSex: null,
-
+      description: null,
+      location: null,
+      gender: null,
+      userHeight: null,
+      userWeight: null,
+      birthYear: null,
+      birthMonth: null,
+      birthDate: null,
+      backImg: null,
+      selfImg: null,
       yearRange
     };
   },
@@ -178,6 +185,37 @@ export default {
     return {
       title: 'プロフィール'
     }
+  },
+  mounted () {
+    const params = {
+      body: {
+        clientId: this.$cookies.get('client_id')
+      }
+    }
+
+    API
+      .post('BlueRoseNoteAPIs', '/UserProfile', params)
+      .then((response) => {
+        if (!response.body || (response.body.length < 1)) {
+          return;
+        }
+
+        const res = JSON.parse(response.body);
+        this.userName = res.userName;
+        this.description = res.description;
+        this.location = res.location;
+        this.gender = res.gender;
+        this.userHeight = res.userHeight;
+        this.userWeight = res.userWeight;
+        this.birthYear = res.birthYear;
+        this.birthMonth = res.birthMonth;
+        this.birthDate = res.birthDate;
+        this.backImg = res.backImg;
+        this.selfImg = res.selfImg;
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   },
   methods: {
     selfImgOnChange (event) {
@@ -222,17 +260,48 @@ export default {
       };
       reader.readAsDataURL(event.target.files[0]);
     },
-    selfImgApply () {
-      $('#uploadSelfImg').croppie('result', 'canvas').then(function (result) {
-        $('#selfImgImg').attr('src', result);
-        $('#uploadSelfImgModal').modal('hide');
-      });
+    async selfImgApply () {
+      const result = await $('#uploadSelfImg').croppie('result', 'canvas');
+      this.selfImg = result;
+      $('#selfImgTarget').attr('src', result);
+      $('#uploadSelfImgModal').modal('hide');
     },
-    backImgApply () {
-      $('#uploadBackImg').croppie('result', 'canvas').then(function (result) {
-        $('#backImgImg').attr('src', result);
-        $('#uploadBackImgModal').modal('hide');
-      });
+    async backImgApply () {
+      const result = await $('#uploadBackImg').croppie('result', 'canvas');
+      this.backImg = result;
+      $('#backImgTarget').attr('src', result);
+      $('#uploadBackImgModal').modal('hide');
+    },
+    updateProfile () {
+      const clientId = this.$cookies.get('client_id');
+      if (!clientId) { return; }
+
+      const params = {
+        body: {
+          clientId,
+          userName: this.userName,
+          description: this.description,
+          location: this.location,
+          gender: this.gender,
+          userHeight: this.userHeight,
+          userWeight: this.userWeight,
+          birthYear: this.birthYear,
+          birthMonth: this.birthMonth,
+          birthDate: this.birthDate,
+          backImg: this.backImg,
+          selfImg: this.selfImg,
+          updatedAt: new Date()
+        }
+      };
+
+      API
+        .put('BlueRoseNoteAPIs', '/UserProfile', params)
+        .then((response) => {
+          const res = response;
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
     }
   }
 }

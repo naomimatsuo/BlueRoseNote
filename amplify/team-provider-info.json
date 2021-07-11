@@ -1,19 +1,29 @@
 {
   "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-amplify6063d44a84664-staging-152802-authRole",
-      "UnauthRoleArn": "arn:aws:iam::886081536916:role/amplify-amplify6063d44a84664-staging-152802-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::886081536916:role/amplify-amplify6063d44a84664-staging-152802-authRole",
+      "AuthRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-authRole",
+      "UnauthRoleArn": "arn:aws:iam::886081536916:role/amplify-amplifyfbe781a77c4c4-staging-93754-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::886081536916:role/amplify-amplifyfbe781a77c4c4-staging-93754-authRole",
       "Region": "ap-northeast-1",
-      "DeploymentBucketName": "amplify-amplify6063d44a84664-staging-152802-deployment",
-      "UnauthRoleName": "amplify-amplify6063d44a84664-staging-152802-unauthRole",
-      "StackName": "amplify-amplify6063d44a84664-staging-152802",
-      "StackId": "arn:aws:cloudformation:ap-northeast-1:886081536916:stack/amplify-amplify6063d44a84664-staging-152802/c0c6e080-de6e-11eb-ad8e-06df36989374",
+      "DeploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+      "UnauthRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-unauthRole",
+      "StackName": "amplify-amplifyfbe781a77c4c4-staging-93754",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:886081536916:stack/amplify-amplifyfbe781a77c4c4-staging-93754/ab380b20-e22b-11eb-a300-063849101f6d",
       "AmplifyAppId": "d27v6zuu91qap0"
     },
     "categories": {
       "auth": {
         "BlueRoseNote": {}
+      },
+      "function": {
+        "getUserProfile": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/getUserProfile-354e734f7a7936333554-build.zip"
+        },
+        "updateUserProfile": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/updateUserProfile-642f655036637637764e-build.zip"
+        }
       }
     }
   }
