@@ -27,6 +27,8 @@ module.exports = {
     'vue/html-self-closing': 'off',
     'semi': 'off',
     'quote-props': 'off',
-    'no-console': 'off'
+    'no-console': 'off',
+    'indent': 'off',
+    'quotes': 'off'
   }
 }

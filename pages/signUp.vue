@@ -9,10 +9,10 @@
       <div class="container d-flex justify-content-center">
         <div class="card border-secondary rounded-0 cl-sm-12 col-md-6 col-lg-5" style="border-width:3px;">
           <div class="card-body">
-            <!-- <div class="mt-1 mb-2">
-              <label for="userName">ユーザ名</label>
+            <div class="mt-1 mb-2">
+              <label for="userName">アカウントID</label>
               <input id="userName" v-model="userName" type="text" class="form-control" />
-            </div> -->
+            </div>
             <div class="mt-1 mb-2">
               <label for="email">メールアドレス</label>
               <input id="email" v-model="mailAddress" type="email" class="form-control" />
@@ -44,6 +44,7 @@ import { Auth } from 'aws-amplify';
 export default {
   data () {
     return {
+      userName: null,
       mailAddress: null,
       passWords: null
     }
@@ -57,9 +58,10 @@ export default {
     async signUp () {
       try {
         const { user } = await Auth.signUp({
-          username: this.mailAddress,
+          username: this.userName,
           password: this.passWords,
           attributes: {
+            preferred_username: this.userName,
             email: this.mailAddress
           }
         });
@@ -113,6 +115,9 @@ function getErrorMessage (message) {
     return 'パスワードを入力してください。';
   }
 
+  if ((message).includes('User already exists')) {
+    return 'アカウントIDは既に使用されています。';
+  }
   return message;
 }
 </script>

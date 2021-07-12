@@ -1,19 +1,17 @@
 {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "bluero81b22287",
+    "resourceNameTruncated": "blueroeeb07d86",
     "userPoolName": "BlueRoseNote",
     "autoVerifiedAttributes": [
         "email"
     ],
-    "mfaConfiguration": "OFF",
-    "mfaTypes": [
-        "SMS Text Message"
-    ],
-    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "mfaConfiguration": "OPTIONAL",
+    "mfaTypes": [],
+    "smsAuthenticationMessage": "message {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Forgot password code: {####}",
-    "emailVerificationMessage": "Forgot password code: {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [
@@ -23,15 +21,16 @@
         "Requires Uppercase"
     ],
     "requiredAttributes": [
+        "preferred_username",
         "email"
     ],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "BlueRo81b22287_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "BlueRoeeb07d86_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "81b22287",
+    "sharedId": "eeb07d86",
     "resourceName": "BlueRoseNote",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
@@ -47,9 +46,6 @@
         ]
     },
     "serviceName": "Cognito",
-    "usernameAttributes": [
-        "email"
-    ],
     "useDefault": "manual",
     "userPoolGroups": false,
     "userPoolGroupList": [],
@@ -57,5 +53,6 @@
     "thirdPartyAuth": false,
     "authProviders": [],
     "usernameCaseSensitive": false,
-    "dependsOn": []
+    "dependsOn": [],
+    "hostedUI": false
 }

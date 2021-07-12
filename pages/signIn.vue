@@ -9,8 +9,8 @@
       <div class="container d-flex justify-content-center">
         <div class="card border-secondary rounded-0 cl-sm-12 col-md-6 col-lg-5" style="border-width:3px">
           <div class="card-body">
-            <label for="email">メールアドレス</label>
-            <input id="email" v-model="mailAddress" type="email" class="form-control" />
+            <label for="userName">アカウントID</label>
+            <input id="userName" v-model="userName" type="text" class="form-control" />
             <div class="mt-2 mb-4">
               <label for="password">パスワード</label>
               <input id="password" v-model="passWords" type="password" class="form-control" />
@@ -29,7 +29,7 @@ import { Auth } from 'aws-amplify';
 export default {
   data () {
     return {
-      mailAddress: null,
+      userName: null,
       passWords: null
     }
   },
@@ -41,9 +41,13 @@ export default {
   methods: {
     async signIn () {
       try {
-        const user = await Auth.signIn(this.mailAddress, this.passWords);
+        const user = await Auth.signIn(this.userName, this.passWords);
         this.$store.commit('update', user);
         this.$cookies.set('client_id', user.pool.clientId, {
+          expires: new Date(new Date().getTime() + 1000 * 3600 * 24 * 30),
+          secure: true
+        });
+        this.$cookies.set('account_id', this.userName, {
           expires: new Date(new Date().getTime() + 1000 * 3600 * 24 * 30),
           secure: true
         });

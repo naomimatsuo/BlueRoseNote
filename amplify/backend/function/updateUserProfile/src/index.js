@@ -1,18 +1,24 @@
 exports.handler = async (event) => {
-  // TODO implement
-  const AWS = require('aws-sdk');
+    // TODO implement
+    console.log(event.body);
 
-  const docClient = new AWS.DynamoDB.DocumentClient();
+    const AWS = require("aws-sdk");
 
-  const val = await docClient.put({
-    TableName: 'UserProfile',
-    Item: JSON.parse(JSON.stringify(event))
-  }).promise();
+    const docClient = new AWS.DynamoDB.DocumentClient();
 
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify(val)
-  };
+    const val = await docClient.put({
+        TableName: 'UserProfile',
+        Item: JSON.parse(event.body)
+    }).promise();
 
-  return response;
+    const response = {
+        statusCode: 200,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*"
+        },
+        body: JSON.stringify(val)
+    };
+
+    return response;
 };

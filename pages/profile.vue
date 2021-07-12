@@ -31,6 +31,10 @@
         <div class="row justify-content-md-center container-inputgroup">
           <div id="userSettings" class="col-sm-12 col-md-12 col-lg-6">
             <div class="mb-2">
+              <label for="accountId" class="mb-0"><small>アカウント名</small></label>
+              <p for="accountId" class="ml-1">{{ accountId }}</p>
+            </div>
+            <div class="mb-2">
               <label for="userName" class="mb-0"><small>名前</small></label>
               <input id="userName" v-model="userName" type="text" class="form-control" />
             </div>
@@ -181,6 +185,7 @@ export default {
     }
 
     return {
+      accountId: null,
       userName: null,
       description: null,
       location: null,
@@ -201,6 +206,8 @@ export default {
     }
   },
   mounted () {
+    this.accountId = this.$cookies.get('account_id');
+
     const params = {
       body: {
         clientId: this.$cookies.get('client_id')

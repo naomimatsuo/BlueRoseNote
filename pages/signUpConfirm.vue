@@ -13,8 +13,8 @@
               メールを確認してください。
             </div>
             <div class="mt-1 mb-2">
-              <label for="email">メールアドレス</label>
-              <input id="email" v-model="mailAddress" type="email" class="form-control" />
+              <label for="email">アカウントID</label>
+              <input id="email" v-model="userName" type="text" class="form-control" />
             </div>
             <div class="mt-1 mb-4">
               <label for="email">確認コード</label>
@@ -35,7 +35,7 @@ import { Auth } from 'aws-amplify';
 export default {
   data () {
     return {
-      mailAddress: null,
+      userName: null,
       valificationCode: null
     }
   },
@@ -45,13 +45,16 @@ export default {
     }
   },
   mounted () {
-    this.mailAddress = this.$store.state.loginUser.username;
+    if (!this.$store.state.loginUser) {
+      return;
+    }
+    this.userName = this.$store.state.loginUser.username;
   },
   methods: {
     async completeSineUp () {
       try {
         await Auth.confirmSignUp(
-          this.mailAddress, this.valificationCode
+          this.userName, this.valificationCode
         ).then((ret) => {
           this.$router.push('/top');
         });
