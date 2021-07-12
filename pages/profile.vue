@@ -339,7 +339,7 @@ export default {
 
 @media only screen and (max-width: 767px) {
   #backImgDiv {
-    /* height:9rem; */
+    min-height:5rem;
     position:relative
   }
 
@@ -359,7 +359,7 @@ export default {
 
 @media (min-width: 768px) and (max-width: 1023px) {
   #backImgDiv {
-    /* height:11rem; */
+    min-height:9rem;
     position:relative
   }
 
@@ -379,7 +379,7 @@ export default {
 
 @media (min-width: 1024px){
   #backImgDiv {
-    /* height:13rem; */
+    min-height:12rem;
     position:relative
   }
 
