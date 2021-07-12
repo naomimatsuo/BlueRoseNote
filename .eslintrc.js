@@ -26,6 +26,7 @@ module.exports = {
     'no-unused-vars': 'off',
     'vue/html-self-closing': 'off',
     'semi': 'off',
-    'quote-props': 'off'
+    'quote-props': 'off',
+    'no-console': 'off'
   }
 }
