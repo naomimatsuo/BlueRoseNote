@@ -2,10 +2,10 @@
   <div class="row mx-0">
     <div class="card rounded-0 w-100">
       <div id="backImgDiv" class="bg-gray">
-        <img id="backImgTarget" :src="backImg" style="width:100%;height:100%;" />
+        <img id="backImgTarget" :src="backImg" style="width:100%;height:auto" />
         <!-- back-img -->
         <div class="d-flex justify-content-center">
-          <input id="backImgInput" type="file" accept="image/png, image/jpeg" style="visibility:hidden" @change="backImgOnChange" />
+          <input id="backImgInput" type="file" accept="image/png, image/jpeg" style="display:none" @change="backImgOnChange" />
           <button type="button" onclick="$('#backImgInput').click();" class="btn btn-secondary rounded-circle" style="position:absolute;top:45%">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 18 18">
               <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
@@ -17,7 +17,7 @@
         <div class="rounded-circle bg-white container-selfpic p-1">
           <div id="selfImgDiv" class="rounded-circle bg-gray v-100 h-100 d-flex justify-content-center">
             <img id="selfImgTarget" :src="selfImg" />
-            <input id="selfImgInput" type="file" accept="image/png, image/jpeg" style="visibility:hidden" @change="selfImgOnChange" />
+            <input id="selfImgInput" type="file" accept="image/png, image/jpeg" style="display:none" @change="selfImgOnChange" />
             <button type="button" onclick="$('#selfImgInput').click();" class="btn btn-secondary rounded-circle" style="position:absolute;top:43%">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 18 18">
                 <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
@@ -106,7 +106,7 @@
     </div>
     <!-- Modals -->
     <div id="uploadBackImgModal" class="modal fade" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <div class="modal-title">
@@ -117,7 +117,7 @@
             </div>
             <button type="button" class="btn btn-secondary rounded-0" @click="backImgApply">設定</button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body p-0">
             <div class="d-flex justify-content-center">
               <div id="uploadBackImg" />
             </div>
@@ -126,7 +126,7 @@
       </div>
     </div>
     <div id="uploadSelfImgModal" class="modal fade" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <div class="modal-title">
@@ -137,7 +137,7 @@
             </div>
             <button type="button" class="btn btn-secondary rounded-0" @click="selfImgApply">設定</button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body p-0">
             <div class="d-flex justify-content-center">
               <div id="uploadSelfImg" />
             </div>
@@ -151,6 +151,20 @@
 <script>
 import { API } from 'aws-amplify';
 import croppie from 'croppie';
+
+function getModalWidth () {
+  const windowWidth = $(window).width();
+
+  if (windowWidth >= 501 && windowWidth <= 1023) {
+    return 498;
+  }
+
+  if (windowWidth <= 500) {
+    return 342;
+  }
+
+  return 500;
+};
 
 export default {
   layout: 'user',
@@ -220,54 +234,64 @@ export default {
   methods: {
     selfImgOnChange (event) {
       $('#uploadSelfImg').croppie('destroy');
-
+      let modalWidth = getModalWidth();
       const reader = new FileReader();
-      reader.onload = function (e) {
-        $('#uploadSelfImg').croppie({
-          url: e.target.result,
-          viewport: { width: 170, height: 170, type: 'circle' },
-          boundary: { width: 300, height: 300 },
-          enableOrientation: true
-        });
 
-        $('#uploadSelfImgModal').modal('show');
+      reader.onload = function (e) {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = function () {
+          if (this.width < modalWidth) {
+            modalWidth = this.width;
+          }
+
+          $('#uploadSelfImg').croppie({
+            url: e.target.result,
+            viewport: { width: modalWidth - 30, height: modalWidth - 30 },
+            size: { width: modalWidth - 30, height: modalWidth - 30 },
+            boundary: { width: modalWidth, height: modalWidth },
+            enableOrientation: true
+          });
+
+          $('#uploadSelfImgModal').modal('show');
+        }
       };
       reader.readAsDataURL(event.target.files[0]);
     },
     backImgOnChange (event) {
       $('#uploadBackImg').croppie('destroy');
-
+      let modalWidth = getModalWidth();
       const reader = new FileReader();
-      const divHeight = $('#backImgDiv').height();
-      const divWidth = $('#backImgDiv').width();
 
       reader.onload = function (e) {
-        $('#uploadBackImg').croppie({
-          url: e.target.result,
-          viewport: {
-            width: divWidth / divHeight * 130,
-            height: 130,
-            type: 'square'
-          },
-          boundary: {
-            width: divWidth / divHeight * 130 + 40,
-            height: 130 + 40
-          },
-          enableOrientation: true
-        });
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = function () {
+          if (this.width < modalWidth) {
+            modalWidth = this.width;
+          }
 
-        $('#uploadBackImgModal').modal('show');
+          $('#uploadBackImg').croppie({
+            url: e.target.result,
+            viewport: { width: modalWidth - 30, height: (modalWidth - 30) * 0.25 },
+            size: { width: modalWidth - 30, height: modalWidth - 30 },
+            boundary: { width: modalWidth, height: modalWidth },
+            enableOrientation: true
+          });
+
+          $('#uploadBackImgModal').modal('show');
+        }
       };
       reader.readAsDataURL(event.target.files[0]);
     },
     async selfImgApply () {
-      const result = await $('#uploadSelfImg').croppie('result', 'canvas');
+      const result = await $('#uploadSelfImg').croppie('result', { type: 'canvas', circle: true });
       this.selfImg = result;
       $('#selfImgTarget').attr('src', result);
       $('#uploadSelfImgModal').modal('hide');
     },
     async backImgApply () {
-      const result = await $('#uploadBackImg').croppie('result', 'canvas');
+      const result = await $('#uploadBackImg').croppie('result', { type: 'canvas', format: 'jpeg', quality: 0.8 });
       this.backImg = result;
       $('#backImgTarget').attr('src', result);
       $('#uploadBackImgModal').modal('hide');
@@ -315,14 +339,14 @@ export default {
 
 @media only screen and (max-width: 767px) {
   #backImgDiv {
-    height:9rem;
+    /* height:9rem; */
     position:relative
   }
 
   .container-selfpic {
     position:absolute;
-    width:6rem;
-    height:6rem;
+    width:5rem;
+    height:5rem;
     bottom:-3rem;
     left: 0.5rem;
     z-index: 3;
@@ -335,7 +359,7 @@ export default {
 
 @media (min-width: 768px) and (max-width: 1023px) {
   #backImgDiv {
-    height:11rem;
+    /* height:11rem; */
     position:relative
   }
 
@@ -355,7 +379,7 @@ export default {
 
 @media (min-width: 1024px){
   #backImgDiv {
-    height:13rem;
+    /* height:13rem; */
     position:relative
   }
 
