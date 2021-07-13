@@ -20,7 +20,7 @@
       </button>
       <button id="temp_btn" type="button" class="btn btn-lg btn-block btn-category bg-gray border border-primary rounded-0 mr-1 mt-0" @click="toggleComponent">体温</button>
       <button id="sleep_btn" type="button" class="btn bgn-lg btn-block btn-category bg-gray border border-primary rounded-0 mr-1 mt-0" @click="toggleComponent">睡眠</button>
-      <button id="appetite_btn" type="button" class="btn bgn-lg btn-block btn-category bg-gray border border-primary rounded-0 mr-1 mt-0" @click="toggleComponent">食欲</button>
+      <button id="appetite_btn" type="button" class="btn bgn-lg btn-block btn-category bg-gray border border-primary rounded-0 mr-1 mt-0" @click="toggleComponent">食事</button>
       <button id="medicine_btn" type="button" class="btn bgn-lg btn-block btn-category bg-gray border border-primary rounded-0 mt-0" @click="toggleComponent">薬</button>
     </div>
     <!-- new record -->
