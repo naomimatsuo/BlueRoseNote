@@ -11,6 +11,13 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      {
+        type: 'text/javascript',
+        src: 'js/script.js',
+        body: true
+      }
     ]
   },
 

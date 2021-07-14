@@ -29,6 +29,7 @@ module.exports = {
     'quote-props': 'off',
     'no-console': 'off',
     'indent': 'off',
-    'quotes': 'off'
+    'quotes': 'off',
+    'no-undef': 'off'
   }
 }

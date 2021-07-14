@@ -23,6 +23,14 @@
         "updateUserProfile": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
           "s3Key": "amplify-builds/updateUserProfile-642f655036637637764e-build.zip"
+        },
+        "recordTweet": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/recordTweet-4745702b593661653530-build.zip"
+        },
+        "getRecordTweet": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/getRecordTweet-7159372b593438475566-build.zip"
         }
       }
     }

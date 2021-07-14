@@ -24,7 +24,7 @@
       <button id="medicine_btn" type="button" class="btn bgn-lg btn-block btn-category bg-gray border border-primary rounded-0 mt-0" @click="toggleComponent">薬</button>
     </div>
     <!-- new record -->
-    <div class="bg-white h-100 p-2">
+    <div class="h-100">
       <div>
         <RecordTweet v-if="showRecordTweet" />
         <RecordBodyTemp v-if="showRecordBodyTemp" />

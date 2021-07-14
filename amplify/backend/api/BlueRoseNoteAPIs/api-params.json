@@ -1,42 +1,69 @@
 {
-  "paths": [
-    {
-      "name": "/UserProfile",
-      "lambdaFunction": "getUserProfile",
-      "privacy": {
-        "private": true,
-        "auth": [
-          "/POST",
-          "/GET",
-          "/PUT",
-          "/PATCH",
-          "/DELETE"
-        ]
-      },
-      "policyResourceName": "/UserProfile"
-    }
-  ],
-  "resourceName": "BlueRoseNoteAPIs",
-  "apiName": "BlueRoseNoteAPIs",
-  "functionArns": [
-    {
-      "lambdaFunction": "getUserProfile"
-    }
-  ],
-  "privacy": {
-    "auth": 1,
-    "unauth": 0,
-    "authRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-authRole",
-    "unAuthRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-unauthRole"
-  },
-  "dependsOn": [
-    {
-      "category": "function",
-      "resourceName": "getUserProfile",
-      "attributes": [
-        "Name",
-        "Arn"
-      ]
-    }
-  ]
+    "paths": [
+        {
+            "name": "/UserProfile",
+            "lambdaFunction": "getUserProfile",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/UserProfile"
+        },
+        {
+            "name": "/RecordTweet",
+            "lambdaFunction": "recordTweet",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/RecordTweet"
+        }
+    ],
+    "resourceName": "BlueRoseNoteAPIs",
+    "apiName": "BlueRoseNoteAPIs",
+    "functionArns": [
+        {
+            "lambdaFunction": "getUserProfile"
+        },
+        {
+            "lambdaFunction": "recordTweet"
+        }
+    ],
+    "privacy": {
+        "auth": 2,
+        "unauth": 0,
+        "authRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-authRole",
+        "unAuthRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "getUserProfile",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "recordTweet",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "199822bb"
 }
