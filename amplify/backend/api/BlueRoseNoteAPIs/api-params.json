@@ -29,6 +29,21 @@
                 ]
             },
             "policyResourceName": "/RecordTweet"
+        },
+        {
+            "name": "/RecordTemperature",
+            "lambdaFunction": "addRecordTemperature",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/RecordTemperature"
         }
     ],
     "resourceName": "BlueRoseNoteAPIs",
@@ -39,10 +54,13 @@
         },
         {
             "lambdaFunction": "recordTweet"
+        },
+        {
+            "lambdaFunction": "addRecordTemperature"
         }
     ],
     "privacy": {
-        "auth": 2,
+        "auth": 3,
         "unauth": 0,
         "authRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-authRole",
         "unAuthRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-unauthRole"
@@ -63,7 +81,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "addRecordTemperature",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "199822bb"
+    "uuid": "076f6bd7"
 }

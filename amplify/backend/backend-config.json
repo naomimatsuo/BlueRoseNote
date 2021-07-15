@@ -28,6 +28,11 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
       "dependsOn": []
+    },
+    "addRecordTemperature": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "api": {
@@ -46,6 +51,14 @@
         {
           "category": "function",
           "resourceName": "recordTweet",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "addRecordTemperature",
           "attributes": [
             "Name",
             "Arn"

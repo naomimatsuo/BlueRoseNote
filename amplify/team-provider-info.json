@@ -26,11 +26,15 @@
         },
         "recordTweet": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/recordTweet-4745702b593661653530-build.zip"
+          "s3Key": "amplify-builds/recordTweet-433253672b67582f626f-build.zip"
         },
         "getRecordTweet": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getRecordTweet-7159372b593438475566-build.zip"
+          "s3Key": "amplify-builds/getRecordTweet-4871696773446a795053-build.zip"
+        },
+        "addRecordTemperature": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/addRecordTemperature-7330712f42466b326676-build.zip"
         }
       }
     }

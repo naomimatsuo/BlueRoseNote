@@ -26,7 +26,6 @@
 
 <script>
 import API from '@aws-amplify/api';
-import * as d3 from 'd3';
 
 export default {
   data () {
