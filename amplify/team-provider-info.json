@@ -34,7 +34,11 @@
         },
         "addRecordTemperature": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/addRecordTemperature-7330712f42466b326676-build.zip"
+          "s3Key": "amplify-builds/addRecordTemperature-366a4a4f4e54375a3761-build.zip"
+        },
+        "getRecordTemperature": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/getRecordTemperature-486e7957453157496c37-build.zip"
         }
       }
     }
