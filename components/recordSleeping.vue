@@ -154,7 +154,7 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
     .style("stroke-width", 1);
 
   postSvg.append("text")
-    .attr("x", 6)
+    .attr("x", 26)
     .attr("y", 17)
     .attr("dy", ".30em")
     .attr("fill", "#31444e")
