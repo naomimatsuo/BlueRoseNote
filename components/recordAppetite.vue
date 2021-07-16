@@ -182,7 +182,7 @@
         <p class="text-gray mb-0">{{ post.createdAt }}</p>
         <div class="row text-dark text-break mt-2">
           <div class="col-sm-12 col-md-12 col-lg-6">
-            <table class="table table-bordered">
+            <table class="table table-bordered mb-0">
               <tbody>
                 <tr>
                   <td class="text-center p-1"><img src="/rice.svg" width="20" height="20" /></td>
@@ -220,7 +220,7 @@
             </table>
           </div>
           <div class="col-sm-12 col-md-12 col-lg-6">
-            <p class="text-dark text-break u-pre-wrap mb-0">{{ post.memo }}</p>
+            <p v-if="post.memo !== null" class="text-dark text-break u-pre-wrap mt-2 mb-0">{{ post.memo }}</p>
           </div>
         </div>
       </li>

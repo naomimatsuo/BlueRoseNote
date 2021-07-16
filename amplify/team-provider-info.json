@@ -42,7 +42,7 @@
         },
         "addRecordMedicine": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/addRecordMedicine-35364242495150484332-build.zip"
+          "s3Key": "amplify-builds/addRecordMedicine-38783031644b787a3943-build.zip"
         },
         "addRecordSleep": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
@@ -50,7 +50,7 @@
         },
         "addRecordAppetite": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/addRecordAppetite-4175383045633444616e-build.zip"
+          "s3Key": "amplify-builds/addRecordAppetite-336a58344b6c6e36456e-build.zip"
         },
         "getCommunityInfo": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
@@ -86,7 +86,7 @@
         },
         "getUserProfileSelfImg": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getUserProfileSelfImg-466f5832396332596153-build.zip"
+          "s3Key": "amplify-builds/getUserProfileSelfImg-42664152335071663248-build.zip"
         },
         "getRecordSleep": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
@@ -94,7 +94,11 @@
         },
         "getRecordAppetite": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getRecordAppetite-6a62514a50744f49366f-build.zip"
+          "s3Key": "amplify-builds/getRecordAppetite-626b4664315562415035-build.zip"
+        },
+        "getRecordMedicine": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/getRecordMedicine-643369347165374d5344-build.zip"
         }
       }
     }
