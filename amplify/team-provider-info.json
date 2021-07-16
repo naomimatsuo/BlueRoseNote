@@ -46,7 +46,7 @@
         },
         "addRecordSleep": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/addRecordSleep-516d655a62596c533472-build.zip"
+          "s3Key": "amplify-builds/addRecordSleep-39437a32773136786358-build.zip"
         },
         "addRecordAppetite": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
@@ -90,7 +90,11 @@
         },
         "getRecordSleep": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getRecordSleep-36436b4b764b7a506c5a-build.zip"
+          "s3Key": "amplify-builds/getRecordSleep-7761564b74366b507961-build.zip"
+        },
+        "getRecordAppetite": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/getRecordAppetite-6a62514a50744f49366f-build.zip"
         }
       }
     }

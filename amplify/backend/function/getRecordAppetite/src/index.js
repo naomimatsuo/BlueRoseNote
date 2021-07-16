@@ -1,13 +1,18 @@
 exports.handler = async (event) => {
     // TODO implement
-    console.log(event);
     const AWS = require("aws-sdk");
 
     const docClient = new AWS.DynamoDB.DocumentClient();
 
-    const val = await docClient.put({
-        TableName: 'RecordSleep',
-        Item: JSON.parse(JSON.stringify(event))
+    console.log(event);
+
+    const val = await docClient.query({
+        TableName: 'RecordAppetite',
+        Limit: 30,
+        ScanIndexForward: false,
+        KeyConditionExpression: "#x = :val",
+        ExpressionAttributeNames: { "#x": "clientId" },
+        ExpressionAttributeValues: { ":val": event.clientId }
     }).promise();
 
     const response = {

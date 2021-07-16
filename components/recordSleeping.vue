@@ -196,7 +196,7 @@ export default {
     };
 
     const response = await API.post('BlueRoseNoteAPIs', '/RecordSleep', params);
-    if (!response.body || (response.body.length() < 1)) {
+    if (!response.body || (response.body.length < 1)) {
       return;
     }
 
