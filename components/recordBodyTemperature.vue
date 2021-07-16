@@ -157,7 +157,7 @@ export default {
     };
 
     const response = await API.post('BlueRoseNoteAPIs', '/RecordTemperature', params);
-    if (!response.body || (response.body.length < 1)) {
+    if (!response.body || (response.body.length() < 1)) {
       return;
     }
 

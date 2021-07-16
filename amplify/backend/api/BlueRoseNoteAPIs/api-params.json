@@ -44,6 +44,186 @@
                 ]
             },
             "policyResourceName": "/RecordTemperature"
+        },
+        {
+            "name": "/RecordSleep",
+            "lambdaFunction": "addRecordSleep",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/RecordSleep"
+        },
+        {
+            "name": "/RecordAppetite",
+            "lambdaFunction": "addRecordAppetite",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/RecordAppetite"
+        },
+        {
+            "name": "/RecordMedicine",
+            "lambdaFunction": "addRecordMedicine",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/RecordMedicine"
+        },
+        {
+            "name": "/CommunityInfo",
+            "lambdaFunction": "getCommunityInfo",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/CommunityInfo"
+        },
+        {
+            "name": "/CommunityMember",
+            "lambdaFunction": "getCommunityMember",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/CommunityMember"
+        },
+        {
+            "name": "/CommunityTweet",
+            "lambdaFunction": "getCommunityTweet",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/CommunityTweet"
+        },
+        {
+            "name": "/CommunityTweetImg",
+            "lambdaFunction": "getCommunityTweetImg",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/CommunityTweetImg"
+        },
+        {
+            "name": "/CommunityTweetReply",
+            "lambdaFunction": "getCommunityTweetReply",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/CommunityTweetReply"
+        },
+        {
+            "name": "/CommunityTweetReplyImg",
+            "lambdaFunction": "getCommunityReplyImg",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/CommunityTweetReplyImg"
+        },
+        {
+            "name": "/RecordTweetImg",
+            "lambdaFunction": "getRecordTweetImg",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/RecordTweetImg"
+        },
+        {
+            "name": "/UserProfileBackImg",
+            "lambdaFunction": "getUserProfileBackImg",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/UserProfileBackImg"
+        },
+        {
+            "name": "/UserProfileSelfImg",
+            "lambdaFunction": "getUserProfileSelfImg",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/UserProfileSelfImg"
         }
     ],
     "resourceName": "BlueRoseNoteAPIs",
@@ -57,10 +237,46 @@
         },
         {
             "lambdaFunction": "addRecordTemperature"
+        },
+        {
+            "lambdaFunction": "addRecordSleep"
+        },
+        {
+            "lambdaFunction": "addRecordAppetite"
+        },
+        {
+            "lambdaFunction": "addRecordMedicine"
+        },
+        {
+            "lambdaFunction": "getCommunityInfo"
+        },
+        {
+            "lambdaFunction": "getCommunityMember"
+        },
+        {
+            "lambdaFunction": "getCommunityTweet"
+        },
+        {
+            "lambdaFunction": "getCommunityTweetImg"
+        },
+        {
+            "lambdaFunction": "getCommunityTweetReply"
+        },
+        {
+            "lambdaFunction": "getCommunityReplyImg"
+        },
+        {
+            "lambdaFunction": "getRecordTweetImg"
+        },
+        {
+            "lambdaFunction": "getUserProfileBackImg"
+        },
+        {
+            "lambdaFunction": "getUserProfileSelfImg"
         }
     ],
     "privacy": {
-        "auth": 3,
+        "auth": 15,
         "unauth": 0,
         "authRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-authRole",
         "unAuthRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-unauthRole"
@@ -89,7 +305,103 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "addRecordSleep",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "addRecordAppetite",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "addRecordMedicine",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getCommunityInfo",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getCommunityMember",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getCommunityTweet",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getCommunityTweetImg",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getCommunityTweetReply",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getCommunityReplyImg",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getRecordTweetImg",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getUserProfileBackImg",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getUserProfileSelfImg",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "076f6bd7"
+    "uuid": "e27dca8a"
 }
