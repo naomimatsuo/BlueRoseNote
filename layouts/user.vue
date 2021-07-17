@@ -153,6 +153,12 @@
 
 <script>
 export default {
+  mounted () {
+    $('.container').click(() => {
+      $('.phoneburger-container').addClass('back');
+      $('.phoneburger').addClass('back');
+    });
+  },
   methods: {
     closePhoneBurger () {
       $('.phoneburger-container').addClass('back');
@@ -191,10 +197,6 @@ export default {
   z-index: 2147483647;
   pointer-events: auto;
   background-color: #85b8c9;
-}
-
-.phoneburger:hover {
-  background-color: #68919e;
 }
 
 .phoneburger-item {
