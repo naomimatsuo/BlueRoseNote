@@ -14,7 +14,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary rounded-0 px-4">
+            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.stapleFood" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -38,7 +38,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary rounded-0 px-4">
+            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.subSideDish" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -62,7 +62,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary rounded-0 px-4">
+            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.mainDish" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -85,7 +85,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary rounded-0 px-4">
+            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.dailyProducts" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -108,7 +108,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary rounded-0 px-4">
+            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.fruits" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -131,7 +131,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary rounded-0 px-4">
+            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.sweets" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -154,7 +154,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary rounded-0 px-4">
+            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.alcohol" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -307,6 +307,9 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+.btn-eat:hover {
+  color: #31444e;
+  background-color: #e6e6e6;
+}
 </style>
