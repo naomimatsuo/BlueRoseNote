@@ -259,14 +259,25 @@ export default {
           }
 
           $('#uploadSelfImg').croppie({
-            url: e.target.result,
             viewport: { width: modalWidth - 30, height: modalWidth - 30 },
             size: { width: modalWidth - 30, height: modalWidth - 30 },
             boundary: { width: modalWidth, height: modalWidth },
             enableOrientation: true
           });
 
+          $('#uploadSelfImg').croppie('bind', {
+            url: e.target.result,
+            points: [this.width / 2, -this.height / 2, this.width / 2 + modalWidth, -(this.height / 2 + modalWidth)]
+          });
+
           $('#uploadSelfImgModal').modal('show');
+
+          $('.cr-slider').attr({
+            'min': modalWidth / this.width * 0.5000,
+            'max': modalWidth / this.width * 1.5000
+          });
+
+          $('#uploadSelfImg').croppie('setZoom', (modalWidth / this.width * 0.5000 + modalWidth / this.width * 1.5000) / 2.0);
         }
       };
       reader.readAsDataURL(event.target.files[0]);
@@ -285,14 +296,25 @@ export default {
           }
 
           $('#uploadBackImg').croppie({
-            url: e.target.result,
             viewport: { width: modalWidth - 30, height: (modalWidth - 30) * 0.27 },
             size: { width: modalWidth - 30, height: modalWidth - 30 },
             boundary: { width: modalWidth, height: modalWidth },
             enableOrientation: true
           });
 
+          $('#uploadBackImg').croppie('bind', {
+            url: e.target.result,
+            points: [this.width / 2, -this.height / 2, this.width / 2 + modalWidth, -(this.height / 2 + modalWidth)]
+          });
+
           $('#uploadBackImgModal').modal('show');
+
+          $('.cr-slider').attr({
+            'min': modalWidth / this.width * 0.5000,
+            'max': modalWidth / this.width * 1.5000
+          });
+
+          $('#uploadBackImg').croppie('setZoom', (modalWidth / this.width * 0.5000 + modalWidth / this.width * 1.5000) / 2.0);
         }
       };
       reader.readAsDataURL(event.target.files[0]);
