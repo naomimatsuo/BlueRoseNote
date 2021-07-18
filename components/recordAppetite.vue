@@ -177,6 +177,11 @@
       </div>
     </div>
     <!-- Old posts-->
+    <div id="loader" class="text-center pt-4">
+      <div class="spinner-border text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
     <ul class="list-group mt-2">
       <li v-for="post in posts" :key="post.recordId" class="list-group-item rounded-0 bg-transparent">
         <p class="text-gray mb-0">{{ post.createdAt }}</p>
@@ -255,6 +260,9 @@ export default {
     };
 
     const response = await API.post('BlueRoseNoteAPIs', '/RecordAppetite', params);
+
+    $('#loader').css('display', 'none');
+
     if (!response.body || (response.body.length < 1)) {
       return;
     }

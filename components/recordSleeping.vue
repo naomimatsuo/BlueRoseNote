@@ -51,6 +51,11 @@
       </div>
     </div>
     <!-- Old posts -->
+    <div id="loader" class="text-center pt-4">
+      <div class="spinner-border text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
     <div id="postsCotainer" class="row mx-0 mt-2 bg-transparent">
       <div id="xAxis" />
       <div v-for="post in posts" :id="'no_' + post.recordId" :key="post.recordId" />
@@ -205,6 +210,9 @@ export default {
     };
 
     const response = await API.post('BlueRoseNoteAPIs', '/RecordSleep', params);
+
+    $('#loader').css('display', 'none');
+
     if (!response.body || (response.body.length < 1)) {
       return;
     }
