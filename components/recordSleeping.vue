@@ -51,11 +51,7 @@
       </div>
     </div>
     <!-- Old posts -->
-    <div id="loader" class="text-center pt-4">
-      <div class="spinner-border text-secondary" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
+    <itemLoader v-if="showLoader" class="pt-4" />
     <div id="postsCotainer" class="row mx-0 mt-2 bg-transparent">
       <div id="xAxis" />
       <div v-for="post in posts" :id="'no_' + post.recordId" :key="post.recordId" />
@@ -188,6 +184,7 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
 export default {
   data () {
     return {
+      showLoader: true,
       width: null,
       xAxisHeight: 30,
       postHeight: 90,
@@ -211,7 +208,7 @@ export default {
 
     const response = await API.post('BlueRoseNoteAPIs', '/RecordSleep', params);
 
-    $('#loader').css('display', 'none');
+    this.showLoader = false;
 
     if (!response.body || (response.body.length < 1)) {
       return;

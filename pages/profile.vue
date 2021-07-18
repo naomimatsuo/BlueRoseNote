@@ -1,12 +1,14 @@
 <template>
   <div class="row mx-0">
     <div class="card rounded-0 w-100">
+      <!-- Loader -->
+      <pageLoader v-if="showLoader" />
       <div id="backImgDiv" class="bg-gray">
         <img id="backImgTarget" :src="backImg" style="width:100%;height:auto" />
         <!-- back-img -->
         <div class="d-flex justify-content-center">
           <input id="backImgInput" type="file" accept="image/png, image/jpeg" style="display:none" @change="backImgOnChange" />
-          <button type="button" onclick="$('#backImgInput').click();" class="btn btn-secondary rounded-circle" style="position:absolute;top:45%">
+          <button type="button" onclick="$('#backImgInput').click();" class="btn btn-secondary rounded-circle" style="position:absolute;top:45%;height:40px;width:40px">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 18 18">
               <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
               <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
@@ -18,7 +20,7 @@
           <div id="selfImgDiv" class="rounded-circle bg-gray v-100 h-100 d-flex justify-content-center">
             <img id="selfImgTarget" :src="selfImg" />
             <input id="selfImgInput" type="file" accept="image/png, image/jpeg" style="display:none" @change="selfImgOnChange" />
-            <button type="button" onclick="$('#selfImgInput').click();" class="btn btn-secondary rounded-circle" style="position:absolute;top:43%">
+            <button type="button" onclick="$('#selfImgInput').click();" class="btn btn-secondary rounded-circle" style="position:absolute;top:43%;height:40px;width:40px">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 18 18">
                 <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
                 <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
@@ -197,6 +199,7 @@ export default {
       birthDate: null,
       backImg: null,
       selfImg: null,
+      showLoader: true,
       yearRange
     };
   },
@@ -236,6 +239,9 @@ export default {
       })
       .catch((error) => {
         console.log(error.response);
+      })
+      .finally(() => {
+        this.showLoader = false;
       });
   },
   methods: {
@@ -280,7 +286,7 @@ export default {
 
           $('#uploadBackImg').croppie({
             url: e.target.result,
-            viewport: { width: modalWidth - 30, height: (modalWidth - 30) * 0.25 },
+            viewport: { width: modalWidth - 30, height: (modalWidth - 30) * 0.27 },
             size: { width: modalWidth - 30, height: modalWidth - 30 },
             boundary: { width: modalWidth, height: modalWidth },
             enableOrientation: true
@@ -401,6 +407,20 @@ export default {
 
   .container-inputgroup {
     margin-top: 0;
+  }
+
+  .container-loader {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .bg-loader {
+    position: absolute;
+    top: 45%;
+    z-index: 100;
   }
 }
 </style>

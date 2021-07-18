@@ -18,11 +18,7 @@
       </div>
     </div>
     <!-- Old posts -->
-    <div id="loader" class="text-center pt-4">
-      <div class="spinner-border text-secondary" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
+    <itemLoader v-if="showLoader" class="pt-4" />
     <ul class="list-group mt-2">
       <li v-for="post in posts" :key="post.recordId" class="list-group-item rounded-0 bg-transparent">
         <p class="text-gray mb-0">{{ post.createdAt }}</p>
@@ -38,6 +34,7 @@ import API from '@aws-amplify/api';
 export default {
   data () {
     return {
+      showLoader: true,
       newItem: {
         recordId: null,
         tweet: null,
@@ -66,7 +63,7 @@ export default {
         console.log(error.response);
       })
       .finally(() => {
-        $('#loader').css('display', 'none');
+        this.showLoader = false;
       });
   },
   methods: {

@@ -68,6 +68,11 @@ export default {
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
 
+  loading: {
+    color: '#85b8c9',
+    height: '5px'
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     babel: {
