@@ -1,42 +1,47 @@
 <template>
-  <div>
+  <div class="card rounded-0 vh-100">
+    <pageLoader v-if="showLoader" />
     <!-- profile back image -->
-    <div class="rounded-0 w-100">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#c0c0c0" />
-        <text x="50%" y="50%" fill="#ffffff" dy=".3em">Image cap</text>
-      </svg>
-    </div>
-    <div class="mx-0 p-3 d-flex align-items-center">
-      <!-- profile image -->
-      <div class="image">
-        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" class="rounded-circle" width="75" />
-      </div>
-      <div class="ml-3 w-100">
-        <h5>user name</h5>
+    <div id="backImgDiv" class="bg-gray">
+      <img id="backImgTarget" :src="backImg" style="width:100%;height:auto" />
+      <div class="rounded-circle bg-white container-selfpic p-1">
+        <!-- profile image -->
+        <div class="rounded-circle bg-gray v-100 h-100 d-flex justify-content-center">
+          <img id="selfImgTarget" :src="selfImg" />
+        </div>
       </div>
     </div>
-    <!-- tab area -->
-    <nav class="nav">
-      <li class="nav-item mx-1">
-        <a id="record-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#record-content" aria-controls="record-content" :aria-selected="{showRecordTab}" :class="{ active: showRecordTab}" @click="changeTab">記録</a>
-      </li>
-      <li class="nav-item mx-1">
-        <a id="communiry-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#community-content" aria-controls="community-content" :aria-selected="{showCommunityTab}" :class="{ active: showCommunityTab}" @click="changeTab">コミュニティ</a>
-      </li>
-      <!-- <li class="nav-item mx-1">
-        <a id="scholor-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#scholor-content" aria-controls="scholor-content" :aria-selected="{showScholorTab}" :class="{ active: showScholorTab}" @click="changeTab">文献</a>
-      </li> -->
-    </nav>
-    <!-- content area -->
-    <div>
-      <p>content</p>
+    <div class="container-inputgroup">
+      <div class="ml-3">
+        <p class="font-weight-bold mb-0">{{ userName }}</p>
+        <p class="text-muted"><small>{{ '@' + accountId }}</small></p>
+        <p>{{ description }}</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <!-- tab area -->
+      <nav class="nav">
+        <li class="nav-item mx-1">
+          <a id="record-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#record-content" aria-controls="record-content" :aria-selected="{showRecordTab}" :class="{ active: showRecordTab}" @click="changeTab">記録</a>
+        </li>
+        <li class="nav-item mx-1">
+          <a id="communiry-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#community-content" aria-controls="community-content" :aria-selected="{showCommunityTab}" :class="{ active: showCommunityTab}" @click="changeTab">コミュニティ</a>
+        </li>
+        <!-- <li class="nav-item mx-1">
+          <a id="scholor-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#scholor-content" aria-controls="scholor-content" :aria-selected="{showScholorTab}" :class="{ active: showScholorTab}" @click="changeTab">文献</a>
+        </li> -->
+      </nav>
+      <!-- content area -->
+      <div>
+        <p>content</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { API } from 'aws-amplify';
+
 export default {
   layout: 'user',
   middleware: 'authenticated',
@@ -44,13 +49,53 @@ export default {
     return {
       showRecordTab: true,
       showCommunityTab: false,
-      showScholorTab: false
+      showScholorTab: false,
+      accountId: null,
+      userName: null,
+      description: null,
+      location: null,
+      gender: null,
+      userHeight: null,
+      userWeight: null,
+      birthYear: null,
+      birthMonth: null,
+      birthDate: null,
+      backImg: null,
+      selfImg: null,
+      showLoader: true
     }
   },
   head () {
     return {
       title: 'BLUE ROSE NOTE'
     }
+  },
+  async mounted () {
+    this.accountId = this.$cookies.get('account_id');
+
+    const params = {
+      body: {
+        clientId: this.$cookies.get('client_id')
+      }
+    }
+
+    const response = await API.post('BlueRoseNoteAPIs', '/UserProfile', params);
+    this.showLoader = false;
+
+    if (response.statusCode !== 200) { return; }
+
+    const res = JSON.parse(response.body);
+    this.userName = res.userName;
+    this.description = res.description;
+    this.location = res.location;
+    this.gender = res.gender;
+    this.userHeight = res.userHeight;
+    this.userWeight = res.userWeight;
+    this.birthYear = res.birthYear;
+    this.birthMonth = res.birthMonth;
+    this.birthDate = res.birthDate;
+    this.backImg = res.backImg;
+    this.selfImg = res.selfImg;
   },
   methods: {
     changeTab (event) {
@@ -80,5 +125,84 @@ a.active {
   border-bottom: solid 2.5px #85b8c9;
   font-weight: bolder;
   color: #54727c;
+}
+
+.bg-gray {
+  background-color: #cccccc;
+}
+
+@media only screen and (max-width: 767px) {
+  #backImgDiv {
+    min-height:5rem;
+    position:relative
+  }
+
+  .container-selfpic {
+    position:absolute;
+    width:5rem;
+    height:5rem;
+    bottom:-3rem;
+    left: 0.5rem;
+    z-index: 3;
+  }
+
+  .container-inputgroup {
+    margin-top: 3.0rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  #backImgDiv {
+    width: 100%;
+    min-height:9rem;
+    position:relative
+  }
+
+  .container-selfpic {
+    position:absolute;
+    width:9rem;
+    height:9rem;
+    bottom:-4.5rem;
+    left: 2.5rem;
+    z-index: 3;
+  }
+
+  .container-inputgroup {
+    margin-top: 4.5rem;
+  }
+}
+
+@media (min-width: 1024px){
+  #backImgDiv {
+    min-height:12rem;
+    position:relative
+  }
+
+  .container-selfpic {
+    position:absolute;
+    width:10rem;
+    height:10rem;
+    bottom:-5rem;
+    left: 3rem;
+    z-index: 3;
+  }
+
+  .container-inputgroup {
+    margin-top: 5.0rem;
+  }
+
+  .container-loader {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .bg-loader {
+    position: absolute;
+    top: 45%;
+    z-index: 100;
+  }
 }
 </style>
