@@ -19,18 +19,18 @@
         </svg>
       </button>
       <button id="temp_btn" type="button" class="btn btn-lg btn-block btn-category bg-gray border border-primary rounded-0 mr-1 mt-0" @click="toggleComponent">体温</button>
-      <button id="sleep_btn" type="button" class="btn bgn-lg btn-block btn-category bg-gray border border-primary rounded-0 mr-1 mt-0" @click="toggleComponent">睡眠</button>
-      <button id="appetite_btn" type="button" class="btn bgn-lg btn-block btn-category bg-gray border border-primary rounded-0 mr-1 mt-0" @click="toggleComponent">食事</button>
-      <button id="medicine_btn" type="button" class="btn bgn-lg btn-block btn-category bg-gray border border-primary rounded-0 mt-0" @click="toggleComponent">薬</button>
+      <!-- <button id="sleep_btn" type="button" class="btn bgn-lg btn-block btn-category bg-gray border border-primary rounded-0 mr-1 mt-0" @click="toggleComponent">睡眠</button> -->
+      <button id="medicine_btn" type="button" class="btn bgn-lg btn-block btn-category bg-gray border border-primary rounded-0 mr-1 mt-0" @click="toggleComponent">薬</button>
+      <button id="appetite_btn" type="button" class="btn bgn-lg btn-block btn-category bg-gray border border-primary rounded-0 mt-0" @click="toggleComponent">食事</button>
     </div>
     <!-- new record -->
     <div class="h-100">
       <div>
         <RecordTweet v-if="showRecordTweet" />
         <RecordBodyTemp v-if="showRecordBodyTemp" />
-        <RecordSleep v-if="showRecordSleep" />
-        <RecordAppetite v-if="showRecordAppetite" />
+        <!-- <RecordSleep v-if="showRecordSleep" /> -->
         <RecordMedicine v-if="showRecordMedicine" />
+        <RecordAppetite v-if="showRecordAppetite" />
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
 <script>
 import RecordTweet from '~/components/recordTweet'
 import RecordBodyTemp from '~/components/recordBodyTemperature'
-import RecordSleep from '~/components/recordSleeping'
+// import RecordSleep from '~/components/recordSleeping'
 import RecordAppetite from '~/components/recordAppetite'
 import RecordMedicine from '~/components/recordMedicine'
 
@@ -47,7 +47,7 @@ export default {
   components: {
     RecordTweet,
     RecordBodyTemp,
-    RecordSleep,
+    // RecordSleep,
     RecordAppetite,
     RecordMedicine
   },

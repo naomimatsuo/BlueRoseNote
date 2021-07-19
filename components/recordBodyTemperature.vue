@@ -13,14 +13,44 @@
         </div>
       </div>
       <div class="d-flex justify-content-end mt-2">
-        <button type="button" class="btn btn-lg btn-secondary text-white rounded-0" style="width:10rem;" @click="saveRecord">記録</button>
+        <button id="saveRecordBtn" type="button" class="btn btn-lg btn-secondary text-white rounded-0" style="width:10rem;" @click="saveRecord">記録</button>
       </div>
     </div>
     <!-- Old post-->
     <itemLoader v-if="showLoader" class="pt-4" />
     <div id="postsCotainer" class="row mx-0 mt-2 bg-transparent">
       <div id="xAxis" />
-      <div v-for="post in posts" :id="'no_' + post.recordId" :key="post.recordId" />
+      <div v-for="post in posts" :key="post.recordId" style="position: relative">
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-sm px-1 py-0" style="position: absolute;top: 0px; right: 19px;" @click="showDeleteModal(post)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+            </svg>
+          </button>
+        </div>
+        <div :id="'no_' + post.recordId" />
+      </div>
+    </div>
+    <!-- Modal -->
+    <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="deleteModalTitle" class="modal-title">記録を削除しますか？</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="deleteModalContent" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal" style="width:10rem">キャンセル</button>
+            <button id="deleteModalBtn" type="button" class="btn btn-danger" style="width:10rem" @click="deleteRecord">削除</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -204,9 +234,11 @@ export default {
     }
   },
   methods: {
-    saveRecord () {
+    async saveRecord () {
       const clientId = this.$cookies.get('client_id');
       if (!clientId) { return; }
+
+      $('#saveRecordBtn').attr('disabled', 'disabled');
 
       const now = new Date();
 
@@ -219,17 +251,45 @@ export default {
         }
       };
 
-      API
-        .put('BlueRoseNoteAPIs', '/RecordTemperature', params)
-        .then((response) => {
-          const res = response;
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+      const response = await API.put('BlueRoseNoteAPIs', '/RecordTemperature', params);
+
+      $('#saveRecordBtn').removeAttr('disabled');
+      if (response.statusCode !== 200) { return; }
 
       this.posts.unshift(params.body);
       this.newItem.temperature = null;
+    },
+    showDeleteModal (post) {
+      $('#deleteModalContent').html(post.createdAt + 'の記録を削除しますか？' + '<br />' + '<small>この操作は取り消せません。</small>');
+      $('#deleteModalBtn').attr('targetId', post.recordId);
+
+      $('#deleteModal').modal('show');
+    },
+    async deleteRecord () {
+      $('#deleteModalBtn').attr('disabled', 'disabled');
+
+      const clientId = this.$cookies.get('client_id');
+      if (!clientId) { return; }
+
+      const recordId = $('#deleteModalBtn').attr('targetId');
+      if (!recordId) { return; }
+
+      const params = {
+        body: {
+          clientId,
+          recordId: Number(recordId)
+        }
+      };
+
+      const response = await API.del('BlueRoseNoteAPIs', '/RecordTemperature', params);
+
+      $('#deleteModalBtn').removeAttr('disabled');
+      $('#deleteModal').modal('hide');
+
+      if (response.statusCode !== 200) { return; }
+      this.posts = this.posts.filter(function (post) {
+        return Number(post.recordId) !== Number(recordId);
+      });
     }
   }
 }

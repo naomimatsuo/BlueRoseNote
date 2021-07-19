@@ -99,6 +99,22 @@
         "getRecordMedicine": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
           "s3Key": "amplify-builds/getRecordMedicine-643369347165374d5344-build.zip"
+        },
+        "deleteRecordTweet": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/deleteRecordTweet-694c6d2b533376513631-build.zip"
+        },
+        "deleteRecordTemperature": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/deleteRecordTemperature-49714a554c58342b4876-build.zip"
+        },
+        "deleteRecordAppetite": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/deleteRecordAppetite-7a6d6c484e7336527977-build.zip"
+        },
+        "deleteRecordMedicine": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/deleteRecordMedicine-31745a72615551455957-build.zip"
         }
       }
     }

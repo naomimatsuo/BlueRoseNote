@@ -1,7 +1,7 @@
 <template>
   <div class="container-loader">
     <div class="d-flex justify-content-center">
-      <div class="bg-loader spinner-border text-success" role="status">
+      <div class="bg-loader spinner-border text-secondary" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
