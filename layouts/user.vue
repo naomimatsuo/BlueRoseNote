@@ -17,7 +17,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <li class="phoneburger-item px-0 py-2 mt-2" @click="closePhoneBurger">
+          <li class="phoneburger-item py-2 mt-2" @click="closePhoneBurger">
             <NuxtLink to="/top" tag="button" class="btn btn-secondary btn-block">
               <span class="float-left ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house" viewBox="0 0 20 20">
@@ -28,7 +28,7 @@
               ホーム
             </NuxtLink>
           </li>
-          <li class="phoneburger-item px-0 py-2" @click="closePhoneBurger">
+          <li class="phoneburger-item py-2" @click="closePhoneBurger">
             <NuxtLink to="/userRecords" tag="button" class="btn btn-secondary btn-block">
               <span class="float-left ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pen" viewBox="0 0 20 20">
@@ -38,7 +38,7 @@
               記録
             </NuxtLink>
           </li>
-          <li class="phoneburger-item px-0 py-2" @click="closePhoneBurger">
+          <li class="phoneburger-item py-2" @click="closePhoneBurger">
             <NuxtLink to="/communities" tag="button" class="btn btn-secondary btn-block">
               <span class="float-left ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 20 20">
@@ -50,7 +50,7 @@
               コミュニティ
             </NuxtLink>
           </li>
-          <li class="phoneburger-item py-2 mb-2" @click="closePhoneBurger">
+          <li class="phoneburger-item py-2" @click="closePhoneBurger">
             <NuxtLink to="/profile" tag="button" class="btn btn-secondary btn-block">
               <span class="float-left ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear" viewBox="0 0 20 20">
@@ -60,6 +60,16 @@
               </span>
               プロフィール
             </NuxtLink>
+          </li>
+          <li class="phoneburger-item py-2 mb-2">
+            <button type="button" class="btn btn-secondary btn-block" @click="signOut">
+              <span class="float-left ml-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                </svg>
+              </span>
+              ログアウト
+            </button>
           </li>
         </ul>
       </div>
