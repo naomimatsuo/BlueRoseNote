@@ -50,7 +50,7 @@
         },
         "addRecordAppetite": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/addRecordAppetite-336a58344b6c6e36456e-build.zip"
+          "s3Key": "amplify-builds/addRecordAppetite-4777506f4d465a51624b-build.zip"
         },
         "getCommunityInfo": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",

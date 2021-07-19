@@ -6,7 +6,7 @@ exports.handler = async (event) => {
     const docClient = new AWS.DynamoDB.DocumentClient();
 
     const val = await docClient.put({
-        TableName: 'RecordSleep',
+        TableName: 'RecordAppetite',
         Item: JSON.parse(JSON.stringify(event))
     }).promise();
 

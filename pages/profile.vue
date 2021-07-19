@@ -20,7 +20,7 @@
           <div id="selfImgDiv" class="rounded-circle bg-gray v-100 h-100 d-flex justify-content-center">
             <img id="selfImgTarget" :src="selfImg" />
             <input id="selfImgInput" type="file" accept="image/png, image/jpeg" style="display:none" @change="selfImgOnChange" />
-            <button type="button" onclick="$('#selfImgInput').click();" class="btn btn-secondary rounded-circle" style="position:absolute;top:43%;height:40px;width:40px">
+            <button type="button" onclick="$('#selfImgInput').click();" class="btn btn-secondary rounded-circle" style="position:absolute;top:45%;height:40px;width:40px">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 18 18">
                 <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
                 <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
@@ -104,7 +104,7 @@
               </div>
             </div>
             <div class="row justify-content-end mr-0">
-              <button type="button" class="btn btn-primary rounded-0 text-white px-4" @click="updateProfile">保存</button>
+              <button id="saveProfBtn" type="button" class="btn btn-secondary rounded-0 text-white px-4" @click="updateProfile">保存</button>
             </div>
           </div>
         </div>
@@ -331,9 +331,11 @@ export default {
       $('#backImgTarget').attr('src', result);
       $('#uploadBackImgModal').modal('hide');
     },
-    updateProfile () {
+    async updateProfile () {
       const clientId = this.$cookies.get('client_id');
       if (!clientId) { return; }
+
+      $('#saveProfBtn').attr('disabled', 'disabled');
 
       const params = {
         body: {
@@ -353,14 +355,9 @@ export default {
         }
       };
 
-      API
-        .put('BlueRoseNoteAPIs', '/UserProfile', params)
-        .then((response) => {
-          const res = response;
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
+      const response = await API.put('BlueRoseNoteAPIs', '/UserProfile', params);
+
+      $('#saveRecordBtn').removeAttr('disabled');
     }
   }
 }

@@ -14,7 +14,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="stapleFoodLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.stapleFood" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -38,7 +38,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="subSideDishLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.subSideDish" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -62,7 +62,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="mainDishLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.mainDish" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -85,7 +85,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="dailyProductsLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.dailyProducts" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -108,7 +108,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="fruitsLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.fruits" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -131,7 +131,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="sweetsLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.sweets" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -154,7 +154,7 @@
         </div>
         <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="alcoholLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
               <input v-model="newItem.alcohol" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -326,12 +326,19 @@ export default {
 
       this.posts.unshift(params.body);
       this.newItem.stapleFood = null;
+      $('#stapleFoodLabel').removeClass('active');
       this.newItem.subSideDish = null;
+      $('#subSideDishLabel').removeClass('active');
       this.newItem.mainDish = null;
+      $('#mainDishLabel').removeClass('active');
       this.newItem.dailyProducts = null;
+      $('#dailyProductsLabel').removeClass('active');
       this.newItem.fruits = null;
+      $('#fruitsLabel').removeClass('active');
       this.newItem.sweets = null;
+      $('#sweetsLabel').removeClass('active');
       this.newItem.alcohol = null;
+      $('#alcoholLabel').removeClass('active');
       this.newItem.memo = null;
     },
     showDeleteModal (post) {
