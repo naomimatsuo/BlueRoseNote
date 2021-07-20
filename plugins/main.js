@@ -7,7 +7,7 @@ global.$ = jQuery
 global.d3 = d3
 window.$ = window.jQuery = require('jquery')
 
-function getNowString(now) {
+function getNowString (now) {
   const year = now.getFullYear();
   const month = now.getMonth() + 1;
   const date = now.getDate();
@@ -18,10 +18,10 @@ function getNowString(now) {
   return year + '/' + get0PaddingString(month) + '/' + get0PaddingString(date) + ' ' + get0PaddingString(hour) + ':' + get0PaddingString(minutes) + ':' + get0PaddingString(seconds);
 }
 
-function get0PaddingString(num) {
+function get0PaddingString (num) {
   return String(num).padStart(2, '0');
 }
 
-export default({}, inject) => {
-  inject ('getNowString', getNowString);
+export default (context, inject) => {
+  inject('getNowString', getNowString);
 }
