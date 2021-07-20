@@ -178,24 +178,31 @@ export default {
       newItem: {
         temperature: null
       },
-      posts: []
+      posts: [],
+      lastEvaluatedKey: null
     }
   },
   beforeMount () {
     const params = {
       body: {
-        clientId: this.$cookies.get('client_id')
+        clientId: this.$cookies.get('client_id'),
+        lastEvaluatedKey: null
       }
     };
 
     API.post('BlueRoseNoteAPIs', '/RecordTemperature', params)
     .then((response) => {
       if (response.statusCode !== 200) { return; }
-      this.posts = JSON.parse(response.body).Items;
+
+      this.posts.push(...JSON.parse(response.body).Items);
+      this.lastEvaluatedKey = JSON.parse(response.body).LastEvaluatedKey;
     })
     .finally(() => {
       this.showLoader = false;
     });
+  },
+  mounted () {
+    window.addEventListener("scroll", this.onScroll);
   },
   updated () {
     if (this.posts.length < 1) { return; }
@@ -233,6 +240,37 @@ export default {
     }
   },
   methods: {
+    onScroll (event) {
+      if ($(window).scrollTop() + $(window).height() !== $(document).height()) {
+        return;
+      }
+
+      if (!this.lastEvaluatedKey) { return; }
+
+      this.showLoader = true;
+
+      const params = {
+        body: {
+          clientId: this.$cookies.get('client_id'),
+          lastEvaluatedKey: this.lastEvaluatedKey
+        }
+      };
+
+      API
+      .post('BlueRoseNoteAPIs', '/RecordTemperature', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+
+        this.posts.push(...JSON.parse(response.body).Items)
+        this.lastEvaluatedKey = JSON.parse(response.body).LastEvaluatedKey;
+      })
+      .catch((error) => {
+        console.log(error.response);
+      })
+      .finally(() => {
+        this.showLoader = false;
+      });
+    },
     saveRecord () {
       const clientId = this.$cookies.get('client_id');
       if (!clientId) { return; }

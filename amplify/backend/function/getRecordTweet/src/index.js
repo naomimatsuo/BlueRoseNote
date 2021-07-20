@@ -8,11 +8,12 @@ exports.handler = async (event) => {
 
     const val = await docClient.query({
         TableName: 'RecordTweet',
-        Limit: 30,
+        Limit: 15,
         ScanIndexForward: false,
         KeyConditionExpression: "#x = :val",
         ExpressionAttributeNames: { "#x": "clientId" },
-        ExpressionAttributeValues: { ":val": event.clientId }
+        ExpressionAttributeValues: { ":val": event.clientId },
+        ExclusiveStartKey: event.lastEvaluatedKey
     }).promise();
 
     const response = {

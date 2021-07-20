@@ -70,24 +70,25 @@ export default {
         recordId: null,
         tweet: null
       },
-      posts: []
+      posts: [],
+      lastEvaluatedKey: null
     };
   },
   mounted () {
     const params = {
       body: {
-        clientId: this.$cookies.get('client_id')
+        clientId: this.$cookies.get('client_id'),
+        lastEvaluatedKey: null
       }
     };
 
     API
       .post('BlueRoseNoteAPIs', '/RecordTweet', params)
       .then((response) => {
-        if (!response.body || (response.body.length < 1)) {
-          return;
-        }
+        if (response.statusCode !== 200) { return; }
 
-        this.posts = JSON.parse(response.body).Items;
+        this.posts.push(...JSON.parse(response.body).Items);
+        this.lastEvaluatedKey = JSON.parse(response.body).LastEvaluatedKey;
       })
       .catch((error) => {
         console.log(error.response);
@@ -95,8 +96,41 @@ export default {
       .finally(() => {
         this.showLoader = false;
       });
+
+      window.addEventListener("scroll", this.onScroll);
   },
   methods: {
+    onScroll (event) {
+      if ($(window).scrollTop() + $(window).height() !== $(document).height()) {
+        return;
+      }
+
+      if (!this.lastEvaluatedKey) { return; }
+
+      this.showLoader = true;
+
+      const params = {
+        body: {
+          clientId: this.$cookies.get('client_id'),
+          lastEvaluatedKey: this.lastEvaluatedKey
+        }
+      };
+
+      API
+      .post('BlueRoseNoteAPIs', '/RecordTweet', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+
+        this.posts.push(...JSON.parse(response.body).Items)
+        this.lastEvaluatedKey = JSON.parse(response.body).LastEvaluatedKey;
+      })
+      .catch((error) => {
+        console.log(error.response);
+      })
+      .finally(() => {
+        this.showLoader = false;
+      });
+    },
     addImage () {
       if ($('#picTarget')[0].src.length > 0) {
         return;
