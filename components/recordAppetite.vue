@@ -248,8 +248,8 @@
             <p id="deleteModalContent" />
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-dismiss="modal" style="width:10rem">キャンセル</button>
-            <button id="deleteModalBtn" type="button" class="btn btn-danger" style="width:10rem" @click="deleteRecord">削除</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal" style="width:9rem">キャンセル</button>
+            <button id="deleteModalBtn" type="button" class="btn btn-danger" style="width:9rem" @click="deleteRecord">削除</button>
           </div>
         </div>
       </div>
