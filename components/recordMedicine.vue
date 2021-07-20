@@ -107,25 +107,24 @@ export default {
       posts: []
     }
   },
-  async mounted () {
+  mounted () {
     const params = {
       body: {
         clientId: this.$cookies.get('client_id')
       }
     };
 
-    const response = await API.post('BlueRoseNoteAPIs', '/RecordMedicine', params);
-
-    this.showLoader = false;
-
-    if (!response.body || (response.body.length < 1)) {
-      return;
-    }
-
-    this.posts = JSON.parse(response.body).Items;
+    API.post('BlueRoseNoteAPIs', '/RecordMedicine', params)
+    .then((response) => {
+      if (response.statusCode !== 200) { return; }
+      this.posts = JSON.parse(response.body).Items;
+    })
+    .finally(() => {
+      this.showLoader = false;
+    });
   },
   methods: {
-    async saveRecord () {
+    saveRecord () {
       const clientId = this.$cookies.get('client_id');
       if (!clientId) { return; }
 
@@ -143,17 +142,19 @@ export default {
         }
       };
 
-      const response = await API.put('BlueRoseNoteAPIs', '/RecordMedicine', params);
+      API.put('BlueRoseNoteAPIs', '/RecordMedicine', params)
+      .then((response) => {
+        $('#saveRecordBtn').removeAttr('disabled');
+      })
+      .finally(() => {
+        if (response.statusCode !== 200) { return; }
+        this.posts.unshift(params.body);
+        this.newItem.tookMedicine = null;
+        this.newItem.memo = null;
 
-      $('#saveRecordBtn').removeAttr('disabled');
-      if (response.statusCode !== 200) { return; }
-
-      this.posts.unshift(params.body);
-      this.newItem.tookMedicine = null;
-      this.newItem.memo = null;
-
-      $('#tookLabel').removeClass('active');
-      $('#forgotLabel').removeClass('active');
+        $('#tookLabel').removeClass('active');
+        $('#forgotLabel').removeClass('active');
+      });
     },
     showDeleteModal (post) {
       $('#deleteModalContent').html(post.createdAt + 'の記録を削除しますか？' + '<br />' + '<small>この操作は取り消せません。</small>');
@@ -161,7 +162,7 @@ export default {
 
       $('#deleteModal').modal('show');
     },
-    async deleteRecord () {
+    deleteRecord () {
       $('#deleteModalBtn').attr('disabled', 'disabled');
 
       const clientId = this.$cookies.get('client_id');
@@ -177,14 +178,16 @@ export default {
         }
       };
 
-      const response = await API.del('BlueRoseNoteAPIs', '/RecordMedicine', params);
-
-      $('#deleteModalBtn').removeAttr('disabled');
-      $('#deleteModal').modal('hide');
-
-      if (response.statusCode !== 200) { return; }
-      this.posts = this.posts.filter(function (post) {
-        return Number(post.recordId) !== Number(recordId);
+      API.del('BlueRoseNoteAPIs', '/RecordMedicine', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+        this.posts = this.posts.filter(function (post) {
+          return Number(post.recordId) !== Number(recordId);
+        });
+      })
+      .finally(() => {
+        $('#deleteModalBtn').removeAttr('disabled');
+        $('#deleteModal').modal('hide');
       });
     }
   }

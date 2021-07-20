@@ -153,7 +153,7 @@
           </button>
         </li>
       </ul>
-      <div class="container mx-1">
+      <div class="container mx-0">
         <Nuxt />
       </div>
     </div>

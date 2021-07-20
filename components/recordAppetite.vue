@@ -277,25 +277,25 @@ export default {
       posts: []
     }
   },
-  async mounted () {
+  mounted () {
     const params = {
       body: {
         clientId: this.$cookies.get('client_id')
       }
     };
 
-    const response = await API.post('BlueRoseNoteAPIs', '/RecordAppetite', params);
-
-    this.showLoader = false;
-
-    if (!response.body || (response.body.length < 1)) {
-      return;
-    }
-
-    this.posts = JSON.parse(response.body).Items;
+    API.post('BlueRoseNoteAPIs', '/RecordAppetite', params)
+    .then((response) => {
+      if (response.statusCode === 200) {
+        this.posts = JSON.parse(response.body).Items;
+      }
+    })
+    .finally(() => {
+      this.showLoader = false;
+    });
   },
   methods: {
-    async saveRecord () {
+    saveRecord () {
       const clientId = this.$cookies.get('client_id');
       if (!clientId) { return; }
 
@@ -319,27 +319,30 @@ export default {
         }
       };
 
-      const response = await API.put('BlueRoseNoteAPIs', '/RecordAppetite', params);
+      API.put('BlueRoseNoteAPIs', '/RecordAppetite', params)
+        .then((response) => {
+          if (response.statusCode !== 200) { return; }
 
-      $('#saveRecordBtn').removeAttr('disabled');
-      if (response.statusCode !== 200) { return; }
-
-      this.posts.unshift(params.body);
-      this.newItem.stapleFood = null;
-      $('#stapleFoodLabel').removeClass('active');
-      this.newItem.subSideDish = null;
-      $('#subSideDishLabel').removeClass('active');
-      this.newItem.mainDish = null;
-      $('#mainDishLabel').removeClass('active');
-      this.newItem.dailyProducts = null;
-      $('#dailyProductsLabel').removeClass('active');
-      this.newItem.fruits = null;
-      $('#fruitsLabel').removeClass('active');
-      this.newItem.sweets = null;
-      $('#sweetsLabel').removeClass('active');
-      this.newItem.alcohol = null;
-      $('#alcoholLabel').removeClass('active');
-      this.newItem.memo = null;
+          this.posts.unshift(params.body);
+          this.newItem.stapleFood = null;
+          $('#stapleFoodLabel').removeClass('active');
+          this.newItem.subSideDish = null;
+          $('#subSideDishLabel').removeClass('active');
+          this.newItem.mainDish = null;
+          $('#mainDishLabel').removeClass('active');
+          this.newItem.dailyProducts = null;
+          $('#dailyProductsLabel').removeClass('active');
+          this.newItem.fruits = null;
+          $('#fruitsLabel').removeClass('active');
+          this.newItem.sweets = null;
+          $('#sweetsLabel').removeClass('active');
+          this.newItem.alcohol = null;
+          $('#alcoholLabel').removeClass('active');
+          this.newItem.memo = null;
+        })
+        .finally(() => {
+          $('#saveRecordBtn').removeAttr('disabled');
+        });
     },
     showDeleteModal (post) {
       $('#deleteModalContent').html(post.createdAt + 'の記録を削除しますか？' + '<br />' + '<small>この操作は取り消せません。</small>');
@@ -347,7 +350,7 @@ export default {
 
       $('#deleteModal').modal('show');
     },
-    async deleteRecord () {
+    deleteRecord () {
       $('#deleteModalBtn').attr('disabled', 'disabled');
 
       const clientId = this.$cookies.get('client_id');
@@ -363,14 +366,16 @@ export default {
         }
       };
 
-      const response = await API.del('BlueRoseNoteAPIs', '/RecordAppetite', params);
-
-      $('#deleteModalBtn').removeAttr('disabled');
-      $('#deleteModal').modal('hide');
-
-      if (response.statusCode !== 200) { return; }
-      this.posts = this.posts.filter(function (post) {
-        return Number(post.recordId) !== Number(recordId);
+      API.del('BlueRoseNoteAPIs', '/RecordAppetite', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+        this.posts = this.posts.filter(function (post) {
+          return Number(post.recordId) !== Number(recordId);
+        });
+      })
+      .finally(() => {
+        $('#deleteModalBtn').removeAttr('disabled');
+        $('#deleteModal').modal('hide');
       });
     }
   }

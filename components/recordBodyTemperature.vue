@@ -181,22 +181,21 @@ export default {
       posts: []
     }
   },
-  async beforeMount () {
+  beforeMount () {
     const params = {
       body: {
         clientId: this.$cookies.get('client_id')
       }
     };
 
-    const response = await API.post('BlueRoseNoteAPIs', '/RecordTemperature', params);
-
-    this.showLoader = false;
-
-    if (!response.body || (response.body.length < 1)) {
-      return;
-    }
-
-    this.posts = JSON.parse(response.body).Items;
+    API.post('BlueRoseNoteAPIs', '/RecordTemperature', params)
+    .then((response) => {
+      if (response.statusCode !== 200) { return; }
+      this.posts = JSON.parse(response.body).Items;
+    })
+    .finally(() => {
+      this.showLoader = false;
+    });
   },
   updated () {
     if (this.posts.length < 1) { return; }
@@ -234,7 +233,7 @@ export default {
     }
   },
   methods: {
-    async saveRecord () {
+    saveRecord () {
       const clientId = this.$cookies.get('client_id');
       if (!clientId) { return; }
 
@@ -251,13 +250,15 @@ export default {
         }
       };
 
-      const response = await API.put('BlueRoseNoteAPIs', '/RecordTemperature', params);
-
-      $('#saveRecordBtn').removeAttr('disabled');
-      if (response.statusCode !== 200) { return; }
-
-      this.posts.unshift(params.body);
-      this.newItem.temperature = null;
+      API.put('BlueRoseNoteAPIs', '/RecordTemperature', params)
+      .thsn((response) => {
+        if (response.statusCode !== 200) { return; }
+        this.posts.unshift(params.body);
+        this.newItem.temperature = null;
+      })
+      .finally(() => {
+        $('#saveRecordBtn').removeAttr('disabled');
+      });
     },
     showDeleteModal (post) {
       $('#deleteModalContent').html(post.createdAt + 'の記録を削除しますか？' + '<br />' + '<small>この操作は取り消せません。</small>');
@@ -265,7 +266,7 @@ export default {
 
       $('#deleteModal').modal('show');
     },
-    async deleteRecord () {
+    deleteRecord () {
       $('#deleteModalBtn').attr('disabled', 'disabled');
 
       const clientId = this.$cookies.get('client_id');
@@ -281,14 +282,16 @@ export default {
         }
       };
 
-      const response = await API.del('BlueRoseNoteAPIs', '/RecordTemperature', params);
-
-      $('#deleteModalBtn').removeAttr('disabled');
-      $('#deleteModal').modal('hide');
-
-      if (response.statusCode !== 200) { return; }
-      this.posts = this.posts.filter(function (post) {
-        return Number(post.recordId) !== Number(recordId);
+      API.del('BlueRoseNoteAPIs', '/RecordTemperature', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+        this.posts = this.posts.filter(function (post) {
+          return Number(post.recordId) !== Number(recordId);
+        });
+      })
+      .finally(() => {
+        $('#deleteModalBtn').removeAttr('disabled');
+        $('#deleteModal').modal('hide');
       });
     }
   }

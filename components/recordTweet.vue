@@ -3,8 +3,11 @@
     <!-- New post -->
     <div class="bg-white p-2">
       <textarea id="recordTweetTextArea" v-model="newItem.tweet" class="form-control overflow-hidden mb-1" style="height:13vh;resize:none" rows="4" />
-      <div class="d-flex justify-content-center">
-        <img id="picTarget" class="rounded" :src="newItem.tweetPic" style="width:75%;height:auto" />
+      <div id="picContainer" class="d-flex justify-content-center" style="position: relative">
+        <img id="picTarget" class="rounded" style="width:auto;max-height:25rem">
+        <button id="removePicBtn" type="button" class="btn btn-sm btn-secondary rounded-circle px-2 py-0" style="position:absolute; top: 10px; z-index: 10; display: none;" @click="removePic">
+          <span aria-hidden="true" style="font-size:1.2rem">&times;</span>
+        </button>
       </div>
       <div class="d-flex justify-content-between mt-1">
         <input id="picInput" type="file" accept="image/png, image/jpeg" style="display:none" @change="picOnChange" />
@@ -65,8 +68,7 @@ export default {
       showLoader: true,
       newItem: {
         recordId: null,
-        tweet: null,
-        tweetPic: null
+        tweet: null
       },
       posts: []
     };
@@ -106,6 +108,13 @@ export default {
       const reader = new FileReader();
 
       reader.onload = function (e) {
+        $('#picTarget').one('load', function () {
+          const containerWidth = $('#picContainer').width();
+          const picWidth = $('#picTarget').width();
+          $('#removePicBtn').css('left', (containerWidth - picWidth) / 2.0 + 15);
+          $('#removePicBtn').css('display', 'block');
+        })
+
         const image = e.target.result;
         $('#picTarget').attr('src', image);
         $('#addImageBtn').addClass('disabled');
@@ -114,34 +123,41 @@ export default {
 
       reader.readAsDataURL(file);
     },
-    async saveRecord () {
+    removePic () {
+      $('#picTarget').attr('src', null);
+      $('#removePicBtn').css('display', 'none');
+    },
+    saveRecord () {
       const clientId = this.$cookies.get('client_id');
       if (!clientId) { return; }
 
       $('#saveRecordBtn').attr('disabled', 'disabled');
 
       const now = new Date();
+      const base64 = $('#picTarget').attr('src');
 
       const params = {
         body: {
           clientId,
           recordId: now.getTime(),
           tweet: this.newItem.tweet,
-          tweetpic: this.newItem.tweetPic,
+          tweetpic: base64 ? Buffer.from(base64) : null,
           createdAt: getNowString(now)
         }
       };
 
-      const response = await API.put('BlueRoseNoteAPIs', '/RecordTweet', params);
+      API.put('BlueRoseNoteAPIs', '/RecordTweet', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+        this.posts.unshift(params.body);
 
-      $('#saveRecordBtn').removeAttr('disabled');
-      if (response.statusCode !== 200) { return; }
-
-      this.posts.unshift(params.body);
-
-      this.newItem.recordId = null;
-      this.newItem.tweet = null;
-      this.newItem.tweetpic = null;
+        this.newItem.recordId = null;
+        this.newItem.tweet = null;
+        this.newItem.tweetpic = null;
+      })
+      .finally(() => {
+        $('#saveRecordBtn').removeAttr('disabled');
+      });
     },
     showDeleteModal (post) {
       $('#deleteModalContent').html(post.createdAt + 'の記録を削除しますか？' + '<br />' + '<small>この操作は取り消せません。</small>');
@@ -149,7 +165,7 @@ export default {
 
       $('#deleteModal').modal('show');
     },
-    async deleteRecord () {
+    deleteRecord () {
       $('#deleteModalBtn').attr('disabled', 'disabled');
 
       const clientId = this.$cookies.get('client_id');
@@ -165,14 +181,16 @@ export default {
         }
       };
 
-      const response = await API.del('BlueRoseNoteAPIs', '/RecordTweet', params);
-
-      $('#deleteModalBtn').removeAttr('disabled');
-      $('#deleteModal').modal('hide');
-
-      if (response.statusCode !== 200) { return; }
-      this.posts = this.posts.filter(function (post) {
-        return Number(post.recordId) !== Number(recordId);
+      API.del('BlueRoseNoteAPIs', '/RecordTweet', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+        this.posts = this.posts.filter(function (post) {
+          return Number(post.recordId) !== Number(recordId);
+        });
+      })
+      .finally(() => {
+        $('#deleteModalBtn').removeAttr('disabled');
+        $('#deleteModal').modal('hide');
       });
     }
   }

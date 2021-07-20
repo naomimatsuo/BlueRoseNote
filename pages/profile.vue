@@ -220,9 +220,7 @@ export default {
     API
       .post('BlueRoseNoteAPIs', '/UserProfile', params)
       .then((response) => {
-        if (!response.body || (response.body.length < 1)) {
-          return;
-        }
+         if (response.statusCode !== 200) { return; }
 
         const res = JSON.parse(response.body);
         this.userName = res.userName;
@@ -319,19 +317,27 @@ export default {
       };
       reader.readAsDataURL(event.target.files[0]);
     },
-    async selfImgApply () {
-      const result = await $('#uploadSelfImg').croppie('result', { type: 'canvas', circle: true });
-      this.selfImg = result;
-      $('#selfImgTarget').attr('src', result);
-      $('#uploadSelfImgModal').modal('hide');
+    selfImgApply () {
+      $('#uploadSelfImg').croppie('result', { type: 'canvas', circle: true })
+      .then((result) => {
+        this.selfImg = result;
+        $('#selfImgTarget').attr('src', result);
+      })
+      .finally(() => {
+        $('#uploadSelfImgModal').modal('hide');
+      });
     },
-    async backImgApply () {
-      const result = await $('#uploadBackImg').croppie('result', { type: 'canvas', format: 'jpeg', quality: 0.8 });
-      this.backImg = result;
-      $('#backImgTarget').attr('src', result);
-      $('#uploadBackImgModal').modal('hide');
+    backImgApply () {
+      $('#uploadBackImg').croppie('result', { type: 'canvas', format: 'jpeg', quality: 0.8 })
+      .then((result) => {
+        this.backImg = result;
+        $('#backImgTarget').attr('src', result);
+      })
+      .finally(() => {
+        $('#uploadBackImgModal').modal('hide');
+      });
     },
-    async updateProfile () {
+    updateProfile () {
       const clientId = this.$cookies.get('client_id');
       if (!clientId) { return; }
 
@@ -355,9 +361,10 @@ export default {
         }
       };
 
-      const response = await API.put('BlueRoseNoteAPIs', '/UserProfile', params);
-
-      $('#saveRecordBtn').removeAttr('disabled');
+      API.put('BlueRoseNoteAPIs', '/UserProfile', params)
+      .finally(() => {
+        $('#saveRecordBtn').removeAttr('disabled');
+      });
     }
   }
 }

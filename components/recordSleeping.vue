@@ -209,22 +209,21 @@ export default {
       posts: []
     }
   },
-  async beforeMount () {
+  beforeMount () {
     const params = {
       body: {
         clientId: this.$cookies.get('client_id')
       }
     };
 
-    const response = await API.post('BlueRoseNoteAPIs', '/RecordSleep', params);
-
-    this.showLoader = false;
-
-    if (!response.body || (response.body.length < 1)) {
-      return;
-    }
-
-    this.posts = JSON.parse(response.body).Items;
+    API.post('BlueRoseNoteAPIs', '/RecordSleep', params)
+    .then((response) => {
+      if (response.statusCode !== 200) { return; }
+      this.posts = JSON.parse(response.body).Items;
+    })
+    .finally(() => {
+      this.showLoader = false;
+    });
   },
   updated () {
     if (this.posts.length < 1) { return; }
