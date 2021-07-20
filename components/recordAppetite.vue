@@ -3,18 +3,17 @@
     <!-- New post -->
     <div class="bg-white p-2">
       <div class="row mx-0 mb-2">
-        <div class="col-sm-12 col-md-7 col-lg-6">
-          <p class="mb-1">
-            <span class="mr-2">
-              <img src="/rice.svg" width="20" height="20" />
-            </span>
-            <b>主食</b>
-            <small>&nbsp;ごはん・パン・麺</small>
-          </p>
+        <div class="col-6 col-sm-6 col-lg-8 px-1">
+          <span class="mr-2">
+            <img src="/rice.svg" width="20" height="20" />
+          </span>
+          <b>主食</b>
+          <small class="d-none d-sm-inline-block">&nbsp;ごはん・パン・麺</small>
+          <p class="d-block d-sm-none mb-0" style="font-size:0.7rem">&nbsp;ごはん・パン・麺</p>
         </div>
-        <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
+        <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="stapleFoodLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="stapleFoodLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.stapleFood" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -27,18 +26,17 @@
         </div>
       </div>
       <div class="row mx-0 mb-2">
-        <div class="col-sm-12 col-md-7 col-lg-6">
-          <p>
-            <span class="mr-2">
-              <img src="/carot.svg" width="20" height="20" />
-            </span>
-            <b>副菜</b>
-            <small>&nbsp;野菜・きのこ・いも・海藻</small>
-          </p>
+        <div class="col-6 col-sm-6 col-lg-8 px-1">
+          <span class="mr-2">
+            <img src="/carot.svg" width="20" height="20" />
+          </span>
+          <b>副菜</b>
+          <small class="d-none d-sm-inline-block">&nbsp;野菜・きのこ・いも・海藻</small>
+          <p class="d-block d-sm-none mb-0" style="font-size:0.7rem">&nbsp;野菜・きのこ・いも・海藻</p>
         </div>
-        <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
+        <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="subSideDishLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="subSideDishLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.subSideDish" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -51,18 +49,17 @@
         </div>
       </div>
       <div class="row mx-0 mb-2">
-        <div class="col-sm-12 col-md-7 col-lg-6">
-          <p>
-            <span class="mr-2">
-              <img src="/fish.svg" width="20" height="20" />
-            </span>
-            <b>主菜</b>
-            <small>&nbsp;肉・魚・卵・大豆</small>
-          </p>
+        <div class="col-6 col-sm-6 col-lg-8 px-1">
+          <span class="mr-2">
+            <img src="/fish.svg" width="20" height="20" />
+          </span>
+          <b>主菜</b>
+          <small class="d-none d-sm-inline-block">&nbsp;肉・魚・卵・大豆</small>
+          <p class="d-block d-sm-none mb-0" style="font-size:0.7rem">&nbsp;肉・魚・卵・大豆</p>
         </div>
-        <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
+        <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="mainDishLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="mainDishLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.mainDish" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -75,17 +72,15 @@
         </div>
       </div>
       <div class="row mx-0 mb-2">
-        <div class="col-sm-12 col-md-7 col-lg-6">
-          <p>
-            <span class="mr-2">
-              <img src="/milk.svg" width="20" height="20" />
-            </span>
-            <b>乳製品</b>
-          </p>
+        <div class="col-6 col-sm-6 col-lg-8 px-1">
+          <span class="mr-2">
+            <img src="/milk.svg" width="20" height="20" />
+          </span>
+          <b>乳製品</b>
         </div>
-        <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
+        <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="dailyProductsLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="dailyProductsLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.dailyProducts" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -98,17 +93,15 @@
         </div>
       </div>
       <div class="row mx-0 mb-2">
-        <div class="col-sm-12 col-md-7 col-lg-6">
-          <p>
-            <span class="mr-2">
-              <img src="/apple.svg" width="20" height="20" />
-            </span>
-            <b>果物</b>
-          </p>
+        <div class="col-6 col-sm-6 col-lg-8 px-1">
+          <span class="mr-2">
+            <img src="/apple.svg" width="20" height="20" />
+          </span>
+          <b>果物</b>
         </div>
-        <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
+        <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="fruitsLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="fruitsLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.fruits" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -121,17 +114,15 @@
         </div>
       </div>
       <div class="row mx-0 mb-2">
-        <div class="col-sm-12 col-md-7 col-lg-6">
-          <p>
-            <span class="mr-2">
-              <img src="/cake.svg" width="20" height="20" />
-            </span>
-            <b>お菓子</b>
-          </p>
+        <div class="col-6 col-sm-6 col-lg-8 px-1">
+          <span class="mr-2">
+            <img src="/cake.svg" width="20" height="20" />
+          </span>
+          <b>お菓子</b>
         </div>
-        <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
+        <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="sweetsLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="sweetsLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.sweets" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -144,17 +135,15 @@
         </div>
       </div>
       <div class="row mx-0 mb-2">
-        <div class="col-sm-12 col-md-7 col-lg-6">
-          <p>
-            <span class="mr-2">
-              <img src="/beer.svg" width="20" height="20" />
-            </span>
-            <b>アルコール</b>
-          </p>
+        <div class="col-6 col-sm-6 col-lg-8 px-1">
+          <span class="mr-2">
+            <img src="/beer.svg" width="20" height="20" />
+          </span>
+          <b>アルコール</b>
         </div>
-        <div class="col-sm-12 col-md-5 col-lg-6 d-flex justify-content-end pr-0">
+        <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="alcoholLabel" class="btn btn-outline-primary btn-eat rounded-0 px-4">
+            <label id="alcoholLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.alcohol" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
