@@ -246,7 +246,7 @@ export default {
           clientId,
           recordId: now.getTime(),
           temperature: this.newItem.temperature,
-          createdAt: getNowString(now)
+          createdAt: this.$getNowString(now)
         }
       };
 

@@ -138,7 +138,7 @@ export default {
           recordId: now.getTime(),
           tookMedicine: this.newItem.tookMedicine,
           memo: this.newItem.memo,
-          createdAt: getNowString(now)
+          createdAt: this.$getNowString(now)
         }
       };
 

@@ -273,7 +273,7 @@ export default {
           recordId: now.getTime(),
           sleepTime: this.newItem.sleepTime,
           feeling: this.newItem.feeling,
-          createdAt: getNowString(now)
+          createdAt: this.$getNowString(now)
         }
       };
 

@@ -142,7 +142,7 @@ export default {
           recordId: now.getTime(),
           tweet: this.newItem.tweet,
           tweetpic: base64 ? Buffer.from(base64) : null,
-          createdAt: getNowString(now)
+          createdAt: this.$getNowString(now)
         }
       };
 

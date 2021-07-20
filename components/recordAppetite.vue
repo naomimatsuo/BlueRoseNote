@@ -304,7 +304,7 @@ export default {
           sweets: this.newItem.sweets,
           alcohol: this.newItem.alcohol,
           memo: this.newItem.memo,
-          createdAt: getNowString(now)
+          createdAt: this.$getNowString(now)
         }
       };
 
