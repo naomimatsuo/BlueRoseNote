@@ -4,7 +4,7 @@
     <div class="bg-white p-2">
       <textarea id="recordTweetTextArea" v-model="newItem.tweet" class="form-control overflow-hidden mb-1" style="height:13vh;resize:none" rows="4" />
       <div id="picContainer" class="d-flex justify-content-center" style="position: relative">
-        <img id="picTarget" class="rounded" style="width:auto;max-height:25rem">
+        <img id="picTarget" class="rounded picImg">
         <button id="removePicBtn" type="button" class="btn btn-sm btn-secondary rounded-circle px-2 py-0" style="position:absolute; top: 10px; z-index: 10; display: none;" @click="removePic">
           <span aria-hidden="true" style="font-size:1.2rem">&times;</span>
         </button>
@@ -34,6 +34,9 @@
           </button>
         </div>
         <div class="text-dark text-break mb-0 u-pre-wrap">{{ post.tweet }}</div>
+        <div class="d-flex justify-content-center">
+          <img v-if="post.tweetpic !== null" :src="post.tweetpic" class="picImg" />
+        </div>
       </li>
     </ul>
     <!-- Modal -->
@@ -61,6 +64,7 @@
 
 <script>
 import API from '@aws-amplify/api';
+import croppie from 'croppie';
 
 export default {
   data () {
@@ -150,6 +154,7 @@ export default {
         })
 
         const image = e.target.result;
+
         $('#picTarget').attr('src', image);
         $('#addImageBtn').addClass('disabled');
         $('#addImageBtn').attr('aria-disabled', true);
@@ -167,15 +172,15 @@ export default {
 
       $('#saveRecordBtn').attr('disabled', 'disabled');
 
+      const image = $('#picTarget').attr('src');
       const now = new Date();
-      const base64 = $('#picTarget').attr('src');
 
       const params = {
         body: {
           clientId,
           recordId: now.getTime(),
           tweet: this.newItem.tweet,
-          tweetpic: base64 ? Buffer.from(base64) : null,
+          tweetpic: (image === undefined) ? null : image,
           createdAt: this.$getNowString(now)
         }
       };
@@ -187,7 +192,11 @@ export default {
 
         this.newItem.recordId = null;
         this.newItem.tweet = null;
-        this.newItem.tweetpic = null;
+        $('#picTarget').attr('src', null);
+        $('#removePicBtn').css('display', 'none');
+      })
+      .catch((error) => {
+        console.log(error.response);
       })
       .finally(() => {
         $('#saveRecordBtn').removeAttr('disabled');
@@ -230,3 +239,26 @@ export default {
   }
 }
 </script>
+
+<style>
+@media only screen and (max-width: 767px) {
+  .picImg  {
+    max-width: 250px;
+    max-height:25rem
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .picImg  {
+    max-width: 800px;
+    max-height:25rem
+  }
+}
+
+@media (min-width: 1024px){
+  .picImg  {
+    max-width: 900px;
+    max-height:25rem
+  }
+}
+</style>
