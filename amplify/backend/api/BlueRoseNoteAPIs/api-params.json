@@ -194,36 +194,6 @@
                 ]
             },
             "policyResourceName": "/RecordTweetImg"
-        },
-        {
-            "name": "/UserProfileBackImg",
-            "lambdaFunction": "getUserProfileBackImg",
-            "privacy": {
-                "private": true,
-                "auth": [
-                    "/POST",
-                    "/GET",
-                    "/PUT",
-                    "/PATCH",
-                    "/DELETE"
-                ]
-            },
-            "policyResourceName": "/UserProfileBackImg"
-        },
-        {
-            "name": "/UserProfileSelfImg",
-            "lambdaFunction": "getUserProfileSelfImg",
-            "privacy": {
-                "private": true,
-                "auth": [
-                    "/POST",
-                    "/GET",
-                    "/PUT",
-                    "/PATCH",
-                    "/DELETE"
-                ]
-            },
-            "policyResourceName": "/UserProfileSelfImg"
         }
     ],
     "resourceName": "BlueRoseNoteAPIs",
@@ -267,12 +237,6 @@
         },
         {
             "lambdaFunction": "getRecordTweetImg"
-        },
-        {
-            "lambdaFunction": "getUserProfileBackImg"
-        },
-        {
-            "lambdaFunction": "getUserProfileSelfImg"
         }
     ],
     "privacy": {
@@ -381,22 +345,6 @@
         {
             "category": "function",
             "resourceName": "getRecordTweetImg",
-            "attributes": [
-                "Name",
-                "Arn"
-            ]
-        },
-        {
-            "category": "function",
-            "resourceName": "getUserProfileBackImg",
-            "attributes": [
-                "Name",
-                "Arn"
-            ]
-        },
-        {
-            "category": "function",
-            "resourceName": "getUserProfileSelfImg",
             "attributes": [
                 "Name",
                 "Arn"

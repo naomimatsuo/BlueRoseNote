@@ -1,223 +1,192 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
     "Description": "API Gateway resource stack creation using Amplify CLI",
-    
+
     "Parameters": {
         "env": {
             "Type": "String"
         },
-    
-    
+
+
           "functiongetUserProfileName": {
             "Type": "String",
             "Default": "functiongetUserProfileName"
           },
 
-          
+
           "functiongetUserProfileArn": {
             "Type": "String",
             "Default": "functiongetUserProfileArn"
           },
 
-          
-          
-    
+
+
+
           "functionrecordTweetName": {
             "Type": "String",
             "Default": "functionrecordTweetName"
           },
 
-          
+
           "functionrecordTweetArn": {
             "Type": "String",
             "Default": "functionrecordTweetArn"
           },
 
-          
-          
-    
+
+
+
           "functionaddRecordTemperatureName": {
             "Type": "String",
             "Default": "functionaddRecordTemperatureName"
           },
 
-          
+
           "functionaddRecordTemperatureArn": {
             "Type": "String",
             "Default": "functionaddRecordTemperatureArn"
           },
 
-          
-          
-    
+
+
+
           "functionaddRecordSleepName": {
             "Type": "String",
             "Default": "functionaddRecordSleepName"
           },
 
-          
+
           "functionaddRecordSleepArn": {
             "Type": "String",
             "Default": "functionaddRecordSleepArn"
           },
 
-          
-          
-    
+
+
+
           "functionaddRecordAppetiteName": {
             "Type": "String",
             "Default": "functionaddRecordAppetiteName"
           },
 
-          
+
           "functionaddRecordAppetiteArn": {
             "Type": "String",
             "Default": "functionaddRecordAppetiteArn"
           },
 
-          
-          
-    
+
+
+
           "functionaddRecordMedicineName": {
             "Type": "String",
             "Default": "functionaddRecordMedicineName"
           },
 
-          
+
           "functionaddRecordMedicineArn": {
             "Type": "String",
             "Default": "functionaddRecordMedicineArn"
           },
 
-          
-          
-    
+
+
+
           "functiongetCommunityInfoName": {
             "Type": "String",
             "Default": "functiongetCommunityInfoName"
           },
 
-          
+
           "functiongetCommunityInfoArn": {
             "Type": "String",
             "Default": "functiongetCommunityInfoArn"
           },
 
-          
-          
-    
+
+
+
           "functiongetCommunityMemberName": {
             "Type": "String",
             "Default": "functiongetCommunityMemberName"
           },
 
-          
+
           "functiongetCommunityMemberArn": {
             "Type": "String",
             "Default": "functiongetCommunityMemberArn"
           },
 
-          
-          
-    
+
+
+
           "functiongetCommunityTweetName": {
             "Type": "String",
             "Default": "functiongetCommunityTweetName"
           },
 
-          
+
           "functiongetCommunityTweetArn": {
             "Type": "String",
             "Default": "functiongetCommunityTweetArn"
           },
 
-          
-          
-    
+
+
+
           "functiongetCommunityTweetImgName": {
             "Type": "String",
             "Default": "functiongetCommunityTweetImgName"
           },
 
-          
+
           "functiongetCommunityTweetImgArn": {
             "Type": "String",
             "Default": "functiongetCommunityTweetImgArn"
           },
 
-          
-          
-    
+
+
+
           "functiongetCommunityTweetReplyName": {
             "Type": "String",
             "Default": "functiongetCommunityTweetReplyName"
           },
 
-          
+
           "functiongetCommunityTweetReplyArn": {
             "Type": "String",
             "Default": "functiongetCommunityTweetReplyArn"
           },
 
-          
-          
-    
+
+
+
           "functiongetCommunityReplyImgName": {
             "Type": "String",
             "Default": "functiongetCommunityReplyImgName"
           },
 
-          
+
           "functiongetCommunityReplyImgArn": {
             "Type": "String",
             "Default": "functiongetCommunityReplyImgArn"
           },
 
-          
-          
-    
+
+
+
           "functiongetRecordTweetImgName": {
             "Type": "String",
             "Default": "functiongetRecordTweetImgName"
           },
 
-          
+
           "functiongetRecordTweetImgArn": {
             "Type": "String",
             "Default": "functiongetRecordTweetImgArn"
-          },
-
-          
-          
-    
-          "functiongetUserProfileBackImgName": {
-            "Type": "String",
-            "Default": "functiongetUserProfileBackImgName"
-          },
-
-          
-          "functiongetUserProfileBackImgArn": {
-            "Type": "String",
-            "Default": "functiongetUserProfileBackImgArn"
-          },
-
-          
-          
-    
-          "functiongetUserProfileSelfImgName": {
-            "Type": "String",
-            "Default": "functiongetUserProfileSelfImgName"
-          },
-
-          
-          "functiongetUserProfileSelfImgArn": {
-            "Type": "String",
-            "Default": "functiongetUserProfileSelfImgArn"
           }
 
-          
-          
-    
     },
      "Conditions": {
         "ShouldNotCreateEnvResources": {
@@ -230,37 +199,37 @@
         }
     },
     "Resources": {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       "BlueRoseNoteAPIs": {
         "Type": "AWS::ApiGateway::RestApi",
         "Properties": {
@@ -305,7 +274,7 @@
               "https"
             ],
             "paths": {
-              
+
               "/UserProfile": {
                 "options": {
                   "consumes": [
@@ -373,13 +342,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -395,12 +364,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functiongetUserProfileArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -478,13 +447,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -500,12 +469,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functiongetUserProfileArn"
                           },
-                          
+
                           "/invocations"
                         ]
                       ]
@@ -516,7 +485,7 @@
                   }
                 }
               },
-              
+
               "/RecordTweet": {
                 "options": {
                   "consumes": [
@@ -584,13 +553,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -606,12 +575,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functionrecordTweetArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -689,13 +658,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -711,12 +680,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functionrecordTweetArn"
                           },
-                          
+
                           "/invocations"
                         ]
                       ]
@@ -727,7 +696,7 @@
                   }
                 }
               },
-              
+
               "/RecordTemperature": {
                 "options": {
                   "consumes": [
@@ -795,13 +764,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -817,12 +786,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functionaddRecordTemperatureArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -900,13 +869,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -922,12 +891,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functionaddRecordTemperatureArn"
                           },
-                          
+
                           "/invocations"
                         ]
                       ]
@@ -938,7 +907,7 @@
                   }
                 }
               },
-              
+
               "/RecordSleep": {
                 "options": {
                   "consumes": [
@@ -1006,13 +975,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -1028,12 +997,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functionaddRecordSleepArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -1111,13 +1080,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -1133,12 +1102,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functionaddRecordSleepArn"
                           },
-                          
+
                           "/invocations"
                         ]
                       ]
@@ -1149,7 +1118,7 @@
                   }
                 }
               },
-              
+
               "/RecordAppetite": {
                 "options": {
                   "consumes": [
@@ -1217,13 +1186,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -1239,12 +1208,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functionaddRecordAppetiteArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -1322,13 +1291,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -1344,12 +1313,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functionaddRecordAppetiteArn"
                           },
-                          
+
                           "/invocations"
                         ]
                       ]
@@ -1360,7 +1329,7 @@
                   }
                 }
               },
-              
+
               "/RecordMedicine": {
                 "options": {
                   "consumes": [
@@ -1428,13 +1397,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -1450,12 +1419,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functionaddRecordMedicineArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -1533,13 +1502,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -1555,12 +1524,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functionaddRecordMedicineArn"
                           },
-                          
+
                           "/invocations"
                         ]
                       ]
@@ -1571,7 +1540,7 @@
                   }
                 }
               },
-              
+
               "/CommunityInfo": {
                 "options": {
                   "consumes": [
@@ -1639,13 +1608,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -1661,12 +1630,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functiongetCommunityInfoArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -1744,13 +1713,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -1766,12 +1735,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functiongetCommunityInfoArn"
                           },
-                          
+
                           "/invocations"
                         ]
                       ]
@@ -1782,7 +1751,7 @@
                   }
                 }
               },
-              
+
               "/CommunityMember": {
                 "options": {
                   "consumes": [
@@ -1850,13 +1819,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -1872,12 +1841,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functiongetCommunityMemberArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -1955,13 +1924,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -1977,12 +1946,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functiongetCommunityMemberArn"
                           },
-                          
+
                           "/invocations"
                         ]
                       ]
@@ -1993,7 +1962,7 @@
                   }
                 }
               },
-              
+
               "/CommunityTweet": {
                 "options": {
                   "consumes": [
@@ -2061,13 +2030,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -2083,12 +2052,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functiongetCommunityTweetArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -2166,13 +2135,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -2188,12 +2157,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functiongetCommunityTweetArn"
                           },
-                          
+
                           "/invocations"
                         ]
                       ]
@@ -2204,7 +2173,7 @@
                   }
                 }
               },
-              
+
               "/CommunityTweetImg": {
                 "options": {
                   "consumes": [
@@ -2272,13 +2241,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -2294,12 +2263,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functiongetCommunityTweetImgArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -2377,13 +2346,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -2399,12 +2368,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functiongetCommunityTweetImgArn"
                           },
-                          
+
                           "/invocations"
                         ]
                       ]
@@ -2415,7 +2384,7 @@
                   }
                 }
               },
-              
+
               "/CommunityTweetReply": {
                 "options": {
                   "consumes": [
@@ -2483,13 +2452,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -2505,12 +2474,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functiongetCommunityTweetReplyArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -2588,13 +2557,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -2610,12 +2579,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functiongetCommunityTweetReplyArn"
                           },
-                          
+
                           "/invocations"
                         ]
                       ]
@@ -2626,7 +2595,7 @@
                   }
                 }
               },
-              
+
               "/CommunityTweetReplyImg": {
                 "options": {
                   "consumes": [
@@ -2694,13 +2663,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -2716,12 +2685,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functiongetCommunityReplyImgArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -2799,13 +2768,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -2821,12 +2790,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functiongetCommunityReplyImgArn"
                           },
-                          
+
                           "/invocations"
                         ]
                       ]
@@ -2837,7 +2806,7 @@
                   }
                 }
               },
-              
+
               "/RecordTweetImg": {
                 "options": {
                   "consumes": [
@@ -2905,13 +2874,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -2927,12 +2896,12 @@
                               "Ref": "AWS::Region"
                             },
                             ":lambda:path/2015-03-31/functions/",
-                            
+
                             {
 
                                 "Ref": "functiongetRecordTweetImgArn"
                             },
-                            
+
                             "/invocations"
                           ]
                         ]
@@ -3010,13 +2979,13 @@
                       }
                     }
                   },
-                  
+
                     "security": [
                         {
                           "sigv4": []
                         }
                       ],
-                  
+
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -3032,434 +3001,12 @@
                             "Ref": "AWS::Region"
                           },
                           ":lambda:path/2015-03-31/functions/",
-                          
+
                           {
 
                             "Ref": "functiongetRecordTweetImgArn"
                           },
-                          
-                          "/invocations"
-                        ]
-                      ]
-                    },
-                    "passthroughBehavior": "when_no_match",
-                    "httpMethod": "POST",
-                    "type": "aws_proxy"
-                  }
-                }
-              },
-              
-              "/UserProfileBackImg": {
-                "options": {
-                  "consumes": [
-                    "application/json"
-                  ],
-                  "produces": [
-                    "application/json"
-                  ],
-                  "responses": {
-                    "200": {
-                      "description": "200 response",
-                      "headers": {
-                        "Access-Control-Allow-Origin": {
-                          "type": "string"
-                        },
-                        "Access-Control-Allow-Methods": {
-                          "type": "string"
-                        },
-                        "Access-Control-Allow-Headers": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  "x-amazon-apigateway-integration": {
-                    "responses": {
-                      "default": {
-                        "statusCode": "200",
-                        "responseParameters": {
-                          "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
-                          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-                          "method.response.header.Access-Control-Allow-Origin": "'*'"
-                        }
-                      }
-                    },
-                    "requestTemplates": {
-                      "application/json": "{\"statusCode\": 200}"
-                    },
-                    "passthroughBehavior": "when_no_match",
-                    "type": "mock"
-                  }
-                },
-                "x-amazon-apigateway-any-method": {
-                  "consumes": [
-                    "application/json"
-                  ],
-                  "produces": [
-                    "application/json"
-                  ],
-                  "parameters": [
-                    {
-                      "in": "body",
-                      "name": "RequestSchema",
-                      "required": false,
-                      "schema": {
-                        "$ref": "#/definitions/RequestSchema"
-                      }
-                    }
-                  ],
-                  "responses": {
-                    "200": {
-                      "description": "200 response",
-                      "schema": {
-                        "$ref": "#/definitions/ResponseSchema"
-                      }
-                    }
-                  },
-                  
-                    "security": [
-                        {
-                          "sigv4": []
-                        }
-                      ],
-                  
-                  "x-amazon-apigateway-integration": {
-                    "responses": {
-                      "default": {
-                        "statusCode": "200"
-                      }
-                    },
-                    "uri": {
-                        "Fn::Join": [
-                          "",
-                          [
-                            "arn:aws:apigateway:",
-                            {
-                              "Ref": "AWS::Region"
-                            },
-                            ":lambda:path/2015-03-31/functions/",
-                            
-                            {
 
-                                "Ref": "functiongetUserProfileBackImgArn"
-                            },
-                            
-                            "/invocations"
-                          ]
-                        ]
-                      },
-                    "passthroughBehavior": "when_no_match",
-                    "httpMethod": "POST",
-                    "type": "aws_proxy"
-                  }
-                }
-              },
-              "/UserProfileBackImg/{proxy+}": {
-                "options": {
-                  "consumes": [
-                    "application/json"
-                  ],
-                  "produces": [
-                    "application/json"
-                  ],
-                  "responses": {
-                    "200": {
-                      "description": "200 response",
-                      "headers": {
-                        "Access-Control-Allow-Origin": {
-                          "type": "string"
-                        },
-                        "Access-Control-Allow-Methods": {
-                          "type": "string"
-                        },
-                        "Access-Control-Allow-Headers": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  "x-amazon-apigateway-integration": {
-                    "responses": {
-                      "default": {
-                        "statusCode": "200",
-                        "responseParameters": {
-                          "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
-                          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-                          "method.response.header.Access-Control-Allow-Origin": "'*'"
-                        }
-                      }
-                    },
-                    "requestTemplates": {
-                      "application/json": "{\"statusCode\": 200}"
-                    },
-                    "passthroughBehavior": "when_no_match",
-                    "type": "mock"
-                  }
-                },
-                "x-amazon-apigateway-any-method": {
-                  "consumes": [
-                    "application/json"
-                  ],
-                  "produces": [
-                    "application/json"
-                  ],
-                  "parameters": [
-                    {
-                      "in": "body",
-                      "name": "RequestSchema",
-                      "required": false,
-                      "schema": {
-                        "$ref": "#/definitions/RequestSchema"
-                      }
-                    }
-                  ],
-                  "responses": {
-                    "200": {
-                      "description": "200 response",
-                      "schema": {
-                        "$ref": "#/definitions/ResponseSchema"
-                      }
-                    }
-                  },
-                  
-                    "security": [
-                        {
-                          "sigv4": []
-                        }
-                      ],
-                  
-                  "x-amazon-apigateway-integration": {
-                    "responses": {
-                      "default": {
-                        "statusCode": "200"
-                      }
-                    },
-                    "uri": {
-                      "Fn::Join": [
-                        "",
-                        [
-                          "arn:aws:apigateway:",
-                          {
-                            "Ref": "AWS::Region"
-                          },
-                          ":lambda:path/2015-03-31/functions/",
-                          
-                          {
-
-                            "Ref": "functiongetUserProfileBackImgArn"
-                          },
-                          
-                          "/invocations"
-                        ]
-                      ]
-                    },
-                    "passthroughBehavior": "when_no_match",
-                    "httpMethod": "POST",
-                    "type": "aws_proxy"
-                  }
-                }
-              },
-              
-              "/UserProfileSelfImg": {
-                "options": {
-                  "consumes": [
-                    "application/json"
-                  ],
-                  "produces": [
-                    "application/json"
-                  ],
-                  "responses": {
-                    "200": {
-                      "description": "200 response",
-                      "headers": {
-                        "Access-Control-Allow-Origin": {
-                          "type": "string"
-                        },
-                        "Access-Control-Allow-Methods": {
-                          "type": "string"
-                        },
-                        "Access-Control-Allow-Headers": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  "x-amazon-apigateway-integration": {
-                    "responses": {
-                      "default": {
-                        "statusCode": "200",
-                        "responseParameters": {
-                          "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
-                          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-                          "method.response.header.Access-Control-Allow-Origin": "'*'"
-                        }
-                      }
-                    },
-                    "requestTemplates": {
-                      "application/json": "{\"statusCode\": 200}"
-                    },
-                    "passthroughBehavior": "when_no_match",
-                    "type": "mock"
-                  }
-                },
-                "x-amazon-apigateway-any-method": {
-                  "consumes": [
-                    "application/json"
-                  ],
-                  "produces": [
-                    "application/json"
-                  ],
-                  "parameters": [
-                    {
-                      "in": "body",
-                      "name": "RequestSchema",
-                      "required": false,
-                      "schema": {
-                        "$ref": "#/definitions/RequestSchema"
-                      }
-                    }
-                  ],
-                  "responses": {
-                    "200": {
-                      "description": "200 response",
-                      "schema": {
-                        "$ref": "#/definitions/ResponseSchema"
-                      }
-                    }
-                  },
-                  
-                    "security": [
-                        {
-                          "sigv4": []
-                        }
-                      ],
-                  
-                  "x-amazon-apigateway-integration": {
-                    "responses": {
-                      "default": {
-                        "statusCode": "200"
-                      }
-                    },
-                    "uri": {
-                        "Fn::Join": [
-                          "",
-                          [
-                            "arn:aws:apigateway:",
-                            {
-                              "Ref": "AWS::Region"
-                            },
-                            ":lambda:path/2015-03-31/functions/",
-                            
-                            {
-
-                                "Ref": "functiongetUserProfileSelfImgArn"
-                            },
-                            
-                            "/invocations"
-                          ]
-                        ]
-                      },
-                    "passthroughBehavior": "when_no_match",
-                    "httpMethod": "POST",
-                    "type": "aws_proxy"
-                  }
-                }
-              },
-              "/UserProfileSelfImg/{proxy+}": {
-                "options": {
-                  "consumes": [
-                    "application/json"
-                  ],
-                  "produces": [
-                    "application/json"
-                  ],
-                  "responses": {
-                    "200": {
-                      "description": "200 response",
-                      "headers": {
-                        "Access-Control-Allow-Origin": {
-                          "type": "string"
-                        },
-                        "Access-Control-Allow-Methods": {
-                          "type": "string"
-                        },
-                        "Access-Control-Allow-Headers": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  "x-amazon-apigateway-integration": {
-                    "responses": {
-                      "default": {
-                        "statusCode": "200",
-                        "responseParameters": {
-                          "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'",
-                          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-                          "method.response.header.Access-Control-Allow-Origin": "'*'"
-                        }
-                      }
-                    },
-                    "requestTemplates": {
-                      "application/json": "{\"statusCode\": 200}"
-                    },
-                    "passthroughBehavior": "when_no_match",
-                    "type": "mock"
-                  }
-                },
-                "x-amazon-apigateway-any-method": {
-                  "consumes": [
-                    "application/json"
-                  ],
-                  "produces": [
-                    "application/json"
-                  ],
-                  "parameters": [
-                    {
-                      "in": "body",
-                      "name": "RequestSchema",
-                      "required": false,
-                      "schema": {
-                        "$ref": "#/definitions/RequestSchema"
-                      }
-                    }
-                  ],
-                  "responses": {
-                    "200": {
-                      "description": "200 response",
-                      "schema": {
-                        "$ref": "#/definitions/ResponseSchema"
-                      }
-                    }
-                  },
-                  
-                    "security": [
-                        {
-                          "sigv4": []
-                        }
-                      ],
-                  
-                  "x-amazon-apigateway-integration": {
-                    "responses": {
-                      "default": {
-                        "statusCode": "200"
-                      }
-                    },
-                    "uri": {
-                      "Fn::Join": [
-                        "",
-                        [
-                          "arn:aws:apigateway:",
-                          {
-                            "Ref": "AWS::Region"
-                          },
-                          ":lambda:path/2015-03-31/functions/",
-                          
-                          {
-
-                            "Ref": "functiongetUserProfileSelfImgArn"
-                          },
-                          
                           "/invocations"
                         ]
                       ]
@@ -3470,7 +3017,6 @@
                   }
                 }
               }
-              
             },
             "securityDefinitions": {
               "sigv4": {
@@ -3511,17 +3057,17 @@
         }
       },
 
-      
-        
+
+
 
         "functiongetUserProfilePermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functiongetUserProfileName"
                     },
-                    
+
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3546,16 +3092,16 @@
                 }
             }
         },
-        
+
 
         "functionrecordTweetPermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functionrecordTweetName"
                     },
-                    
+
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3580,16 +3126,16 @@
                 }
             }
         },
-        
+
 
         "functionaddRecordTemperaturePermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functionaddRecordTemperatureName"
                     },
-                    
+
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3614,16 +3160,16 @@
                 }
             }
         },
-        
+
 
         "functionaddRecordSleepPermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functionaddRecordSleepName"
                     },
-                    
+
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3648,16 +3194,16 @@
                 }
             }
         },
-        
+
 
         "functionaddRecordAppetitePermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functionaddRecordAppetiteName"
                     },
-                    
+
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3682,16 +3228,16 @@
                 }
             }
         },
-        
+
 
         "functionaddRecordMedicinePermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functionaddRecordMedicineName"
                     },
-                    
+
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3716,16 +3262,16 @@
                 }
             }
         },
-        
+
 
         "functiongetCommunityInfoPermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functiongetCommunityInfoName"
                     },
-                    
+
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3750,16 +3296,16 @@
                 }
             }
         },
-        
+
 
         "functiongetCommunityMemberPermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functiongetCommunityMemberName"
                     },
-                    
+
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3784,16 +3330,16 @@
                 }
             }
         },
-        
+
 
         "functiongetCommunityTweetPermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functiongetCommunityTweetName"
                     },
-                    
+
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3818,16 +3364,16 @@
                 }
             }
         },
-        
+
 
         "functiongetCommunityTweetImgPermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functiongetCommunityTweetImgName"
                     },
-                    
+
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3852,16 +3398,16 @@
                 }
             }
         },
-        
+
 
         "functiongetCommunityTweetReplyPermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functiongetCommunityTweetReplyName"
                     },
-                    
+
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3886,16 +3432,16 @@
                 }
             }
         },
-        
+
 
         "functiongetCommunityReplyImgPermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functiongetCommunityReplyImgName"
                     },
-                    
+
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3920,50 +3466,16 @@
                 }
             }
         },
-        
+
 
         "functiongetRecordTweetImgPermissionBlueRoseNoteAPIs": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
-                "FunctionName": 
+                "FunctionName":
                     {
                         "Ref":  "functiongetRecordTweetImgName"
                     },
-                    
-                    "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                    "Fn::Join": [
-                        "",
-                        [
-                            "arn:aws:execute-api:",
-                            {
-                                "Ref": "AWS::Region"
-                            },
-                            ":",
-                            {
-                                "Ref": "AWS::AccountId"
-                            },
-                            ":",
-                            {
-                                "Ref": "BlueRoseNoteAPIs"
-                            },
-                            "/*/*/*"
-                        ]
-                    ]
-                }
-            }
-        },
-        
 
-        "functiongetUserProfileBackImgPermissionBlueRoseNoteAPIs": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-                "FunctionName": 
-                    {
-                        "Ref":  "functiongetUserProfileBackImgName"
-                    },
-                    
                     "Action": "lambda:InvokeFunction",
                 "Principal": "apigateway.amazonaws.com",
                 "SourceArn": {
@@ -3988,42 +3500,6 @@
                 }
             }
         },
-        
-
-        "functiongetUserProfileSelfImgPermissionBlueRoseNoteAPIs": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-                "FunctionName": 
-                    {
-                        "Ref":  "functiongetUserProfileSelfImgName"
-                    },
-                    
-                    "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                    "Fn::Join": [
-                        "",
-                        [
-                            "arn:aws:execute-api:",
-                            {
-                                "Ref": "AWS::Region"
-                            },
-                            ":",
-                            {
-                                "Ref": "AWS::AccountId"
-                            },
-                            ":",
-                            {
-                                "Ref": "BlueRoseNoteAPIs"
-                            },
-                            "/*/*/*"
-                        ]
-                    ]
-                }
-            }
-        },
-        
-        
 
       "DeploymentAPIGWBlueRoseNoteAPIse27dca8a": {
         "Type": "AWS::ApiGateway::Deployment",
