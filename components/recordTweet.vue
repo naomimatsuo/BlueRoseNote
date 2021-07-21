@@ -105,7 +105,7 @@ export default {
   },
   methods: {
     onScroll (event) {
-      if ($(window).scrollTop() + $(window).height() < $(document).height() - 50) {
+      if ($(window).scrollTop() + window.innerHeight < $(document).height() - 30) {
         return;
       }
 
