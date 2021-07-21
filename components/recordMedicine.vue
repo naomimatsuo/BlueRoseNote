@@ -33,7 +33,6 @@
       </div>
     </div>
     <!-- Old posts -->
-    <itemLoader v-if="showLoader" class="pt-4" />
     <ul class="list-group mt-2">
       <li v-for="post in posts" :key="post.recordId" class="list-group-item rounded-0 bg-transparent">
         <div class="d-flex justify-content-between">
@@ -70,6 +69,7 @@
         <p v-if="post.memo !== null" class="text-dark text-break u-pre-wrap mt-2 mb-0" style="font-size:0.9rem">{{ post.memo }}</p>
       </li>
     </ul>
+    <itemLoader v-if="showLoader" class="pt-4" />
     <!-- Modal -->
     <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -135,6 +135,8 @@ export default {
       }
 
       if (!this.lastEvaluatedKey) { return; }
+
+      if (this.showLoader) { return; }
 
       this.showLoader = true;
 

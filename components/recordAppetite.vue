@@ -166,7 +166,6 @@
       </div>
     </div>
     <!-- Old posts-->
-    <itemLoader v-if="showLoader" class="pt-4" />
     <ul class="list-group mt-2">
       <li v-for="post in posts" :key="post.recordId" class="list-group-item rounded-0 bg-transparent">
         <div class="d-flex justify-content-between">
@@ -223,6 +222,7 @@
         </div>
       </li>
     </ul>
+    <itemLoader v-if="showLoader" class="pt-4" />
     <!-- Modal -->
     <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -295,6 +295,8 @@ export default {
       }
 
       if (!this.lastEvaluatedKey) { return; }
+
+      if (this.showLoader) { return; }
 
       this.showLoader = true;
 

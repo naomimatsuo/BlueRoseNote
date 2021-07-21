@@ -17,7 +17,6 @@
       </div>
     </div>
     <!-- Old post-->
-    <itemLoader v-if="showLoader" class="pt-4" />
     <div id="postsCotainer" class="row mx-0 mt-2 bg-transparent">
       <div id="xAxis" />
       <div v-for="post in posts" :key="post.recordId" style="position: relative">
@@ -32,6 +31,7 @@
         <div :id="'no_' + post.recordId" />
       </div>
     </div>
+    <itemLoader v-if="showLoader" class="pt-4" />
     <!-- Modal -->
     <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -246,6 +246,8 @@ export default {
       }
 
       if (!this.lastEvaluatedKey) { return; }
+
+      if (this.showLoader) { return; }
 
       this.showLoader = true;
 
