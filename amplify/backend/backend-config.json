@@ -69,22 +69,7 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "getCommunityTweetImg": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "getCommunityTweetReply": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "getCommunityReplyImg": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "getRecordTweetImg": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -120,6 +105,11 @@
       "service": "Lambda"
     },
     "deleteRecordAppetite": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "addCommunityInfo": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -204,31 +194,7 @@
         },
         {
           "category": "function",
-          "resourceName": "getCommunityTweetImg",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        },
-        {
-          "category": "function",
           "resourceName": "getCommunityTweetReply",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "getCommunityReplyImg",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "getRecordTweetImg",
           "attributes": [
             "Name",
             "Arn"

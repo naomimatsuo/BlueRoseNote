@@ -136,21 +136,6 @@
             "policyResourceName": "/CommunityTweet"
         },
         {
-            "name": "/CommunityTweetImg",
-            "lambdaFunction": "getCommunityTweetImg",
-            "privacy": {
-                "private": true,
-                "auth": [
-                    "/POST",
-                    "/GET",
-                    "/PUT",
-                    "/PATCH",
-                    "/DELETE"
-                ]
-            },
-            "policyResourceName": "/CommunityTweetImg"
-        },
-        {
             "name": "/CommunityTweetReply",
             "lambdaFunction": "getCommunityTweetReply",
             "privacy": {
@@ -164,36 +149,6 @@
                 ]
             },
             "policyResourceName": "/CommunityTweetReply"
-        },
-        {
-            "name": "/CommunityTweetReplyImg",
-            "lambdaFunction": "getCommunityReplyImg",
-            "privacy": {
-                "private": true,
-                "auth": [
-                    "/POST",
-                    "/GET",
-                    "/PUT",
-                    "/PATCH",
-                    "/DELETE"
-                ]
-            },
-            "policyResourceName": "/CommunityTweetReplyImg"
-        },
-        {
-            "name": "/RecordTweetImg",
-            "lambdaFunction": "getRecordTweetImg",
-            "privacy": {
-                "private": true,
-                "auth": [
-                    "/POST",
-                    "/GET",
-                    "/PUT",
-                    "/PATCH",
-                    "/DELETE"
-                ]
-            },
-            "policyResourceName": "/RecordTweetImg"
         }
     ],
     "resourceName": "BlueRoseNoteAPIs",
@@ -227,16 +182,7 @@
             "lambdaFunction": "getCommunityTweet"
         },
         {
-            "lambdaFunction": "getCommunityTweetImg"
-        },
-        {
             "lambdaFunction": "getCommunityTweetReply"
-        },
-        {
-            "lambdaFunction": "getCommunityReplyImg"
-        },
-        {
-            "lambdaFunction": "getRecordTweetImg"
         }
     ],
     "privacy": {
@@ -320,31 +266,7 @@
         },
         {
             "category": "function",
-            "resourceName": "getCommunityTweetImg",
-            "attributes": [
-                "Name",
-                "Arn"
-            ]
-        },
-        {
-            "category": "function",
             "resourceName": "getCommunityTweetReply",
-            "attributes": [
-                "Name",
-                "Arn"
-            ]
-        },
-        {
-            "category": "function",
-            "resourceName": "getCommunityReplyImg",
-            "attributes": [
-                "Name",
-                "Arn"
-            ]
-        },
-        {
-            "category": "function",
-            "resourceName": "getRecordTweetImg",
             "attributes": [
                 "Name",
                 "Arn"

@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "getRecordTweetImg",
+            "addCommunityInfo",
             {
               "Fn::Join": [
                 "",
                 [
-                  "getRecordTweetImg",
+                  "addCommunityInfo",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "bluerosenoteLambdaRole7c568a4e",
+            "bluerosenoteLambdaRoled5ed6f57",
             {
               "Fn::Join": [
                 "",
                 [
-                  "bluerosenoteLambdaRole7c568a4e",
+                  "bluerosenoteLambdaRoled5ed6f57",
                   "-",
                   {
                     "Ref": "env"

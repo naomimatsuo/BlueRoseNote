@@ -328,7 +328,7 @@ export default {
       });
     },
     backImgApply () {
-      $('#uploadBackImg').croppie('result', { type: 'canvas', format: 'jpeg', quality: 0.8 })
+      $('#uploadBackImg').croppie('result', { type: 'canvas', format: 'jpeg', quality: 0.85 })
       .then((result) => {
         this.backImg = result;
         $('#backImgTarget').attr('src', result);
@@ -357,12 +357,12 @@ export default {
           birthDate: this.birthDate,
           backImg: this.backImg,
           selfImg: this.selfImg,
-          updatedAt: new Date()
+          updatedAt: this.$getNowString(new Date())
         }
       };
 
       API.put('BlueRoseNoteAPIs', '/UserProfile', params)
-      .finally(() => {
+      .then(() => {
         $('#saveRecordBtn').removeAttr('disabled');
       });
     }
