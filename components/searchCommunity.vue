@@ -15,97 +15,17 @@
       <div class="mt-3">
         <div class="card card-body bg-transparent">
           <p>部位から検索</p>
-          <div class="row">
+          <div v-for="no in [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21]" :key="no" class="row mt-2">
             <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(1)">頭・顔・口</button>
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(no)">{{ $getCommunityCategory(no) }}</button>
             </div>
             <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(2)">目</button>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(3)">鼻</button>
-            </div>
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(4)">耳</button>
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(no+1)">{{ $getCommunityCategory(no+1) }}</button>
             </div>
           </div>
           <div class="row mt-2">
             <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(5)">首・のど</button>
-            </div>
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(6)">胸<small>（肺・心臓）</small></button>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(7)">腹<small>（胃腸・肝臓）</small></button>
-            </div>
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(8)">子宮</button>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(9)">手</button>
-            </div>
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(10)">足</button>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(11)">背中・腰</button>
-            </div>
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(12)">腎臓・膵臓</button>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(13)">陰部・肛門</button>
-            </div>
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(14)">皮膚</button>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(15)">骨・関節</button>
-            </div>
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(16)">脳・脊髄</button>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(17)">筋肉</button>
-            </div>
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(18)">末梢神経</button>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(19)">血液・血管</button>
-            </div>
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(20)">リンパ球・節</button>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(21)">こころ</button>
-            </div>
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(22)">全身</button>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(23)">その他</button>
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(23)">{{ $getCommunityCategory(23) }}</button>
             </div>
           </div>
         </div>
@@ -140,29 +60,29 @@
                   <small v-if="community.description.length > 17">...</small>
                 </p>
                 <!-- Category -->
-                <span v-if="community.part1" class="badge badge-light">頭・顔・口</span>
-                <span v-if="community.part2" class="badge badge-light">目</span>
-                <span v-if="community.part3" class="badge badge-light">鼻</span>
-                <span v-if="community.part4" class="badge badge-light">耳</span>
-                <span v-if="community.part5" class="badge badge-light">首・のど</span>
-                <span v-if="community.part6" class="badge badge-light">胸<small>（肺・心臓）</small></span>
-                <span v-if="community.part7" class="badge badge-light">腹<small>（胃腸・肝臓）</small></span>
-                <span v-if="community.part8" class="badge badge-light">子宮</span>
-                <span v-if="community.part9" class="badge badge-light">手</span>
-                <span v-if="community.part10" class="badge badge-light">足</span>
-                <span v-if="community.part11" class="badge badge-light">背中・腰</span>
-                <span v-if="community.part12" class="badge badge-light">腎臓・膵臓</span>
-                <span v-if="community.part13" class="badge badge-light">陰部・肛門</span>
-                <span v-if="community.part14" class="badge badge-light">皮膚</span>
-                <span v-if="community.part15" class="badge badge-light">骨・関節</span>
-                <span v-if="community.part16" class="badge badge-light">脳・脊髄</span>
-                <span v-if="community.part17" class="badge badge-light">筋肉</span>
-                <span v-if="community.part18" class="badge badge-light">末梢神経</span>
-                <span v-if="community.part19" class="badge badge-light">血液・血管</span>
-                <span v-if="community.part20" class="badge badge-light">リンパ球・節</span>
-                <span v-if="community.part21" class="badge badge-light">こころ</span>
-                <span v-if="community.part22" class="badge badge-light">全身</span>
-                <span v-if="community.part23" class="badge badge-light">その他</span>
+                <span v-if="community.part1" class="badge badge-light">{{ $getCommunityCategory(1) }}</span>
+                <span v-if="community.part2" class="badge badge-light">{{ $getCommunityCategory(2) }}</span>
+                <span v-if="community.part3" class="badge badge-light">{{ $getCommunityCategory(3) }}</span>
+                <span v-if="community.part4" class="badge badge-light">{{ $getCommunityCategory(4) }}</span>
+                <span v-if="community.part5" class="badge badge-light">{{ $getCommunityCategory(5) }}</span>
+                <span v-if="community.part6" class="badge badge-light">{{ $getCommunityCategory(6) }}</span>
+                <span v-if="community.part7" class="badge badge-light">{{ $getCommunityCategory(7) }}</span>
+                <span v-if="community.part8" class="badge badge-light">{{ $getCommunityCategory(8) }}</span>
+                <span v-if="community.part9" class="badge badge-light">{{ $getCommunityCategory(9) }}</span>
+                <span v-if="community.part10" class="badge badge-light">{{ $getCommunityCategory(10) }}</span>
+                <span v-if="community.part11" class="badge badge-light">{{ $getCommunityCategory(11) }}</span>
+                <span v-if="community.part12" class="badge badge-light">{{ $getCommunityCategory(12) }}</span>
+                <span v-if="community.part13" class="badge badge-light">{{ $getCommunityCategory(13) }}</span>
+                <span v-if="community.part14" class="badge badge-light">{{ $getCommunityCategory(14) }}</span>
+                <span v-if="community.part15" class="badge badge-light">{{ $getCommunityCategory(15) }}</span>
+                <span v-if="community.part16" class="badge badge-light">{{ $getCommunityCategory(16) }}</span>
+                <span v-if="community.part17" class="badge badge-light">{{ $getCommunityCategory(17) }}</span>
+                <span v-if="community.part18" class="badge badge-light">{{ $getCommunityCategory(18) }}</span>
+                <span v-if="community.part19" class="badge badge-light">{{ $getCommunityCategory(19) }}</span>
+                <span v-if="community.part20" class="badge badge-light">{{ $getCommunityCategory(20) }}</span>
+                <span v-if="community.part21" class="badge badge-light">{{ $getCommunityCategory(21) }}</span>
+                <span v-if="community.part22" class="badge badge-light">{{ $getCommunityCategory(22) }}</span>
+                <span v-if="community.part23" class="badge badge-light">{{ $getCommunityCategory(23) }}</span>
               </div>
             </div>
           </button>

@@ -44,14 +44,14 @@
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part1 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part1" type="checkbox" autocomplete="off">頭・顔・口
+                      <input v-model="part1" type="checkbox" autocomplete="off">{{ $getCommunityCategory(1) }}
                     </label>
                   </div>
                 </div>
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part2 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part2" type="checkbox" autocomplete="off">目
+                      <input v-model="part2" type="checkbox" autocomplete="off">{{ $getCommunityCategory(2) }}
                     </label>
                   </div>
                 </div>
@@ -60,14 +60,14 @@
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part3 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part3" type="checkbox" autocomplete="off">鼻
+                      <input v-model="part3" type="checkbox" autocomplete="off">{{ $getCommunityCategory(3) }}
                     </label>
                   </div>
                 </div>
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part4 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part4" type="checkbox" autocomplete="off">耳
+                      <input v-model="part4" type="checkbox" autocomplete="off">{{ $getCommunityCategory(4) }}
                     </label>
                   </div>
                 </div>
@@ -76,14 +76,14 @@
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part5 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part5" type="checkbox" autocomplete="off">首・のど
+                      <input v-model="part5" type="checkbox" autocomplete="off">{{ $getCommunityCategory(5) }}
                     </label>
                   </div>
                 </div>
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part6 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part6" type="checkbox" autocomplete="off">胸<small>（肺・心臓）</small>
+                      <input v-model="part6" type="checkbox" autocomplete="off">{{ $getCommunityCategory(6) }}
                     </label>
                   </div>
                 </div>
@@ -92,14 +92,14 @@
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part7 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part7" type="checkbox" autocomplete="off">腹<small>（胃腸・肝臓）</small>
+                      <input v-model="part7" type="checkbox" autocomplete="off">{{ $getCommunityCategory(7) }}
                     </label>
                   </div>
                 </div>
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part8 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part8" type="checkbox" autocomplete="off">子宮
+                      <input v-model="part8" type="checkbox" autocomplete="off">{{ $getCommunityCategory(8) }}
                     </label>
                   </div>
                 </div>
@@ -108,14 +108,14 @@
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part9 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part9" type="checkbox" autocomplete="off">手
+                      <input v-model="part9" type="checkbox" autocomplete="off">{{ $getCommunityCategory(9) }}
                     </label>
                   </div>
                 </div>
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part10 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part10" type="checkbox" autocomplete="off">足
+                      <input v-model="part10" type="checkbox" autocomplete="off">{{ $getCommunityCategory(10) }}
                     </label>
                   </div>
                 </div>
@@ -124,14 +124,14 @@
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part11 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part11" type="checkbox" autocomplete="off">背中・腰
+                      <input v-model="part11" type="checkbox" autocomplete="off">{{ $getCommunityCategory(11) }}
                     </label>
                   </div>
                 </div>
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part12 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part12" type="checkbox" autocomplete="off">腎臓・膵臓
+                      <input v-model="part12" type="checkbox" autocomplete="off">{{ $getCommunityCategory(12) }}
                     </label>
                   </div>
                 </div>
@@ -140,14 +140,14 @@
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part13 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part13" type="checkbox" autocomplete="off">陰部・肛門
+                      <input v-model="part13" type="checkbox" autocomplete="off">{{ $getCommunityCategory(13) }}
                     </label>
                   </div>
                 </div>
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part14 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part14" type="checkbox" autocomplete="off">皮膚
+                      <input v-model="part14" type="checkbox" autocomplete="off">{{ $getCommunityCategory(14) }}
                     </label>
                   </div>
                 </div>
@@ -156,14 +156,14 @@
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part15 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part15" type="checkbox" autocomplete="off">骨・関節
+                      <input v-model="part15" type="checkbox" autocomplete="off">{{ $getCommunityCategory(15) }}
                     </label>
                   </div>
                 </div>
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part16 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part16" type="checkbox" autocomplete="off">脳・脊髄
+                      <input v-model="part16" type="checkbox" autocomplete="off">{{ $getCommunityCategory(16) }}
                     </label>
                   </div>
                 </div>
@@ -172,14 +172,14 @@
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part17 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part17" type="checkbox" autocomplete="off">筋肉
+                      <input v-model="part17" type="checkbox" autocomplete="off">{{ $getCommunityCategory(17) }}
                     </label>
                   </div>
                 </div>
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part18 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part18" type="checkbox" autocomplete="off">末梢神経
+                      <input v-model="part18" type="checkbox" autocomplete="off">{{ $getCommunityCategory(18) }}
                     </label>
                   </div>
                 </div>
@@ -188,14 +188,14 @@
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part19 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part19" type="checkbox" autocomplete="off">血液・血管
+                      <input v-model="part19" type="checkbox" autocomplete="off">{{ $getCommunityCategory(19) }}
                     </label>
                   </div>
                 </div>
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part20 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part20" type="checkbox" autocomplete="off">リンパ球・節
+                      <input v-model="part20" type="checkbox" autocomplete="off">{{ $getCommunityCategory(20) }}
                     </label>
                   </div>
                 </div>
@@ -204,14 +204,14 @@
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part21 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part21" type="checkbox" autocomplete="off">こころ
+                      <input v-model="part21" type="checkbox" autocomplete="off">{{ $getCommunityCategory(21) }}
                     </label>
                   </div>
                 </div>
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part22 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part22" type="checkbox" autocomplete="off">全身
+                      <input v-model="part22" type="checkbox" autocomplete="off">{{ $getCommunityCategory(22) }}
                     </label>
                   </div>
                 </div>
@@ -220,7 +220,7 @@
                 <div class="col-6 px-2">
                   <div class="btn-group-toggle" data-toggle="buttons">
                     <label :class="{ active: part23 }" class="btn btn-outline-primary btn-block btn-part rounded-0">
-                      <input v-model="part23" type="checkbox" autocomplete="off">その他
+                      <input v-model="part23" type="checkbox" autocomplete="off">{{ $getCommunityCategory(23) }}
                     </label>
                   </div>
                 </div>
