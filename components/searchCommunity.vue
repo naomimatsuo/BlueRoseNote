@@ -162,7 +162,7 @@
                 <span v-if="community.part20" class="badge badge-light">リンパ球・節</span>
                 <span v-if="community.part21" class="badge badge-light">こころ</span>
                 <span v-if="community.part22" class="badge badge-light">全身</span>
-                <span v-if="community.part23" class="badge badge-light">目</span>
+                <span v-if="community.part23" class="badge badge-light">その他</span>
               </div>
             </div>
           </button>
