@@ -3,11 +3,11 @@
     <div class="card rounded-0 w-100">
       <div id="backImgDiv" class="bg-gray">
         <!-- back-img -->
-        <img id="backImgTarget" :src="backImg" style="width:100%;height:auto" />
+        <img id="backImgTarget" :src="$store.state.communityInfo.backImg" style="width:100%;height:auto" />
         <!-- self img -->
         <div class="rounded-circle bg-white container-selfpic p-1">
           <div id="selfImgDiv" class="rounded-circle bg-gray v-100 h-100 d-flex justify-content-center">
-            <img id="selfImgTarget" :src="selfImg" />
+            <img id="selfImgTarget" :src="$store.state.communityInfo.selfImg" />
           </div>
         </div>
       </div>
@@ -16,10 +16,10 @@
         <div class="row justify-content-md-center container-inputgroup">
           <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="mb-2">
-              <p class="ml-1">{{ communityName }}</p>
+              <h5 class="ml-1 mb-0">{{ $store.state.communityInfo.communityName }}</h5>
             </div>
             <div class="mb-2">
-              <p class="ml-1">{{ description }}</p>
+              <p class="ml-1 mb-0"><small>{{ $store.state.communityInfo.description }}</small></p>
             </div>
           </div>
         </div>
@@ -54,8 +54,6 @@ export default {
   middleware: 'authenticated',
   data () {
     return {
-      communityName: null,
-      description: null,
       newItem: {
         recordId: null,
         tweet: null

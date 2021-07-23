@@ -99,6 +99,10 @@
         "addCommunityInfo": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
           "s3Key": "amplify-builds/addCommunityInfo-334545504b6a77677878-build.zip"
+        },
+        "searchCommunityInfo": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/searchCommunityInfo-4870654d686e3630476b-build.zip"
         }
       }
     }

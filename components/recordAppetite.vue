@@ -312,7 +312,7 @@ export default {
       .then((response) => {
         if (response.statusCode !== 200) { return; }
 
-        this.posts.push(...JSON.parse(response.body).Items)
+        this.posts.push(...JSON.parse(response.body).Items);
         this.lastEvaluatedKey = JSON.parse(response.body).LastEvaluatedKey;
       })
       .catch((error) => {
