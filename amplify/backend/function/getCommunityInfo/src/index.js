@@ -1,5 +1,19 @@
-exports.handler = (event) => {
+exports.handler = async (event) => {
     // TODO implement
+    const AWS = require("aws-sdk");
+
+    const docClient = new AWS.DynamoDB.DocumentClient();
+
+    console.log(event);
+
+    const val = await docClient.query({
+        TableName: 'CommunityInfo',
+        ScanIndexForward: false,
+        KeyConditionExpression: "#x = :val",
+        ExpressionAttributeNames: { "#x": "communityId" },
+        ExpressionAttributeValues: { ":val": event.communityId }
+    }).promise();
+
     const response = {
         statusCode: 200,
         //  Uncomment below to enable CORS requests
@@ -7,7 +21,7 @@ exports.handler = (event) => {
         //      "Access-Control-Allow-Origin": "*",
         //      "Access-Control-Allow-Headers": "*"
         //  },
-        body: JSON.stringify('Hello from Lambda!')
+        body: JSON.stringify(val)
     };
     return response;
 };

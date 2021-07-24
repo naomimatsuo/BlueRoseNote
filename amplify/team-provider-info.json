@@ -54,7 +54,7 @@
         },
         "getCommunityInfo": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getCommunityInfo-7478594d6c4c4e596c59-build.zip"
+          "s3Key": "amplify-builds/getCommunityInfo-673438614a6f4e58314d-build.zip"
         },
         "getCommunityTweetReply": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",

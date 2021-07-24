@@ -3,11 +3,11 @@
     <div class="card rounded-0 w-100">
       <div id="backImgDiv" class="bg-gray">
         <!-- back-img -->
-        <img id="backImgTarget" :src="$store.state.communityInfo.backImg" style="width:100%;height:auto" />
+        <img id="backImgTarget" :src="communityInfo.backImg" style="width:100%;height:auto" />
         <!-- self img -->
         <div class="rounded-circle bg-white container-selfpic p-1">
           <div id="selfImgDiv" class="rounded-circle bg-gray v-100 h-100 d-flex justify-content-center">
-            <img id="selfImgTarget" :src="$store.state.communityInfo.selfImg" />
+            <img id="selfImgTarget" :src="communityInfo.selfImg" />
           </div>
         </div>
       </div>
@@ -15,12 +15,38 @@
         <!-- community info -->
         <div class="row justify-content-md-center container-inputgroup">
           <div class="col-sm-12 col-md-12 col-lg-6">
+            <!-- Name -->
             <div class="mb-2">
-              <h5 class="ml-1 mb-0">{{ $store.state.communityInfo.communityName }}</h5>
+              <h5 class="ml-1 mb-0">{{ communityInfo.communityName }}</h5>
             </div>
+            <!-- Description -->
             <div class="mb-2">
-              <p class="ml-1 mb-0"><small>{{ $store.state.communityInfo.description }}</small></p>
+              <p class="ml-1 mb-0"><small>{{ communityInfo.description }}</small></p>
             </div>
+            <!-- Category -->
+            <span v-if="communityInfo.part1" class="badge badge-light">{{ $getCommunityCategory(1) }}</span>
+            <span v-if="communityInfo.part2" class="badge badge-light">{{ $getCommunityCategory(2) }}</span>
+            <span v-if="communityInfo.part3" class="badge badge-light">{{ $getCommunityCategory(3) }}</span>
+            <span v-if="communityInfo.part4" class="badge badge-light">{{ $getCommunityCategory(4) }}</span>
+            <span v-if="communityInfo.part5" class="badge badge-light">{{ $getCommunityCategory(5) }}</span>
+            <span v-if="communityInfo.part6" class="badge badge-light">{{ $getCommunityCategory(6) }}</span>
+            <span v-if="communityInfo.part7" class="badge badge-light">{{ $getCommunityCategory(7) }}</span>
+            <span v-if="communityInfo.part8" class="badge badge-light">{{ $getCommunityCategory(8) }}</span>
+            <span v-if="communityInfo.part9" class="badge badge-light">{{ $getCommunityCategory(9) }}</span>
+            <span v-if="communityInfo.part10" class="badge badge-light">{{ $getCommunityCategory(10) }}</span>
+            <span v-if="communityInfo.part11" class="badge badge-light">{{ $getCommunityCategory(11) }}</span>
+            <span v-if="communityInfo.part12" class="badge badge-light">{{ $getCommunityCategory(12) }}</span>
+            <span v-if="communityInfo.part13" class="badge badge-light">{{ $getCommunityCategory(13) }}</span>
+            <span v-if="communityInfo.part14" class="badge badge-light">{{ $getCommunityCategory(14) }}</span>
+            <span v-if="communityInfo.part15" class="badge badge-light">{{ $getCommunityCategory(15) }}</span>
+            <span v-if="communityInfo.part16" class="badge badge-light">{{ $getCommunityCategory(16) }}</span>
+            <span v-if="communityInfo.part17" class="badge badge-light">{{ $getCommunityCategory(17) }}</span>
+            <span v-if="communityInfo.part18" class="badge badge-light">{{ $getCommunityCategory(18) }}</span>
+            <span v-if="communityInfo.part19" class="badge badge-light">{{ $getCommunityCategory(19) }}</span>
+            <span v-if="communityInfo.part20" class="badge badge-light">{{ $getCommunityCategory(20) }}</span>
+            <span v-if="communityInfo.part21" class="badge badge-light">{{ $getCommunityCategory(21) }}</span>
+            <span v-if="communityInfo.part22" class="badge badge-light">{{ $getCommunityCategory(22) }}</span>
+            <span v-if="communityInfo.part23" class="badge badge-light">{{ $getCommunityCategory(23) }}</span>
           </div>
         </div>
       </div>
@@ -49,11 +75,42 @@
 </template>
 
 <script>
+import { API } from 'aws-amplify';
+
 export default {
   layout: 'user',
   middleware: 'authenticated',
   data () {
     return {
+      communityInfo: {
+        backImg: null,
+        selfImg: null,
+        communityName: null,
+        description: null,
+        part1: null,
+        part2: null,
+        part3: null,
+        part4: null,
+        part5: null,
+        part6: null,
+        part7: null,
+        part8: null,
+        part9: null,
+        part10: null,
+        part11: null,
+        part12: null,
+        part13: null,
+        part14: null,
+        part15: null,
+        part16: null,
+        part17: null,
+        part18: null,
+        part19: null,
+        part20: null,
+        part21: null,
+        part22: null,
+        part23: null
+      },
       newItem: {
         recordId: null,
         tweet: null
@@ -65,6 +122,27 @@ export default {
     return {
       title: 'コミュニティ'
     }
+  },
+  beforeMount () {
+    const commId = this.$route.query.communityId;
+
+    if (!commId) { return; }
+
+    const params = {
+      body: {
+        Key: commId
+      }
+    };
+
+    API.post('BlueRoseNoteAPIs', '/CommunityInfo', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+
+        this.communityInfo = JSON.parse(response.body).Item;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }
 </script>
