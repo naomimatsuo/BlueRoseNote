@@ -10,6 +10,10 @@
             <img id="selfImgTarget" :src="communityInfo.selfImg" />
           </div>
         </div>
+        <div class="btn-join">
+          <button v-if="!doesJoin" class="btn btn-secondary px-4" @click="joinCommunity">参加</button>
+          <button v-if="doesJoin" class="btn btn-info px-4" @click="joinCommunity">参加済み</button>
+        </div>
       </div>
       <div class="card-body">
         <!-- community info -->
@@ -24,51 +28,69 @@
               <p class="ml-1 mb-0"><small>{{ communityInfo.description }}</small></p>
             </div>
             <!-- Category -->
-            <span v-if="community.part1" class="badge badge-light">頭・顔・口</span>
-            <span v-if="community.part2" class="badge badge-light">目</span>
-            <span v-if="community.part3" class="badge badge-light">鼻</span>
-            <span v-if="community.part4" class="badge badge-light">耳</span>
-            <span v-if="community.part5" class="badge badge-light">首・のど</span>
-            <span v-if="community.part6" class="badge badge-light">胸<small>（肺・心臓）</small></span>
-            <span v-if="community.part7" class="badge badge-light">腹<small>（胃腸・肝臓）</small></span>
-            <span v-if="community.part8" class="badge badge-light">子宮</span>
-            <span v-if="community.part9" class="badge badge-light">手</span>
-            <span v-if="community.part10" class="badge badge-light">足</span>
-            <span v-if="community.part11" class="badge badge-light">背中・腰</span>
-            <span v-if="community.part12" class="badge badge-light">腎臓・膵臓</span>
-            <span v-if="community.part13" class="badge badge-light">陰部・肛門</span>
-            <span v-if="community.part14" class="badge badge-light">皮膚</span>
-            <span v-if="community.part15" class="badge badge-light">骨・関節</span>
-            <span v-if="community.part16" class="badge badge-light">脳・脊髄</span>
-            <span v-if="community.part17" class="badge badge-light">筋肉</span>
-            <span v-if="community.part18" class="badge badge-light">末梢神経</span>
-            <span v-if="community.part19" class="badge badge-light">血液・血管</span>
-            <span v-if="community.part20" class="badge badge-light">リンパ球・節</span>
-            <span v-if="community.part21" class="badge badge-light">こころ</span>
-            <span v-if="community.part22" class="badge badge-light">全身</span>
-            <span v-if="community.part23" class="badge badge-light">その他</span>
+            <span v-if="communityInfo.part1" class="badge badge-light">頭・顔・口</span>
+            <span v-if="communityInfo.part2" class="badge badge-light">目</span>
+            <span v-if="communityInfo.part3" class="badge badge-light">鼻</span>
+            <span v-if="communityInfo.part4" class="badge badge-light">耳</span>
+            <span v-if="communityInfo.part5" class="badge badge-light">首・のど</span>
+            <span v-if="communityInfo.part6" class="badge badge-light">胸<small>（肺・心臓）</small></span>
+            <span v-if="communityInfo.part7" class="badge badge-light">腹<small>（胃腸・肝臓）</small></span>
+            <span v-if="communityInfo.part8" class="badge badge-light">子宮</span>
+            <span v-if="communityInfo.part9" class="badge badge-light">手</span>
+            <span v-if="communityInfo.part10" class="badge badge-light">足</span>
+            <span v-if="communityInfo.part11" class="badge badge-light">背中・腰</span>
+            <span v-if="communityInfo.part12" class="badge badge-light">腎臓・膵臓</span>
+            <span v-if="communityInfo.part13" class="badge badge-light">陰部・肛門</span>
+            <span v-if="communityInfo.part14" class="badge badge-light">皮膚</span>
+            <span v-if="communityInfo.part15" class="badge badge-light">骨・関節</span>
+            <span v-if="communityInfo.part16" class="badge badge-light">脳・脊髄</span>
+            <span v-if="communityInfo.part17" class="badge badge-light">筋肉</span>
+            <span v-if="communityInfo.part18" class="badge badge-light">末梢神経</span>
+            <span v-if="communityInfo.part19" class="badge badge-light">血液・血管</span>
+            <span v-if="communityInfo.part20" class="badge badge-light">リンパ球・節</span>
+            <span v-if="communityInfo.part21" class="badge badge-light">こころ</span>
+            <span v-if="communityInfo.part22" class="badge badge-light">全身</span>
+            <span v-if="communityInfo.part23" class="badge badge-light">その他</span>
           </div>
         </div>
       </div>
     </div>
     <!-- new post-->
-    <div class="bg-white p-2 w-100">
-      <textarea id="recordTweetTextArea" v-model="newItem.tweet" class="form-control overflow-hidden mb-1" style="height:13vh;resize:none" rows="4" />
-      <div id="picContainer" class="d-flex justify-content-center" style="position: relative">
-        <img id="picTarget" class="rounded picImg">
-        <button id="removePicBtn" type="button" class="btn btn-sm btn-secondary rounded-circle px-2 py-0" style="position:absolute; top: 10px; z-index: 10; display: none;" @click="removePic">
-          <span aria-hidden="true" style="font-size:1.2rem">&times;</span>
-        </button>
+    <div class="bg-transparent p-2 w-100">
+      <div class="d-flex justify-content-end my-2">
+        <button v-if="doesJoin" class="btn btn-secondary rounded-pill px-4" data-toggle="modal" data-target="#newTweetModal">つぶやく</button>
       </div>
-      <div class="d-flex justify-content-between mt-1">
-        <input id="picInput" type="file" accept="image/png, image/jpeg" style="display:none" @change="picOnChange" />
-        <button id="addImageBtn" type="button" class="btn btn-lg btn-light rounded-circle border-0 ml-1" @click="addImage">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-image" viewBox="0 0 16 16">
-            <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-            <path d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5V14zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4z" />
-          </svg>
-        </button>
-        <button id="saveRecordBtn" type="button" class="btn btn-lg btn-secondary text-white rounded-0" style="width:10rem;" @click="saveRecord">投稿</button>
+    </div>
+    <div id="newTweetModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="d-flex justify-content-end my-2 mx-4">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body py-0">
+            <textarea id="recordTweetTextArea" v-model="newItem.tweet" class="form-control overflow-hidden rounded-0" style="height:13vh;resize:none" rows="4" />
+            <div id="picContainer" class="d-flex justify-content-center" style="position: relative">
+              <img id="picTarget" class="rounded picImg mt-2">
+              <button id="removePicBtn" type="button" class="btn btn-sm btn-secondary rounded-circle px-2 py-0" style="position:absolute; top: 20px; z-index: 10; display: none;" @click="removePic">
+                <span aria-hidden="true" style="font-size:1.2rem">&times;</span>
+              </button>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between my-2 mx-4">
+            <div>
+              <input id="picInput" type="file" accept="image/png, image/jpeg" style="display:none" @change="picOnChange" />
+              <button id="addImageBtn" type="button" class="btn btn-lg btn-light rounded-circle border-0 ml-1" @click="addImage">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-image" viewBox="0 0 16 16">
+                  <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                  <path d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5V14zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4z" />
+                </svg>
+              </button>
+            </div>
+            <button id="saveRecordBtn" type="button" class="btn btn-secondary rounded-0" style="width:10rem;" @click="saveRecord">つぶやく</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -111,6 +133,7 @@ export default {
         part22: null,
         part23: null
       },
+      doesJoin: false,
       newItem: {
         recordId: null,
         tweet: null
@@ -123,26 +146,80 @@ export default {
       title: 'コミュニティ'
     }
   },
-  beforeMount () {
-    const commId = this.$route.query.communityId;
+  async beforeMount () {
+    const commId = Number(this.$route.query.communityId);
 
     if (!commId) { return; }
 
-    const params = {
-      body: {
-        Key: commId
-      }
-    };
-
-    API.post('BlueRoseNoteAPIs', '/CommunityInfo', params)
-      .then((response) => {
-        if (response.statusCode !== 200) { return; }
-
-        this.communityInfo = JSON.parse(response.body).Item;
-      })
-      .catch((error) => {
-        console.log(error);
+    const responseInfo = await API.post('BlueRoseNoteAPIs', '/CommunityMember', {
+        body: {
+          communityId: commId,
+          clientId: this.$cookies.get('client_id')
+        }
       });
+
+    if (responseInfo.statusCode !== 200) { return; }
+
+    const result = JSON.parse(responseInfo.body);
+    this.communityInfo = result.communityInfo.Item;
+    this.doesJoin = result.doesJoin.Count > 0;
+  },
+  methods: {
+    joinCommunity () {
+      const clientId = this.$cookies.get('client_id');
+      if (!clientId) { return; }
+
+      const now = new Date();
+
+      const params = {
+        body: {
+          communityId: this.communityInfo.communityId,
+          clientId: this.$cookies.get('client_id'),
+          createdAt: this.$getNowString(now)
+        }
+      };
+
+      API.put('BlueRoseNoteAPIs', '/CommunityMember', params)
+      .then((response) => {
+        if (response.statusCode === 200) {
+          this.doesJoin = true;
+        }
+      });
+    },
+    addImage () {
+      if ($('#picTarget')[0].src.length > 0) {
+        return;
+      }
+      $('#picInput').click();
+    },
+    picOnChange (event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#picTarget').one('load', function () {
+          const containerWidth = $('#picContainer').width();
+          const picWidth = $('#picTarget').width();
+          $('#removePicBtn').css('left', (containerWidth - picWidth) / 2.0 + 15);
+          $('#removePicBtn').css('display', 'block');
+        })
+
+        const image = e.target.result;
+
+        $('#picTarget').attr('src', image);
+        $('#addImageBtn').addClass('disabled');
+        $('#addImageBtn').attr('aria-disabled', true);
+      }
+
+      reader.readAsDataURL(file);
+    },
+    removePic () {
+      $('#picTarget').attr('src', null);
+      $('#removePicBtn').css('display', 'none');
+    },
+    saveRecord () {
+
+    }
   }
 }
 </script>
@@ -167,8 +244,19 @@ export default {
     z-index: 3;
   }
 
+  .btn-join {
+    position:absolute;
+    bottom:-3rem;
+    right: 0.8rem;
+  }
+
   .container-inputgroup {
     margin-top: 2.5rem;
+  }
+
+  .picImg  {
+    max-width: 340px;
+    max-height:25rem
   }
 }
 
@@ -187,8 +275,19 @@ export default {
     z-index: 3;
   }
 
+  .btn-join {
+    position:absolute;
+    bottom:-4.5rem;
+    right: 0.8rem;
+  }
+
   .container-inputgroup {
     margin-top: 4.0rem;
+  }
+
+  .picImg  {
+    max-width: 460px;
+    max-height:25rem
   }
 }
 
@@ -207,9 +306,20 @@ export default {
     z-index: 3;
   }
 
+  .btn-join {
+    position:absolute;
+    bottom:-5rem;
+    right: 0.8rem;
+  }
+
   .container-inputgroup {
     margin-top: 0;
     min-height: 5rem;
+  }
+
+  .picImg  {
+    max-width: 460px;
+    max-height:25rem
   }
 }
 </style>

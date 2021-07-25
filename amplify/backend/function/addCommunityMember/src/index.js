@@ -1,26 +1,14 @@
 exports.handler = async (event) => {
     // TODO implement
+    console.log(event);
     const AWS = require("aws-sdk");
 
     const docClient = new AWS.DynamoDB.DocumentClient();
 
-    const params = JSON.parse(JSON.stringify(event));
-    console.log(params);
-
-    let val = null;
-
-    if (params.Key) {
-        console.log('get');
-        val = await docClient.get({
-            TableName: 'CommunityInfo',
-            Key: { communityId: Number(params.Key) }
-        }).promise();
-    } else {
-        console.log('scan');
-        val = await docClient.scan(
-            params
-        ).promise();
-    }
+    const val = await docClient.put({
+        TableName: 'CommunityMember',
+        Item: JSON.parse(JSON.stringify(event))
+    }).promise();
 
     const response = {
         statusCode: 200,

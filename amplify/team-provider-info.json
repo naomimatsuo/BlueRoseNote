@@ -66,7 +66,7 @@
         },
         "getCommunityMember": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getCommunityMember-6c4c6f324a417672664a-build.zip"
+          "s3Key": "amplify-builds/getCommunityMember-6334325a364652494c5a-build.zip"
         },
         "getRecordAppetite": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
@@ -102,7 +102,11 @@
         },
         "searchCommunityInfo": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/searchCommunityInfo-4870654d686e3630476b-build.zip"
+          "s3Key": "amplify-builds/searchCommunityInfo-41586d34656147786134-build.zip"
+        },
+        "addCommunityMember": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/addCommunityMember-36637562793564316879-build.zip"
         }
       }
     }
