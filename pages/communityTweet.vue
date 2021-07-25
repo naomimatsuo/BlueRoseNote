@@ -24,29 +24,29 @@
               <p class="ml-1 mb-0"><small>{{ communityInfo.description }}</small></p>
             </div>
             <!-- Category -->
-            <span v-if="communityInfo.part1" class="badge badge-light">{{ $getCommunityCategory(1) }}</span>
-            <span v-if="communityInfo.part2" class="badge badge-light">{{ $getCommunityCategory(2) }}</span>
-            <span v-if="communityInfo.part3" class="badge badge-light">{{ $getCommunityCategory(3) }}</span>
-            <span v-if="communityInfo.part4" class="badge badge-light">{{ $getCommunityCategory(4) }}</span>
-            <span v-if="communityInfo.part5" class="badge badge-light">{{ $getCommunityCategory(5) }}</span>
-            <span v-if="communityInfo.part6" class="badge badge-light">{{ $getCommunityCategory(6) }}</span>
-            <span v-if="communityInfo.part7" class="badge badge-light">{{ $getCommunityCategory(7) }}</span>
-            <span v-if="communityInfo.part8" class="badge badge-light">{{ $getCommunityCategory(8) }}</span>
-            <span v-if="communityInfo.part9" class="badge badge-light">{{ $getCommunityCategory(9) }}</span>
-            <span v-if="communityInfo.part10" class="badge badge-light">{{ $getCommunityCategory(10) }}</span>
-            <span v-if="communityInfo.part11" class="badge badge-light">{{ $getCommunityCategory(11) }}</span>
-            <span v-if="communityInfo.part12" class="badge badge-light">{{ $getCommunityCategory(12) }}</span>
-            <span v-if="communityInfo.part13" class="badge badge-light">{{ $getCommunityCategory(13) }}</span>
-            <span v-if="communityInfo.part14" class="badge badge-light">{{ $getCommunityCategory(14) }}</span>
-            <span v-if="communityInfo.part15" class="badge badge-light">{{ $getCommunityCategory(15) }}</span>
-            <span v-if="communityInfo.part16" class="badge badge-light">{{ $getCommunityCategory(16) }}</span>
-            <span v-if="communityInfo.part17" class="badge badge-light">{{ $getCommunityCategory(17) }}</span>
-            <span v-if="communityInfo.part18" class="badge badge-light">{{ $getCommunityCategory(18) }}</span>
-            <span v-if="communityInfo.part19" class="badge badge-light">{{ $getCommunityCategory(19) }}</span>
-            <span v-if="communityInfo.part20" class="badge badge-light">{{ $getCommunityCategory(20) }}</span>
-            <span v-if="communityInfo.part21" class="badge badge-light">{{ $getCommunityCategory(21) }}</span>
-            <span v-if="communityInfo.part22" class="badge badge-light">{{ $getCommunityCategory(22) }}</span>
-            <span v-if="communityInfo.part23" class="badge badge-light">{{ $getCommunityCategory(23) }}</span>
+            <span v-if="community.part1" class="badge badge-light">頭・顔・口</span>
+            <span v-if="community.part2" class="badge badge-light">目</span>
+            <span v-if="community.part3" class="badge badge-light">鼻</span>
+            <span v-if="community.part4" class="badge badge-light">耳</span>
+            <span v-if="community.part5" class="badge badge-light">首・のど</span>
+            <span v-if="community.part6" class="badge badge-light">胸<small>（肺・心臓）</small></span>
+            <span v-if="community.part7" class="badge badge-light">腹<small>（胃腸・肝臓）</small></span>
+            <span v-if="community.part8" class="badge badge-light">子宮</span>
+            <span v-if="community.part9" class="badge badge-light">手</span>
+            <span v-if="community.part10" class="badge badge-light">足</span>
+            <span v-if="community.part11" class="badge badge-light">背中・腰</span>
+            <span v-if="community.part12" class="badge badge-light">腎臓・膵臓</span>
+            <span v-if="community.part13" class="badge badge-light">陰部・肛門</span>
+            <span v-if="community.part14" class="badge badge-light">皮膚</span>
+            <span v-if="community.part15" class="badge badge-light">骨・関節</span>
+            <span v-if="community.part16" class="badge badge-light">脳・脊髄</span>
+            <span v-if="community.part17" class="badge badge-light">筋肉</span>
+            <span v-if="community.part18" class="badge badge-light">末梢神経</span>
+            <span v-if="community.part19" class="badge badge-light">血液・血管</span>
+            <span v-if="community.part20" class="badge badge-light">リンパ球・節</span>
+            <span v-if="community.part21" class="badge badge-light">こころ</span>
+            <span v-if="community.part22" class="badge badge-light">全身</span>
+            <span v-if="community.part23" class="badge badge-light">その他</span>
           </div>
         </div>
       </div>

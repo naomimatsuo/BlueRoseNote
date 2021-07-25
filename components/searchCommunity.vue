@@ -15,17 +15,97 @@
       <div class="mt-3">
         <div class="card card-body bg-transparent">
           <p>部位から検索</p>
-          <div v-for="no in [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21]" :key="no" class="row mt-2">
+          <div class="row">
             <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(no)">{{ $getCommunityCategory(no) }}</button>
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(1)">頭・顔・口</button>
             </div>
             <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(no+1)">{{ $getCommunityCategory(no+1) }}</button>
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(2)">目</button>
             </div>
           </div>
           <div class="row mt-2">
             <div class="col-6 px-2">
-              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(23)">{{ $getCommunityCategory(23) }}</button>
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(3)">鼻</button>
+            </div>
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(4)">耳</button>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(5)">首・のど</button>
+            </div>
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(6)">胸<small>（肺・心臓）</small></button>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(7)">腹<small>（胃腸・肝臓）</small></button>
+            </div>
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(8)">子宮</button>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(9)">手</button>
+            </div>
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(10)">足</button>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(11)">背中・腰</button>
+            </div>
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(12)">腎臓・膵臓</button>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(13)">陰部・肛門</button>
+            </div>
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(14)">皮膚</button>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(15)">骨・関節</button>
+            </div>
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(16)">脳・脊髄</button>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(17)">筋肉</button>
+            </div>
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(18)">末梢神経</button>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(19)">血液・血管</button>
+            </div>
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(20)">リンパ球・節</button>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(21)">こころ</button>
+            </div>
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(22)">全身</button>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 px-2">
+              <button class="btn btn-outline-primary btn-block rounded-0" @click="searchPart(23)">その他</button>
             </div>
           </div>
         </div>
