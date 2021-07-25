@@ -421,7 +421,7 @@ export default {
       });
     },
     backImgApply () {
-      $('#uploadBackImg').croppie('result', { type: 'canvas', format: 'jpeg', quality: 0.9 })
+      $('#uploadBackImg').croppie('result', { type: 'canvas', format: 'jpeg', quality: 0.85 })
       .then((result) => {
         this.backImg = result;
         $('#backImgTarget').attr('src', result);

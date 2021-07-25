@@ -4,15 +4,9 @@ exports.handler = async (event) => {
 
     const docClient = new AWS.DynamoDB.DocumentClient();
 
-    console.log(event);
-
-    const val = await docClient.query({
+    const val = await docClient.put({
         TableName: 'CommunityTweet',
-        Limit: 15,
-        ScanIndexForward: false,
-        KeyConditionExpression: "#x = :val",
-        ExpressionAttributeNames: { "#x": "communityId" },
-        ExpressionAttributeValues: { ":val": event.communityId }
+        Item: JSON.parse(JSON.stringify(event))
     }).promise();
 
     const response = {
