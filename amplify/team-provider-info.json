@@ -111,6 +111,14 @@
         "addCommunityTweet": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
           "s3Key": "amplify-builds/addCommunityTweet-37567a64533670542b50-build.zip"
+        },
+        "getCommunities": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/getCommunities-37654a6c4f567a4e446b-build.zip"
+        },
+        "getCommunityTweetLike": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/getCommunityTweetLike-55316776756c3153336a-build.zip"
         }
       }
     }

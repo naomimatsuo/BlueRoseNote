@@ -149,6 +149,36 @@
                 ]
             },
             "policyResourceName": "/CommunityTweetReply"
+        },
+        {
+            "name": "/Communities",
+            "lambdaFunction": "getCommunities",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/Communities"
+        },
+        {
+            "name": "/CommunityTweetLike",
+            "lambdaFunction": "getCommunityTweetLike",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/CommunityTweetLike"
         }
     ],
     "resourceName": "BlueRoseNoteAPIs",
@@ -183,10 +213,16 @@
         },
         {
             "lambdaFunction": "getCommunityTweetReply"
+        },
+        {
+            "lambdaFunction": "getCommunities"
+        },
+        {
+            "lambdaFunction": "getCommunityTweetLike"
         }
     ],
     "privacy": {
-        "auth": 15,
+        "auth": 12,
         "unauth": 0,
         "authRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-authRole",
         "unAuthRoleName": "amplify-amplifyfbe781a77c4c4-staging-93754-unauthRole"
@@ -271,7 +307,23 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getCommunities",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getCommunityTweetLike",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "e27dca8a"
+    "uuid": "19ab1311"
 }

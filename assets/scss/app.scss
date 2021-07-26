@@ -22,6 +22,10 @@ body {
   text-decoration: none;
 }
 
+.bg-gray {
+  background-color: #cccccc;
+}
+
 @media only screen and (max-width: 767px) {
   .phone__item {
     display: block;

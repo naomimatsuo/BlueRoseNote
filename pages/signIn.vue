@@ -42,7 +42,12 @@ export default {
     async signIn () {
       try {
         const user = await Auth.signIn(this.userName, this.passWords);
-        this.$store.commit('update', user);
+        this.$store.commit('updateLoginUser', {
+          loginUser: user,
+          clientId: user.pool.clientId,
+          accountId: this.userName
+        });
+
         this.$cookies.set('client_id', user.pool.clientId, {
           expires: new Date(new Date().getTime() + 1000 * 3600 * 24 * 30),
           secure: true

@@ -127,10 +127,6 @@ a.active {
   color: #54727c;
 }
 
-.bg-gray {
-  background-color: #cccccc;
-}
-
 @media only screen and (max-width: 767px) {
   #backImgDiv {
     min-height:5rem;

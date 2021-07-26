@@ -129,7 +129,7 @@
           <NuxtLink :to="{ path: 'communityTweet', query : { communityId: community.communityId }}" tag="button" class="btn btn-block clip__button-bg border border-1 text-left p-2">
             <div class="d-flex align-items-center">
               <div class="image">
-                <img :src="community.selfImg" class="rounded-circle" width="55" />
+                <img :src="community.selfImg" class="rounded-circle bg-gray" width="55" />
               </div>
               <div class="ml-2 w-100">
                 <!-- Name -->

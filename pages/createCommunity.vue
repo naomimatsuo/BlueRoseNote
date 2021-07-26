@@ -480,10 +480,6 @@ export default {
 </script>
 
 <style scoped>
-.bg-gray {
-  background-color: #cccccc;
-}
-
 @media only screen and (max-width: 767px) {
   #backImgDiv {
     min-height:5rem;
