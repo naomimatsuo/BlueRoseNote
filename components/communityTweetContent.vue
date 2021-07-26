@@ -1,0 +1,328 @@
+<template>
+  <div class="w-100 py-2">
+    <div class="bg-transparent">
+      <div class="d-flex justify-content-end mb-2">
+        <button class="btn btn-secondary rounded-pill px-4" data-toggle="modal" data-target="#newTweetModal">つぶやく</button>
+      </div>
+      <!-- Old Posts-->
+      <ul class="list-group mt-2">
+        <li v-for="post in posts" :key="post.tweetId" class="list-group-item rounded-0 bg-transparent px-2">
+          <div class="d-flex">
+            <!-- Self pic -->
+            <div>
+              <div class="rounded-circle bg-gray d-flex justify-content-center" style="width: 4.0rem; height: 4.0rem;">
+                <img :src="post.clientInfo.selfImg" />
+              </div>
+            </div>
+            <div class="ml-2 w-100">
+              <!-- Date -->
+              <div class="py-2">
+                <p class="text-gray mb-0">{{ post.createdAt }}</p>
+                <p class="text-gray mb-0"><strong>{{ post.clientInfo.userName }}</strong>&nbsp;{{ '@' + post.clientInfo.accountId }}</p>
+              </div>
+              <!-- Delete button -->
+              <button type="button" class="btn btn-sm px-1 pb-0" style="position:absolute; top: 5px; right: 5px;" @click="showDeleteModal(post)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!-- Tweet content -->
+          <div class="text-dark text-break mb-0 u-pre-wrap mt-2 mx-2">{{ post.tweet }}</div>
+          <!-- Tweet Image -->
+          <div class="d-flex justify-content-center">
+            <img v-if="post.tweetpic !== null" :src="post.tweetpic" class="picImg rounded" />
+          </div>
+          <!-- Reply and like buttons -->
+          <div class="d-flex justify-content-between mt-2 mx-0">
+            <button class="btn btn-light btn-sm rounded-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply" viewBox="0 0 16 16">
+                <path d="M6.598 5.013a.144.144 0 0 1 .202.134V6.3a.5.5 0 0 0 .5.5c.667 0 2.013.005 3.3.822.984.624 1.99 1.76 2.595 3.876-1.02-.983-2.185-1.516-3.205-1.799a8.74 8.74 0 0 0-1.921-.306 7.404 7.404 0 0 0-.798.008h-.013l-.005.001h-.001L7.3 9.9l-.05-.498a.5.5 0 0 0-.45.498v1.153c0 .108-.11.176-.202.134L2.614 8.254a.503.503 0 0 0-.042-.028.147.147 0 0 1 0-.252.499.499 0 0 0 .042-.028l3.984-2.933zM7.8 10.386c.068 0 .143.003.223.006.434.02 1.034.086 1.7.271 1.326.368 2.896 1.202 3.94 3.08a.5.5 0 0 0 .933-.305c-.464-3.71-1.886-5.662-3.46-6.66-1.245-.79-2.527-.942-3.336-.971v-.66a1.144 1.144 0 0 0-1.767-.96l-3.994 2.94a1.147 1.147 0 0 0 0 1.946l3.994 2.94a1.144 1.144 0 0 0 1.767-.96v-.667z" />
+              </svg>
+            </button>
+            <button class="btn btn-light btn-sm rounded-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+              </svg>
+            </button>
+          </div>
+        </li>
+      </ul>
+      <itemLoader v-if="showLoader" class="pt-4" />
+    </div>
+    <!-- New Tweet Modal -->
+    <div id="newTweetModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="d-flex justify-content-end my-2 mx-4">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body py-0">
+            <textarea id="recordTweetTextArea" v-model="newItem.tweet" class="form-control overflow-hidden rounded-0" style="height:13vh;resize:none" rows="4" />
+            <div id="picContainer" class="d-flex justify-content-center" style="position: relative">
+              <img id="picTarget" class="rounded picImg mt-2">
+              <button id="removePicBtn" type="button" class="btn btn-sm btn-secondary rounded-circle px-2 py-0" style="position:absolute; top: 20px; z-index: 10; display: none;" @click="removePic">
+                <span aria-hidden="true" style="font-size:1.2rem">&times;</span>
+              </button>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between my-2 mx-4">
+            <div>
+              <input id="picInput" type="file" accept="image/png, image/jpeg" style="display:none" @change="picOnChange" />
+              <button id="addImageBtn" type="button" class="btn btn-lg btn-light rounded-circle border-0 ml-1" @click="addImage">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-image" viewBox="0 0 16 16">
+                  <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                  <path d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5V14zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4z" />
+                </svg>
+              </button>
+            </div>
+            <button id="saveRecordBtn" type="button" class="btn btn-secondary rounded-0" style="width:10rem;" @click="saveRecord">つぶやく</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Delete Modal -->
+    <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="deleteModalTitle" class="modal-title">記録を削除しますか？</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="deleteModalContent" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal" style="width:9rem">キャンセル</button>
+            <button id="deleteModalBtn" type="button" class="btn btn-danger" style="width:9rem" @click="deleteRecord">削除</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { API } from 'aws-amplify';
+
+export default {
+  props: { communityid: { type: Number, default: null } },
+  data () {
+    return {
+      newItem: {
+        tweetId: null,
+        tweet: null
+      },
+      posts: [],
+      showLoader: true,
+      lastEvaluatedKey: null
+    }
+  },
+  mounted () {
+    const params = {
+      body: {
+        communityId: this.communityid,
+        lastEvaluatedKey: null
+      }
+    };
+
+    API
+      .post('BlueRoseNoteAPIs', '/CommunityTweet', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+
+        const result = JSON.parse(response.body);
+        this.posts.push(...result.Items);
+        this.lastEvaluatedKey = result.LastEvaluatedKey;
+      })
+      .catch((error) => {
+        console.log(error.response);
+      })
+      .finally(() => {
+        this.showLoader = false;
+      });
+
+      window.addEventListener("scroll", this.onScroll);
+  },
+  methods: {
+    onScroll (event) {
+      if ($(window).scrollTop() + window.innerHeight < $(document).height() - 30) {
+        return;
+      }
+
+      if (!this.lastEvaluatedKey) { return; }
+
+      if (this.showLoader) { return; }
+
+      this.showLoader = true;
+
+      const params = {
+        body: {
+          communityId: this.communityid,
+          lastEvaluatedKey: this.lastEvaluatedKey
+        }
+      };
+
+      API
+      .post('BlueRoseNoteAPIs', '/CommunityTweet', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+
+        const result = JSON.parse(response.body);
+        this.posts.push(...result.Items);
+        this.lastEvaluatedKey = result.LastEvaluatedKey;
+      })
+      .catch((error) => {
+        console.log(error.response);
+      })
+      .finally(() => {
+        this.showLoader = false;
+      });
+    },
+    getNewPost () {
+      if (this.showLoader) { return; }
+
+      this.showLoader = true;
+
+      const params = {
+        body: {
+          communityId: this.communityid,
+          lastEvaluatedKey: this.lastEvaluatedKey
+        }
+      };
+
+      API
+      .post('BlueRoseNoteAPIs', '/CommunityTweet', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+
+        const result = JSON.parse(response.body);
+
+        const ids = this.posts.map(function (item) { return item.tweetId; });
+
+        const filterdList = result.Items.filter(function (item) {
+          return !ids.includes(item.tweetId);
+        });
+
+        this.posts.unshift(...filterdList);
+        this.lastEvaluatedKey = result.LastEvaluatedKey;
+      })
+      .catch((error) => {
+        console.log(error.response);
+      })
+      .finally(() => {
+        this.showLoader = false;
+      });
+    },
+    addImage () {
+      if ($('#picTarget')[0].src.length > 0) {
+        return;
+      }
+      $('#picInput').click();
+    },
+    picOnChange (event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#picTarget').one('load', function () {
+          const containerWidth = $('#picContainer').width();
+          const picWidth = $('#picTarget').width();
+          $('#removePicBtn').css('left', (containerWidth - picWidth) / 2.0 + 15);
+          $('#removePicBtn').css('display', 'block');
+        })
+
+        const image = e.target.result;
+
+        $('#picTarget').attr('src', image);
+        $('#addImageBtn').addClass('disabled');
+        $('#addImageBtn').attr('aria-disabled', true);
+      }
+
+      reader.readAsDataURL(file);
+    },
+    removePic () {
+      $('#picTarget').attr('src', null);
+      $('#removePicBtn').css('display', 'none');
+    },
+    saveRecord () {
+      $('#saveRecordBtn').attr('disabled', 'disabled');
+
+      const image = $('#picTarget').attr('src');
+      const now = new Date();
+
+      const params = {
+        body: {
+          communityId: this.communityid,
+          tweetId: now.getTime(),
+          clientId: this.$cookies.get('client_id'),
+          tweet: this.newItem.tweet,
+          tweetpic: (image === undefined) ? null : image,
+          createdAt: this.$getNowString(now)
+        }
+      };
+
+      API.put('BlueRoseNoteAPIs', '/CommunityTweet', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+
+        this.newItem.tweetId = null;
+        this.newItem.tweet = null;
+        $('#picTarget').attr('src', null);
+        $('#removePicBtn').css('display', 'none');
+        $('#newTweetModal').modal('hide');
+
+        this.lastEvaluatedKey = {
+          communityId: this.communityid,
+          tweetId: this.posts[0].tweetId
+        }
+        this.getNewPost();
+      })
+      .catch((error) => {
+        console.log(error.response);
+      })
+      .finally(() => {
+        $('#saveRecordBtn').removeAttr('disabled');
+      });
+    },
+    showDeleteModal (post) {
+      $('#deleteModalContent').html(post.createdAt + 'の記録を削除しますか？' + '<br />' + '<small>この操作は取り消せません。</small>');
+      $('#deleteModalBtn').attr('targetId', post.recordId);
+
+      $('#deleteModal').modal('show');
+    },
+    deleteRecord () {
+
+    }
+  }
+}
+</script>
+
+<style>
+@media only screen and (max-width: 767px) {
+  .picImg  {
+    max-width: 300px;
+    max-height:25rem
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .picImg  {
+    max-width: 460px;
+    max-height:25rem
+  }
+}
+
+@media (min-width: 1024px){
+  .picImg  {
+    max-width: 460px;
+    max-height:25rem
+  }
+}
+</style>

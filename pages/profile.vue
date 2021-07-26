@@ -346,6 +346,7 @@ export default {
       const params = {
         body: {
           clientId,
+          accountId: this.$cookies.get('account_id'),
           userName: this.userName,
           description: this.description,
           location: this.location,

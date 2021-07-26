@@ -12,16 +12,28 @@ exports.handler = async (event) => {
         ScanIndexForward: false,
         KeyConditionExpression: "#x = :val",
         ExpressionAttributeNames: { "#x": "communityId" },
-        ExpressionAttributeValues: { ":val": event.communityId }
+        ExpressionAttributeValues: { ":val": event.communityId },
+        ExclusiveStartKey: event.lastEvaluatedKey
     }).promise();
+
+    for (let i = 0; i < val.Items.length; i++) {
+        const cId = val.Items[i].clientId;
+
+        const user = await docClient.get({
+            TableName: 'UserProfile',
+            Key: { clientId: cId }
+        }).promise();
+
+        val.Items[i].clientInfo = {
+            clientId: user.Item.clientId,
+            selfImg: user.Item.selfImg,
+            userName: user.Item.userName,
+            accountId: user.Item.accountId
+        };
+    }
 
     const response = {
         statusCode: 200,
-        //  Uncomment below to enable CORS requests
-        //  headers: {
-        //      "Access-Control-Allow-Origin": "*",
-        //      "Access-Control-Allow-Headers": "*"
-        //  },
         body: JSON.stringify(val)
     };
     return response;

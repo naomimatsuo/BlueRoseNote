@@ -12,7 +12,8 @@ exports.handler = async (event) => {
         ScanIndexForward: false,
         KeyConditionExpression: "#x = :val",
         ExpressionAttributeNames: { "#x": "clientId" },
-        ExpressionAttributeValues: { ":val": event.clientId }
+        ExpressionAttributeValues: { ":val": event.clientId },
+        ExclusiveStartKey: event.lastEvaluatedKey
     }).promise();
 
     const response = {
