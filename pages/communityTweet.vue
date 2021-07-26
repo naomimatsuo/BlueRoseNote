@@ -17,8 +17,8 @@
           </div>
         </div>
         <div class="btn-join">
-          <button v-if="!doesJoin" class="btn btn-secondary px-4" @click="joinCommunity">参加</button>
-          <button v-if="doesJoin" class="btn btn-info px-4" @click="joinCommunity">参加済み</button>
+          <button v-if="!doesJoin" id="joinCommunityBtn" class="btn btn-secondary px-4" @click="joinCommunity">参加</button>
+          <button v-if="doesJoin" id="leaveCommunityBtn" class="btn btn-info px-4" @click="leaveCommunity">参加済み</button>
         </div>
       </div>
       <div class="card-body">
@@ -130,6 +130,8 @@ export default {
   },
   methods: {
     joinCommunity () {
+      $('#joinCommunityBtn').attr('disabled', 'disabled');
+
       const clientId = this.$cookies.get('client_id');
       if (!clientId) { return; }
 
@@ -148,6 +150,28 @@ export default {
         if (response.statusCode === 200) {
           this.doesJoin = true;
         }
+      })
+      .finally(() => {
+        $('#joinCommunityBtn').removeAttr('disabled');
+      });
+    },
+    leaveCommunity () {
+      $('#leaveCommunityBtn').attr('disabled', 'disabled');
+
+      const params = {
+        body: {
+          clientId: this.$cookies.get('client_id'),
+          communityId: this.communityInfo.communityId
+        }
+      };
+
+      API.del('BlueRoseNoteAPIs', '/CommunityMember', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+        this.doesJoin = false;
+      })
+      .finally(() => {
+        $('#leaveCommunityBtn').removeAttr('disabled');
       });
     }
   }
