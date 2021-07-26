@@ -1,8 +1,15 @@
 <template>
   <div class="w-100 py-2">
     <div class="bg-transparent">
-      <div class="d-flex justify-content-end mb-2">
-        <button class="btn btn-secondary rounded-pill px-4" data-toggle="modal" data-target="#newTweetModal">つぶやく</button>
+      <div class="d-none d-lg-block">
+        <div class="d-flex justify-content-end mb-2">
+          <button class="btn btn-secondary rounded-pill px-4" data-toggle="modal" data-target="#newTweetModal">つぶやく</button>
+        </div>
+      </div>
+      <div class="d-xl-none d-lg-none">
+        <div style="position:fixed; bottom: 10px; right: 20px; z-index: 10">
+          <button class="btn btn-secondary rounded-pill px-4" data-toggle="modal" data-target="#newTweetModal">つぶやく</button>
+        </div>
       </div>
       <!-- Old Posts-->
       <ul class="list-group mt-2">

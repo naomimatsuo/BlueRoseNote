@@ -18,11 +18,11 @@
       "function": {
         "getUserProfile": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getUserProfile-354e734f7a7936333554-build.zip"
+          "s3Key": "amplify-builds/getUserProfile-567870326b6846363344-build.zip"
         },
         "updateUserProfile": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/updateUserProfile-642f655036637637764e-build.zip"
+          "s3Key": "amplify-builds/updateUserProfile-38326e5449755a555434-build.zip"
         },
         "recordTweet": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
@@ -30,7 +30,7 @@
         },
         "getRecordTweet": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getRecordTweet-4871696773446a795053-build.zip"
+          "s3Key": "amplify-builds/getRecordTweet-6d2b4266527145756242-build.zip"
         },
         "addRecordTemperature": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
@@ -38,7 +38,7 @@
         },
         "getRecordTemperature": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getRecordTemperature-486e7957453157496c37-build.zip"
+          "s3Key": "amplify-builds/getRecordTemperature-5969335254672b45394a-build.zip"
         },
         "addRecordMedicine": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
@@ -62,7 +62,7 @@
         },
         "getCommunityTweet": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getCommunityTweet-34436a6979467743594d-build.zip"
+          "s3Key": "amplify-builds/getCommunityTweet-724f596f4475596d7354-build.zip"
         },
         "getCommunityMember": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
@@ -70,11 +70,11 @@
         },
         "getRecordAppetite": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getRecordAppetite-626b4664315562415035-build.zip"
+          "s3Key": "amplify-builds/getRecordAppetite-3258623379794244504d-build.zip"
         },
         "getRecordMedicine": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getRecordMedicine-643369347165374d5344-build.zip"
+          "s3Key": "amplify-builds/getRecordMedicine-6d59557935697a394459-build.zip"
         },
         "deleteRecordTweet": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
