@@ -24,6 +24,7 @@ exports.handler = async (event) => {
         val.Items[i].communityName = commuInfo.Item.communityName;
         val.Items[i].description = commuInfo.Item.description;
         val.Items[i].selfImg = commuInfo.Item.selfImg;
+        val.Items[i].backImg = commuInfo.Item.backImg;
         val.Items[i].part1 = commuInfo.Item.part1;
         val.Items[i].part2 = commuInfo.Item.part2;
         val.Items[i].part3 = commuInfo.Item.part3;

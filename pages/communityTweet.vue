@@ -113,9 +113,8 @@ export default {
     }
   },
   async beforeMount () {
-    this.communityInfo.communityId = Number(this.$route.query.communityId);
-
-    if (!this.communityInfo.communityId) { return; }
+    const item = localStorage.getItem('communityInfo');
+    this.communityInfo = JSON.parse(item);
 
     const responseInfo = await API.post('BlueRoseNoteAPIs', '/CommunityMember', {
         body: {
@@ -127,9 +126,7 @@ export default {
     if (responseInfo.statusCode !== 200) { return; }
 
     const result = JSON.parse(responseInfo.body);
-    this.communityInfo = result.communityInfo.Item;
-    this.doesJoin = result.doesJoin.Count > 0;
-    localStorage.setItem('communityInfo', JSON.stringify(this.communityInfo));
+    this.doesJoin = result.Count > 0;
   },
   methods: {
     joinCommunity () {

@@ -6,12 +6,7 @@ exports.handler = async (event) => {
 
     console.log(event);
 
-    const commuInfo = await docClient.get({
-        TableName: 'CommunityInfo',
-        Key: { communityId: event.communityId }
-    }).promise();
-
-    const joinResult = await docClient.query({
+    const val = await docClient.query({
         TableName: 'CommunityMember',
         ScanIndexForward: false,
         KeyConditionExpression: "#x = :val1 and #y = :val2",
@@ -21,10 +16,7 @@ exports.handler = async (event) => {
 
     const response = {
         statusCode: 200,
-        body: JSON.stringify({
-            communityInfo: commuInfo,
-            doesJoin: joinResult
-        })
+        body: JSON.stringify(val)
     };
     return response;
 };

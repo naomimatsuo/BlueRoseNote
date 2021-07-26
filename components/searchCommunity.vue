@@ -126,7 +126,7 @@
       <p class="text-center my-1">検索結果</p>
       <ul v-if="searchResult.length > 0" class="list-group-item rounded-0 p-1 mt-1">
         <li v-for="community in searchResult" :key="community.communityId" class="list-group-item border-0 p-1">
-          <NuxtLink :to="{ path: 'communityTweet', query : { communityId: community.communityId }}" tag="button" class="btn btn-block clip__button-bg border border-1 text-left p-2">
+          <button type="button" class="btn btn-block clip__button-bg border border-1 text-left p-2" @click="loadTo(community)">
             <div class="d-flex align-items-center">
               <div class="image">
                 <img :src="community.selfImg" class="rounded-circle bg-gray" width="55" />
@@ -165,7 +165,7 @@
                 <span v-if="community.part23" class="badge badge-light">{{ $getCommunityCategory(23) }}</span>
               </div>
             </div>
-          </NuxtLink>
+          </button>
         </li>
       </ul>
       <itemLoader v-if="loading" />
@@ -253,6 +253,10 @@ export default {
       .finally(() => {
         this.loading = false;
       });
+    },
+    loadTo (target) {
+      localStorage.setItem('communityInfo', JSON.stringify(target));
+      this.$router.push('/communityTweet');
     }
   }
 }

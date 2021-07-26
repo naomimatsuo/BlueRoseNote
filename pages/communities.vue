@@ -19,7 +19,7 @@
           <!-- Community List -->
           <ul class="list-group border-0 rounded-0 pt-0 pb-2">
             <li v-for="community in communities" :key="community.communityId" class="list-group-item border-0">
-              <NuxtLink :to="{ path: '/communityTweet', query: { communityId: community.communityId}}" tag="button" class="btn btn-block clip__button-bg border border-1 text-left p-2">
+              <button type="button" class="btn btn-block clip__button-bg border border-1 text-left p-2" @click="loadTo(community)">
                 <div class="d-flex align-items-center">
                   <div class="image">
                     <img :src="community.selfImg" class="rounded-circle bg-gray" width="55" />
@@ -57,7 +57,7 @@
                     <span v-if="community.part23" class="badge badge-light">{{ $getCommunityCategory(23) }}</span>
                   </div>
                 </div>
-              </NuxtLink>
+              </button>
             </li>
           </ul>
         </div>
@@ -114,6 +114,12 @@ export default {
     });
 
     // window.addEventListener("scroll", this.onScroll);
+  },
+  methods: {
+    loadTo (target) {
+      localStorage.setItem('communityInfo', JSON.stringify(target));
+      this.$router.push('/communityTweet');
+    }
   }
 }
 </script>
