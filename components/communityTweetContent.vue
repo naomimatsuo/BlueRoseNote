@@ -8,7 +8,7 @@
       </div>
       <div class="d-xl-none d-lg-none">
         <div style="position:fixed; bottom: 10px; right: 20px; z-index: 10">
-          <button class="btn btn-secondary rounded-pill px-4" data-toggle="modal" data-target="#newTweetModal">つぶやく</button>
+          <button class="btn btn-lg btn-secondary rounded-pill px-4" data-toggle="modal" data-target="#newTweetModal">つぶやく</button>
         </div>
       </div>
       <!-- Old Posts-->
