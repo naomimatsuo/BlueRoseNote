@@ -471,7 +471,7 @@ export default {
 
       const params = {
         body: {
-          communityId: now.getTime(),
+          communityId: this.communityId ? this.communityId : now.getTime(),
           communityName: this.communityName,
           description: this.description,
           backImg: this.backImg,
