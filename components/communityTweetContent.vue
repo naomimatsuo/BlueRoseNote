@@ -300,7 +300,7 @@ export default {
     },
     showDeleteModal (post) {
       $('#deleteModalContent').html(post.createdAt + 'の記録を削除しますか？' + '<br />' + '<small>この操作は取り消せません。</small>');
-      $('#deleteModalBtn').attr('targetId', post.recordId);
+      $('#deleteModalBtn').attr('targetId', post.tweetId);
 
       $('#deleteModal').modal('show');
     },
@@ -308,7 +308,29 @@ export default {
       return post.clientId === this.$cookies.get('account_id')
     },
     deleteRecord () {
+      $('#deleteModalBtn').attr('disabled', 'disabled');
 
+      const tweetId = $('#deleteModalBtn').attr('targetId');
+      if (!tweetId) { return; }
+
+      const params = {
+        body: {
+          communityId: this.communityid,
+          tweetId: Number(tweetId)
+        }
+      };
+
+      API.del('BlueRoseNoteAPIs', '/CommunityTweet', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+        this.posts = this.posts.filter(function (post) {
+          return Number(post.tweetId) !== Number(tweetId);
+        });
+      })
+      .finally(() => {
+        $('#deleteModalBtn').removeAttr('disabled');
+        $('#deleteModal').modal('hide');
+      });
     }
   }
 }
