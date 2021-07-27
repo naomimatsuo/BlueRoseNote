@@ -16,7 +16,7 @@ exports.handler = async (event) => {
         ExclusiveStartKey: event.lastEvaluatedKey
     }).promise();
 
-    for (var i = 0; i < val.Items.length; i++) {
+    for (let i = 0; i < val.Items.length; i++) {
         const cId = val.Items[i].clientId;
 
         const user = await docClient.get({
