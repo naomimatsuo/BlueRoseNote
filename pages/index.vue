@@ -13,7 +13,7 @@
       <NuxtLink to="/signUp" tag="button" class="btn btn-light btn-lg">登録する</NuxtLink>
     </div>
     <div class="text-white text-center bg-secondary border border-success my-2 innerborder" style="height:50vh;position:relative">
-      <p class="message align-items-center">BE YOUR DOC BY YOURSELF</p>
+      <p class="message align-items-center">CONTROL YOUR BODY</p>
       <img src="/bluerose.png" height="85%" class="img-responsive rose__img_left" style="position:absolute;bottom:0;" />
     </div>
     <div class="rounded bg-author">
