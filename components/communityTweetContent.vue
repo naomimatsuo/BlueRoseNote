@@ -200,7 +200,7 @@ export default {
       const params = {
         body: {
           communityId: this.communityid,
-          lastEvaluatedKey: this.lastEvaluatedKey
+          lastEvaluatedKey: null
         }
       };
 
@@ -285,10 +285,6 @@ export default {
         $('#removePicBtn').css('display', 'none');
         $('#newTweetModal').modal('hide');
 
-        this.lastEvaluatedKey = {
-          communityId: this.communityid,
-          tweetId: this.posts[0].tweetId
-        }
         this.getNewPost();
       })
       .catch((error) => {
