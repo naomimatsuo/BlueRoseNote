@@ -267,7 +267,7 @@ export default {
       const params = {
         body: {
           communityId: this.communityid,
-          tweetId: now.getTime(),
+          tweetId: now.getTime() + this.$cookies.get('account_id'),
           clientId: this.$cookies.get('account_id'),
           tweet: this.newItem.tweet,
           tweetpic: (image === undefined) ? null : image,
