@@ -111,7 +111,7 @@
         </div>
       </div>
       <div class="mt-3">
-        <NuxtLink to="/createCommunity" tag="button" class="btn btn-outline-secondary btn-block">コミュニティを作成</NuxtLink>
+        <button type="button" class="btn btn-outline-secondary btn-block" @click="goToCreate">コミュニティを作成</button>
       </div>
     </div>
     <!-- Seatch Result-->
@@ -257,6 +257,10 @@ export default {
     loadTo (target) {
       localStorage.setItem('communityInfo', JSON.stringify(target));
       this.$router.push('/communityTweet');
+    },
+    goToCreate () {
+      localStorage.removeItem('communityInfo');
+      this.$router.push('/createCommunity');
     }
   }
 }
