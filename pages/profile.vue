@@ -364,7 +364,7 @@ export default {
 
       API.put('BlueRoseNoteAPIs', '/UserProfile', params)
       .then(() => {
-        $('#saveRecordBtn').removeAttr('disabled');
+        $('#saveProfBtn').removeAttr('disabled');
       });
     }
   }

@@ -505,7 +505,7 @@ export default {
 
       API.put('BlueRoseNoteAPIs', '/CommunityInfo', params)
       .then(() => {
-        $('#saveRecordBtn').removeAttr('disabled');
+        $('#saveCommuBtn').removeAttr('disabled');
         this.$router.push('/communities');
       });
     }

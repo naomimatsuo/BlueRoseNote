@@ -127,6 +127,10 @@
         "deleteCommunityTweet": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
           "s3Key": "amplify-builds/deleteCommunityTweet-554c5579323678664172-build.zip"
+        },
+        "addCommunityTweetLike": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/addCommunityTweetLike-39765552426149616875-build.zip"
         }
       }
     }
