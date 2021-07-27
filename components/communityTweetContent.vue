@@ -367,7 +367,29 @@ export default {
       });
     },
     nomoreLikeThis (event, post) {
+      const targetBtn = $(event.currentTarget);
+      $(targetBtn).attr('disabled', 'disabled');
 
+      const params = {
+        body: {
+          communityId: this.communityid,
+          tweetId: post.tweetId
+        }
+      };
+
+      API.del('BlueRoseNoteAPIs', '/CommunityTweetLike', params)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+        const target = this.posts.filter((val) => {
+          return val.tweetId === post.tweetId;
+        });
+        if (target) {
+          target[0].iLike = false;
+        }
+      })
+      .finally(() => {
+        $(targetBtn).removeAttr('disabled');
+      });
     }
   }
 }

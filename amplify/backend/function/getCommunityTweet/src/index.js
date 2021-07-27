@@ -24,20 +24,37 @@ exports.handler = async (event) => {
             Key: { clientId: cId }
         }).promise();
 
+        const like = await docClient.scan({
+            TableName: 'CommunityTweetLike',
+            FilterExpression: "communityId = :comId and clientId = :cliId and tweetId = :twId",
+            ExpressionAttributeValues: {
+                ":comId": val.Items[i].communityId,
+                ":cliId": event.clientId,
+                ":twId": val.Items[i].tweetId
+            }
+        }).promise();
+
+        console.log(like);
+
         if (!user.Item) {
             val.Items[i].clientInfo = {
                 clientId: cId,
                 selfImg: null,
                 userName: null
             };
-            continue;
+        } else {
+            val.Items[i].clientInfo = {
+                clientId: user.Item.clientId,
+                selfImg: user.Item.selfImg,
+                userName: user.Item.userName
+            };
         }
 
-        val.Items[i].clientInfo = {
-            clientId: user.Item.clientId,
-            selfImg: user.Item.selfImg,
-            userName: user.Item.userName
-        };
+        if (like.Count > 0) {
+            val.Items[i].iLike = true
+        } else {
+            val.Items[i].iLike = false
+        }
     }
 
     const response = {
