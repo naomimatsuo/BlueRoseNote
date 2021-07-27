@@ -81,7 +81,7 @@ export default {
   mounted () {
     const params = {
       body: {
-        clientId: this.$cookies.get('client_id'),
+        clientId: this.$cookies.get('account_id'),
         lastEvaluatedKey: null
       }
     };
@@ -117,7 +117,7 @@ export default {
 
       const params = {
         body: {
-          clientId: this.$cookies.get('client_id'),
+          clientId: this.$cookies.get('account_id'),
           lastEvaluatedKey: this.lastEvaluatedKey
         }
       };
@@ -169,7 +169,7 @@ export default {
       $('#removePicBtn').css('display', 'none');
     },
     saveRecord () {
-      const clientId = this.$cookies.get('client_id');
+      const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
 
       $('#saveRecordBtn').attr('disabled', 'disabled');
@@ -213,7 +213,7 @@ export default {
     deleteRecord () {
       $('#deleteModalBtn').attr('disabled', 'disabled');
 
-      const clientId = this.$cookies.get('client_id');
+      const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
 
       const recordId = $('#deleteModalBtn').attr('targetId');

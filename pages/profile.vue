@@ -213,7 +213,7 @@ export default {
 
     const params = {
       body: {
-        clientId: this.$cookies.get('client_id')
+        clientId: this.$cookies.get('account_id')
       }
     }
 
@@ -338,7 +338,7 @@ export default {
       });
     },
     updateProfile () {
-      const clientId = this.$cookies.get('client_id');
+      const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
 
       $('#saveProfBtn').attr('disabled', 'disabled');

@@ -212,7 +212,7 @@ export default {
   beforeMount () {
     const params = {
       body: {
-        clientId: this.$cookies.get('client_id')
+        clientId: this.$cookies.get('account_id')
       }
     };
 
@@ -262,7 +262,7 @@ export default {
   },
   methods: {
     saveRecord () {
-      const clientId = this.$cookies.get('client_id');
+      const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
 
       const now = new Date();

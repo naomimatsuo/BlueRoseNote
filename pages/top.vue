@@ -75,7 +75,7 @@ export default {
 
     const params = {
       body: {
-        clientId: this.$cookies.get('client_id')
+        clientId: this.$cookies.get('account_id')
       }
     }
 
@@ -83,6 +83,7 @@ export default {
     this.showLoader = false;
 
     if (response.statusCode !== 200) { return; }
+    if (!response.body) { return; }
 
     const res = JSON.parse(response.body);
     this.userName = res.userName;

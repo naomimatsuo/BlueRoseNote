@@ -16,7 +16,7 @@ exports.handler = async (event) => {
         ExclusiveStartKey: event.lastEvaluatedKey
     }).promise();
 
-    for (let i = 0; i < val.Items.length; i++) {
+    for (var i = 0; i < val.Items.length; i++) {
         const cId = val.Items[i].clientId;
 
         const user = await docClient.get({
@@ -24,11 +24,19 @@ exports.handler = async (event) => {
             Key: { clientId: cId }
         }).promise();
 
+        if (!user.Item) {
+            val.Items[i].clientInfo = {
+                clientId: cId,
+                selfImg: null,
+                userName: null
+            };
+            continue;
+        }
+
         val.Items[i].clientInfo = {
             clientId: user.Item.clientId,
             selfImg: user.Item.selfImg,
-            userName: user.Item.userName,
-            accountId: user.Item.accountId
+            userName: user.Item.userName
         };
     }
 

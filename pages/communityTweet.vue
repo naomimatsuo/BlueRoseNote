@@ -119,7 +119,7 @@ export default {
     const responseInfo = await API.post('BlueRoseNoteAPIs', '/CommunityMember', {
         body: {
           communityId: this.communityInfo.communityId,
-          clientId: this.$cookies.get('client_id')
+          clientId: this.$cookies.get('account_id')
         }
       });
 
@@ -132,7 +132,7 @@ export default {
     joinCommunity () {
       $('#joinCommunityBtn').attr('disabled', 'disabled');
 
-      const clientId = this.$cookies.get('client_id');
+      const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
 
       const now = new Date();
@@ -140,7 +140,7 @@ export default {
       const params = {
         body: {
           communityId: this.communityInfo.communityId,
-          clientId: this.$cookies.get('client_id'),
+          clientId: this.$cookies.get('account_id'),
           createdAt: this.$getNowString(now)
         }
       };
@@ -160,7 +160,7 @@ export default {
 
       const params = {
         body: {
-          clientId: this.$cookies.get('client_id'),
+          clientId: this.$cookies.get('account_id'),
           communityId: this.communityInfo.communityId
         }
       };

@@ -94,7 +94,7 @@ export default {
   mounted () {
     const params = {
       body: {
-        clientId: this.$cookies.get('client_id'),
+        clientId: this.$cookies.get('account_id'),
         lastEvaluatedKey: null
       }
     };

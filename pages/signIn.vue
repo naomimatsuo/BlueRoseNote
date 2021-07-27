@@ -52,10 +52,12 @@ export default {
           expires: new Date(new Date().getTime() + 1000 * 3600 * 24 * 30),
           secure: true
         });
+
         this.$cookies.set('account_id', this.userName, {
           expires: new Date(new Date().getTime() + 1000 * 3600 * 24 * 30),
           secure: true
         });
+
         this.$router.push('/top');
       } catch (error) {}
     }
