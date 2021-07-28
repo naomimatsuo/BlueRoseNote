@@ -439,7 +439,7 @@ export default {
       return false;
     },
     gobackTo () {
-      this.$router.go(-1);
+      this.$router.push('communityTweet');
     }
   }
 }
