@@ -312,6 +312,7 @@ export default {
         body: {
           communityRepId: this.communityId + "_" + this.targetTweet.tweetId,
           communityId: this.communityId,
+          repTweetId: this.targetTweet.tweetId,
           tweetId: now.getTime(),
           clientId: this.$cookies.get('account_id'),
           tweet: this.newItem.tweet,
@@ -380,7 +381,7 @@ export default {
       const params = {
         body: {
           communityId: this.communityId,
-          tweetId: post.tweetId,
+          repTweetId: this.targetTweet.tweetId + "_" + post.tweetId,
           clientId: this.$cookies.get('account_id')
         }
       };
@@ -409,7 +410,7 @@ export default {
       const params = {
         body: {
           communityId: this.communityId,
-          tweetId: post.tweetId
+          repTweetId: this.targetTweet.tweetId + "_" + post.tweetId
         }
       };
 

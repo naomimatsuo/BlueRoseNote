@@ -345,7 +345,7 @@ export default {
       const params = {
         body: {
           communityId: this.communityid,
-          tweetId: post.tweetId,
+          repTweetId: "null_" + post.tweetId,
           clientId: this.$cookies.get('account_id')
         }
       };
@@ -374,7 +374,7 @@ export default {
       const params = {
         body: {
           communityId: this.communityid,
-          tweetId: post.tweetId
+          repTweetId: "null_" + post.tweetId
         }
       };
 
@@ -382,7 +382,7 @@ export default {
       .then((response) => {
         if (response.statusCode !== 200) { return; }
         const target = this.posts.filter((val) => {
-          return val.tweetId === post.tweetId;
+          return (val.tweetId === post.tweetId);
         });
         if (target) {
           target[0].likes.splice(
@@ -396,11 +396,12 @@ export default {
     },
     toReply (target) {
       localStorage.setItem('targetTweet', JSON.stringify(target));
-      this.$router.push('communityTweetReply');
       this.$router.push({ name: 'communityTweetReply' });
     },
     isMyFavTweet (target) {
-      const item = target.likes.find((val) => { return val.clientId === this.$cookies.get('account_id'); });
+      const item = target.likes.find((val) => {
+        return (val.clientId === this.$cookies.get('account_id'));
+      });
       if (item) { return true; }
       return false;
     }
