@@ -6,13 +6,14 @@ exports.handler = async (event) => {
 
     console.log(event);
 
-    const val = await docClient.query({
+    const val = await docClient.scan({
         TableName: 'CommunityTweet',
         Limit: 15,
-        ScanIndexForward: false,
-        KeyConditionExpression: "#x = :val",
-        ExpressionAttributeNames: { "#x": "communityId" },
-        ExpressionAttributeValues: { ":val": event.communityId },
+        FilterExpression: "communityId = :val and replyToTweetId = :nullVal",
+        ExpressionAttributeValues: {
+            ":val": event.communityId,
+            ":nullVal": null
+        },
         ExclusiveStartKey: event.lastEvaluatedKey
     }).promise();
 
@@ -24,17 +25,28 @@ exports.handler = async (event) => {
             Key: { clientId: cId }
         }).promise();
 
-        const like = await docClient.scan({
-            TableName: 'CommunityTweetLike',
-            FilterExpression: "communityId = :comId and clientId = :cliId and tweetId = :twId",
+        const replys = await docClient.scan({
+            TableName: 'CommunityTweet',
+            ScanIndexForward: false,
+            FilterExpression: "communityId = :comId and replyToTweetId = :repId",
             ExpressionAttributeValues: {
                 ":comId": val.Items[i].communityId,
-                ":cliId": event.clientId,
+                ":repId": val.Items[i].tweetId
+            },
+            ProjectionExpression: "communityId, tweetId, clientId",
+        }).promise();
+
+        const likes = await docClient.scan({
+            TableName: 'CommunityTweetLike',
+            ScanIndexForward: false,
+            FilterExpression: "communityId = :comId and tweetId = :twId",
+            ExpressionAttributeValues: {
+                ":comId": val.Items[i].communityId,
                 ":twId": val.Items[i].tweetId
             }
         }).promise();
 
-        console.log(like);
+        console.log(replys);
 
         if (!user.Item) {
             val.Items[i].clientInfo = {
@@ -50,11 +62,8 @@ exports.handler = async (event) => {
             };
         }
 
-        if (like.Count > 0) {
-            val.Items[i].iLike = true
-        } else {
-            val.Items[i].iLike = false
-        }
+        val.Items[i].likes = likes.Items;
+        val.Items[i].replys = replys.Items;
     }
 
     const response = {
