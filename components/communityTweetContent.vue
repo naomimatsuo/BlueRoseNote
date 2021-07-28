@@ -397,6 +397,7 @@ export default {
     toReply (target) {
       localStorage.setItem('targetTweet', JSON.stringify(target));
       this.$router.push('communityTweetReply');
+      this.$router.push({ name: 'communityTweetReply' });
     },
     isMyFavTweet (target) {
       const item = target.likes.find((val) => { return val.clientId === this.$cookies.get('account_id'); });
