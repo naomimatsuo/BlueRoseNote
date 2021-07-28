@@ -310,9 +310,9 @@ export default {
 
       const params = {
         body: {
+          communityRepId: this.communityId + "_" + this.targetTweet.tweetId,
           communityId: this.communityId,
-          replyToTweetId: this.targetTweet.tweetId,
-          tweetId: now.getTime() + this.$cookies.get('account_id'),
+          tweetId: now.getTime(),
           clientId: this.$cookies.get('account_id'),
           tweet: this.newItem.tweet,
           tweetpic: (image === undefined) ? null : image,
@@ -320,7 +320,7 @@ export default {
         }
       };
 
-      API.put('BlueRoseNoteAPIs', '/CommunityTweet', params)
+      API.put('BlueRoseNoteAPIs', '/CommunityTweetReply', params)
       .then((response) => {
         if (response.statusCode !== 200) { return; }
 

@@ -6,11 +6,12 @@ exports.handler = async (event) => {
 
     console.log(event);
 
-    const val = await docClient.scan({
-        TableName: 'CommunityTweet',
+    const val = await docClient.query({
+        TableName: 'CommunityTweetReply',
         Limit: 15,
-        FilterExpression: "communityId = :val and replyToTweetId = :repId",
-        ExpressionAttributeValues: { ":val": event.communityId, ":repId": event.replyToTweetId },
+        ScanIndexForward: false,
+        KeyConditionExpression: "communityRepId = :val",
+        ExpressionAttributeValues: { ":val": event.communityId + "_" + event.replyToTweetId },
         ExclusiveStartKey: event.lastEvaluatedKey
     }).promise();
 
@@ -23,14 +24,12 @@ exports.handler = async (event) => {
         }).promise();
 
         const replys = await docClient.scan({
-            TableName: 'CommunityTweet',
-            ScanIndexForward: false,
-            FilterExpression: "communityId = :comId and replyToTweetId = :repId",
+            TableName: 'CommunityTweetReply',
+            FilterExpression: "communityRepId = :id",
             ExpressionAttributeValues: {
-                ":comId": val.Items[i].communityId,
-                ":repId": val.Items[i].tweetId
+                ":id": val.Items[i].communityId + "_" + val.Items[i].tweetId
             },
-            ProjectionExpression: "communityId, tweetId, clientId",
+            ProjectionExpression: "communityId, tweetId, clientId"
         }).promise();
 
         const likes = await docClient.scan({

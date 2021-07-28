@@ -58,11 +58,11 @@
         },
         "getCommunityTweetReply": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getCommunityTweetReply-4b6e6b4a433050336579-build.zip"
+          "s3Key": "amplify-builds/getCommunityTweetReply-6a4134734136464f4764-build.zip"
         },
         "getCommunityTweet": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getCommunityTweet-684c5138365538454931-build.zip"
+          "s3Key": "amplify-builds/getCommunityTweet-5a352f6a4b6d46345132-build.zip"
         },
         "getCommunityMember": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
@@ -135,6 +135,10 @@
         "deleteCommunityTweetLike": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
           "s3Key": "amplify-builds/deleteCommunityTweetLike-30787255534850395147-build.zip"
+        },
+        "addCommunityTweetReply": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/addCommunityTweetReply-6333413275466a687143-build.zip"
         }
       }
     }
