@@ -79,7 +79,12 @@
             </button>
           </div>
           <div class="modal-body py-0">
-            <textarea id="recordTweetTextArea" v-model="newItem.tweet" class="form-control overflow-hidden rounded-0" style="height:13vh;resize:none" rows="4" />
+            <textarea id="recordTweetTextArea" v-model="newItem.tweet" class="form-control overflow-hidden rounded-0" style="height:13vh;resize:none" rows="4" maxlength="200" />
+            <p class="text-right mb-0">
+              <span v-if="newItem.tweet">
+                <small>{{ newItem.tweet.length }}/200</small>
+              </span>
+            </p>
             <div id="picContainer" class="d-flex justify-content-center" style="position: relative">
               <img id="picTarget" class="rounded picImg mt-2">
               <button id="removePicBtn" type="button" class="btn btn-sm btn-secondary rounded-circle px-2 py-0" style="position:absolute; top: 20px; z-index: 10; display: none;" @click="removePic">
@@ -287,7 +292,7 @@ export default {
           communityId: this.communityid,
           tweetId: now.getTime(),
           clientId: this.$cookies.get('account_id'),
-          tweet: this.newItem.tweet,
+          tweet: this.newItem.tweet.substring(0, 200),
           tweetpic: (image === undefined) ? null : image,
           createdAt: this.$getNowString(now)
         }
