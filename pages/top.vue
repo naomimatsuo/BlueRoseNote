@@ -29,9 +29,9 @@
         </li>
       </nav> -->
       <!-- content area -->
-      <div>
+      <!-- <div>
         <p>content</p>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
