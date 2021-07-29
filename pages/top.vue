@@ -20,17 +20,14 @@
     </div>
     <div class="card-body">
       <!-- tab area -->
-      <nav class="nav">
+      <!-- <nav class="nav">
         <li class="nav-item mx-1">
           <a id="record-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#record-content" aria-controls="record-content" :aria-selected="{showRecordTab}" :class="{ active: showRecordTab}" @click="changeTab">記録</a>
         </li>
         <li class="nav-item mx-1">
           <a id="communiry-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#community-content" aria-controls="community-content" :aria-selected="{showCommunityTab}" :class="{ active: showCommunityTab}" @click="changeTab">コミュニティ</a>
         </li>
-        <!-- <li class="nav-item mx-1">
-          <a id="scholor-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#scholor-content" aria-controls="scholor-content" :aria-selected="{showScholorTab}" :class="{ active: showScholorTab}" @click="changeTab">文献</a>
-        </li> -->
-      </nav>
+      </nav> -->
       <!-- content area -->
       <div>
         <p>content</p>
