@@ -11,17 +11,18 @@
             </NuxtLink>
           </div>
         </li>
+        <!-- Reply target -->
         <li class="list-group-item">
           <div class="d-flex">
             <!-- Self pic -->
-            <div class="rounded-circle bg-gray d-flex justify-content-center" style="width: 4.0rem; height: 4.0rem;">
+            <div class="rounded-circle bg-gray d-flex justify-content-center" style="width: 4.0rem; height: 4.0rem;cursor:pointer;" @click="gotoProfile(post)">
               <img :src="targetTweet.selfImg" />
             </div>
             <div class="ml-2 w-100">
               <!-- Date -->
               <div class="py-2">
                 <p class="text-gray mb-0">{{ targetTweet.createdAt }}</p>
-                <p class="text-gray mb-0"><strong>{{ targetTweet.userName }}</strong>&nbsp;{{ '@' + targetTweet.clientId }}</p>
+                <p class="text-gray mb-0" style="cursor:pointer;" @click="gotoProfile(post)"><strong>{{ targetTweet.userName }}</strong>&nbsp;{{ '@' + targetTweet.clientId }}</p>
               </div>
             </div>
           </div>
@@ -63,14 +64,14 @@
       <li v-for="post in posts" :key="post.tweetId" class="list-group-item rounded-0 bg-transparent px-2">
         <div class="d-flex">
           <!-- Self pic -->
-          <div class="rounded-circle bg-gray d-flex justify-content-center" style="width: 4.0rem; height: 4.0rem;">
+          <div class="rounded-circle bg-gray d-flex justify-content-center" style="width: 4.0rem; height: 4.0rem;cursor:pointer;" @click="gotoProfile(post)">
             <img :src="post.clientInfo.selfImg" />
           </div>
           <div class="ml-2 w-100">
             <!-- Date -->
             <div class="py-2">
               <p class="text-gray mb-0">{{ post.createdAt }}</p>
-              <p class="text-gray mb-0"><strong>{{ post.clientInfo.userName }}</strong>&nbsp;{{ '@' + post.clientInfo.clientId }}</p>
+              <p class="text-gray mb-0" style="cursor:pointer;" @click="gotoProfile(post)"><strong>{{ post.clientInfo.userName }}</strong>&nbsp;{{ '@' + post.clientInfo.clientId }}</p>
             </div>
             <!-- Delete button -->
             <button v-if="isMyTweet(post)" type="button" class="btn btn-sm px-1 pb-0" style="position:absolute; top: 5px; right: 5px;" @click="showDeleteModal(post)">
@@ -167,6 +168,11 @@ export default {
       showLoader: true,
       saving: false,
       lastEvaluatedKey: null
+    }
+  },
+  head () {
+    return {
+      title: 'コミュニティ'
     }
   },
   mounted () {
@@ -449,6 +455,10 @@ export default {
       const item = target.likes.find((val) => { return val.clientId === this.$cookies.get('account_id'); });
       if (item) { return true; }
       return false;
+    },
+    gotoProfile (target) {
+      localStorage.setItem('targetProfile', JSON.stringify(target.clientId));
+      this.$router.push('/previewProfile');
     }
   }
 }
