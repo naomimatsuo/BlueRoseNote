@@ -37,16 +37,31 @@
               <p for="accountId" class="ml-1">{{ accountId }}</p>
             </div>
             <div class="mb-2">
-              <label for="userName" class="mb-0"><small>名前</small></label>
-              <input id="userName" v-model="userName" type="text" class="form-control" />
+              <label for="userName" class="mb-0"><small>ユーザー名</small></label>
+              <input id="userName" v-model="userName" type="text" class="form-control" maxlength="30" />
+              <p class="text-right mb-0">
+                <span>
+                  <small>{{ userName? userName.length : 0 }}/30</small>
+                </span>
+              </p>
             </div>
             <div class="mb-2">
               <label for="description" class="mb-0"><small>自己紹介</small></label>
-              <textarea id="description" v-model="description" type="text" class="form-control" rows="3" />
+              <textarea id="description" v-model="description" type="text" class="form-control" rows="3" maxlength="300" />
+              <p class="text-right mb-0">
+                <span>
+                  <small>{{ description? description.length : 0 }}/300</small>
+                </span>
+              </p>
             </div>
             <div class="mb-2">
               <label for="location" class="mb-0"><small>場所</small></label>
-              <input id="location" v-model="location" type="text" class="form-control" />
+              <input id="location" v-model="location" type="text" class="form-control" maxlength="100" />
+              <p class="text-right mb-0">
+                <span>
+                  <small>{{ location? location.length : 0 }}/100</small>
+                </span>
+              </p>
             </div>
             <div class="mb-2">
               <label class="mb-0"><small>性別</small></label>
@@ -352,12 +367,12 @@ export default {
         body: {
           clientId,
           accountId: this.$cookies.get('account_id'),
-          userName: this.userName,
-          description: this.description,
-          location: this.location,
+          userName: this.userName.substring(0, 30),
+          description: this.description.substring(0, 300),
+          location: this.location.substring(0, 100),
           gender: this.gender,
-          userHeight: this.userHeight,
-          userWeight: this.userWeight,
+          userHeight: this.userHeight ? Number.parseFloat(this.userHeight).toFixed(1) : null,
+          userWeight: this.userWeight ? Number.parseFloat(this.userWeight).toFixed(1) : null,
           birthYear: this.birthYear,
           birthMonth: this.birthMonth,
           birthDate: this.birthDate,

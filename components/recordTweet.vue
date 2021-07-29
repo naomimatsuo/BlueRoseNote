@@ -2,7 +2,12 @@
   <div>
     <!-- New post -->
     <div class="bg-white p-2">
-      <textarea id="recordTweetTextArea" v-model="newItem.tweet" class="form-control overflow-hidden mb-1" style="height:13vh;resize:none" rows="4" />
+      <textarea id="recordTweetTextArea" v-model="newItem.tweet" class="form-control overflow-hidden" style="height:13vh;resize:none" rows="4" maxlength="200" />
+      <p class="text-right mb-1">
+        <span>
+          <small>{{ newItem.tweet ? newItem.tweet.length : 0 }}/200</small>
+        </span>
+      </p>
       <div id="picContainer" class="d-flex justify-content-center" style="position: relative">
         <img id="picTarget" class="rounded picImg">
         <button id="removePicBtn" type="button" class="btn btn-sm btn-secondary rounded-circle px-2 py-0" style="position:absolute; top: 10px; z-index: 10; display: none;" @click="removePic">
@@ -189,7 +194,7 @@ export default {
         body: {
           clientId,
           recordId: now.getTime(),
-          tweet: this.newItem.tweet,
+          tweet: this.newItem.tweet.substring(0, 200),
           tweetpic: (image === undefined) ? null : image,
           createdAt: this.$getNowString(now)
         }

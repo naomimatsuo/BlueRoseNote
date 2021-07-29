@@ -36,8 +36,8 @@
         <li class="list-group-item">
           <textarea id="recordTweetTextArea" v-model="newItem.tweet" class="form-control overflow-hidden rounded-0" style="height:13vh;resize:none" rows="4" maxlength="200" />
           <p class="text-right mb-0">
-            <span v-if="newItem.tweet">
-              <small>{{ newItem.tweet.length }}/200</small>
+            <span>
+              <small>{{ newItem.tweet ? newItem.tweet.length : 0 }}/200</small>
             </span>
           </p>
           <div id="picContainer" class="d-flex justify-content-center" style="position: relative">

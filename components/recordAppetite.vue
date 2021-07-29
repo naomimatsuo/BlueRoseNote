@@ -159,8 +159,13 @@
         <div class="input-group-prepend">
           <span id="memo-addon" class="input-group-text bg-white">メモ</span>
         </div>
-        <input v-model="newItem.memo" type="text" class="form-control" aria-label="gohan" aria-describedby="memo-addon" />
+        <input v-model="newItem.memo" type="text" class="form-control" aria-label="gohan" aria-describedby="memo-addon" maxlength="100" />
       </div>
+      <p class="text-right mb-0">
+        <span>
+          <small>{{ newItem.memo ? newItem.memo.length : 0 }}/100</small>
+        </span>
+      </p>
       <div class="d-flex justify-content-end mt-2">
         <button id="saveRecordBtn" type="button" class="btn btn-lg btn-secondary text-white rounded-0" style="width:10rem;" @click="saveRecord">
           <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -349,7 +354,7 @@ export default {
           fruits: this.newItem.fruits,
           sweets: this.newItem.sweets,
           alcohol: this.newItem.alcohol,
-          memo: this.newItem.memo,
+          memo: this.newItem.memo.substring(0, 100),
           createdAt: this.$getNowString(now)
         }
       };

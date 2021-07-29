@@ -5,10 +5,11 @@
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4">
           <div class="input-group mb-3">
-            <input v-model="newItem.temperature" type="number" min="35.0" max="42.0" class="form-control" aria-label="体温" aria-describedby="bodytemp-addon" />
+            <input id="bodytemperature" v-model="newItem.temperature" type="number" min="35.0" max="42.0" class="form-control" aria-label="体温" aria-describedby="bodytemp-addon" />
             <div class="input-group-append">
               <span id="bodytemp-addon" class="input-group-text bg-white">度</span>
             </div>
+            <p class="invalid-feedback">体温は35.0度から42.0度までの間で入力してください。</p>
           </div>
         </div>
       </div>
@@ -89,58 +90,78 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
   minorLine.selectAll("line").attr("stroke", "#C4C4C4").attr("stroke-width", 0.7)
     .attr("stroke-dasharray", "8 4");
 
-  // add data
-  postSvg.append("g")
-    .selectAll("circle")
-    .data([
-      [data.temperature, 0.5]
-    ])
-    .enter()
-    .append("circle")
-    .attr("cx", function (d) { return xScale(d[0]); })
-    .attr("cy", function (d) { return yScale(d[1]); })
-    .attr("fill", "#73b3b3")
-    .style("opacity", 0.70)
-    .attr("r", 10)
-    .on("mouseover", function (d, i) {
-      d3.select(this).transition()
-        .duration('500')
-        .style("opacity", 0.60)
-        .attr('r', 13);
-    })
-    .on("mouseout", function () {
-      d3.select(this).transition()
-        .duration('500')
-        .style("opacity", 0.70)
-        .attr('r', 10);
-    });
+  // add data and tip
+  if ((data.temperature >= 35.0) && (data.temperature <= 38.0)) {
+    postSvg.append("g")
+      .selectAll("circle")
+      .data([
+        [data.temperature, 0.5]
+      ])
+      .enter()
+      .append("circle")
+      .attr("cx", function (d) { return xScale(d[0]); })
+      .attr("cy", function (d) { return yScale(d[1]); })
+      .attr("fill", "#73b3b3")
+      .style("opacity", 0.70)
+      .attr("r", 10)
+      .on("mouseover", function (d, i) {
+        d3.select(this).transition()
+          .duration('500')
+          .style("opacity", 0.60)
+          .attr('r', 13);
+      })
+      .on("mouseout", function () {
+        d3.select(this).transition()
+          .duration('500')
+          .style("opacity", 0.70)
+          .attr('r', 10);
+      });
 
-  // tip
-  postSvg.append("g")
-    .selectAll("rect")
-    .data([
-      [data.temperature, 0.6]
-    ])
-    .enter()
-    .append("rect")
-    .attr("x", function (d) { return xScale(d[0]) - 30; })
-    .attr("y", function (d) { return yScale(d[1]) + 25; })
-    .attr("height", 20)
+    // tip
+    postSvg.append("g")
+      .selectAll("rect")
+      .data([
+        [data.temperature, 0.6]
+      ])
+      .enter()
+      .append("rect")
+      .attr("x", function (d) { return xScale(d[0]) - 30; })
+      .attr("y", function (d) { return yScale(d[1]) + 25; })
+      .attr("height", 20)
+      .attr("width", 60)
+      .attr("fill", "#fafafa")
+
+    postSvg.append("g")
+      .selectAll("text")
+      .data([
+        [data.temperature, 0.6]
+      ])
+      .enter()
+      .append("text")
+      .attr("x", function (d) { return xScale(d[0]) - 18; })
+      .attr("y", function (d) { return yScale(d[1]) + 40; })
+      .attr("fill", "#31444e")
+      .style("font-size", "0.8rem")
+      .text(function (d) { return d[0] + " 度"; });
+  } else {
+    postSvg.append("rect")
+    .attr("x", function (d) { return xScale(37.855); })
+    .attr("y", function (d) { return yScale(0.6) - 6.0; })
+    .attr("height", 23)
     .attr("width", 60)
-    .attr("fill", "#fafafa")
+    .style("stroke", "#E6739F")
+    .style("fill", "#fafafa")
+    .style("stroke-width", 1);
 
-  postSvg.append("g")
-    .selectAll("text")
-    .data([
-      [data.temperature, 0.6]
-    ])
-    .enter()
-    .append("text")
-    .attr("x", function (d) { return xScale(d[0]) - 18; })
-    .attr("y", function (d) { return yScale(d[1]) + 40; })
-    .attr("fill", "#31444e")
+    postSvg.append("text")
+    .attr("x", function (d) { return xScale(37.88); })
+    .attr("y", function (d) { return yScale(0.6) + 6.0; })
+    .attr("dy", ".30em")
+    .attr("fill", "#E6739F")
     .style("font-size", "0.8rem")
-    .text(function (d) { return d[0] + " 度"; });
+    .style("font-weight", "bolder")
+    .text(data.temperature + " 度");
+  }
 
   // add date
   postSvg.append("rect")
@@ -284,6 +305,15 @@ export default {
       const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
 
+      if (!this.newItem.temperature) { return; }
+
+      if ((this.newItem.temperature < 35.0) || (this.newItem.temperature > 42.0)) {
+        $('#bodytemperature').addClass('is-invalid');
+        return;
+      }
+
+      $('#bodytemperature').removeClass('is-invalid');
+
       $('#saveRecordBtn').attr('disabled', 'disabled');
       this.saving = true;
 
@@ -293,7 +323,7 @@ export default {
         body: {
           clientId,
           recordId: now.getTime(),
-          temperature: this.newItem.temperature,
+          temperature: Number.parseFloat(this.newItem.temperature).toFixed(1),
           createdAt: this.$getNowString(now)
         }
       };

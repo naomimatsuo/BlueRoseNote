@@ -32,11 +32,21 @@
           <div id="userSettings" class="col-sm-12 col-md-12 col-lg-6">
             <div class="mb-2">
               <label for="userName" class="mb-0"><small>コミュニティ名</small></label>
-              <input id="userName" v-model="communityName" type="text" class="form-control" />
+              <input id="userName" v-model="communityName" type="text" class="form-control" maxlength="100" />
+              <p class="text-right mb-0">
+                <span>
+                  <small>{{ communityName? communityName.length : 0 }}/100</small>
+                </span>
+              </p>
             </div>
             <div class="mb-2">
               <label for="description" class="mb-0"><small>説明</small></label>
-              <textarea id="description" v-model="description" type="text" class="form-control" rows="5" />
+              <textarea id="description" v-model="description" type="text" class="form-control" rows="5" maxlength="300" />
+              <p class="text-right mb-0">
+                <span>
+                  <small>{{ description? description.length : 0 }}/300</small>
+                </span>
+              </p>
             </div>
             <div class="mb-2">
               <label for="location" class="mb-0"><small>部位</small></label>
@@ -472,8 +482,8 @@ export default {
       const params = {
         body: {
           communityId: this.communityId ? this.communityId : now.getTime(),
-          communityName: this.communityName,
-          description: this.description,
+          communityName: this.communityName.substring(0, 100),
+          description: this.description.substring(0, 300),
           backImg: this.backImg,
           selfImg: this.selfImg,
           part1: this.part1,

@@ -3,7 +3,7 @@
     <div v-if="showSearchArea">
       <!-- Search Box -->
       <div class="input-group">
-        <input v-model="commSearchWords" type="text" class="form-control bg-light" placeholder="コミュニティを検索" aria-label="Search Community" aria-describedby="searchAddon" @keyup.enter="searchCommunityByWords" />
+        <input v-model="commSearchWords" type="text" class="form-control bg-light" placeholder="コミュニティを検索" aria-label="Search Community" aria-describedby="searchAddon" maxlength="25" @keyup.enter="searchCommunityByWords" />
         <div class="input-group-prepend">
           <button id="searchAddon" type="button" class="btn btn-sm btn-outline-info rounded-right px-3 pb-0" @click="searchCommunityByWords">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 20 20">

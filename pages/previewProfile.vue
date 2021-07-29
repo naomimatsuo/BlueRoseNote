@@ -64,7 +64,7 @@
             <small v-if="birthDate">{{ birthDate }}日</small>
           </span>
         </p>
-        <p>{{ description }}</p>
+        <div class="text-break u-pre-wrap">{{ description }}</div>
       </div>
     </div>
     <div class="card-body">
