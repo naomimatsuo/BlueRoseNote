@@ -17,8 +17,14 @@
           </div>
         </div>
         <div class="btn-join">
-          <button v-if="!doesJoin" id="joinCommunityBtn" class="btn btn-secondary px-4" @click="joinCommunity">参加</button>
-          <button v-if="doesJoin" id="leaveCommunityBtn" class="btn btn-info px-4" @click="leaveCommunity">参加済み</button>
+          <button v-if="!doesJoin" id="joinCommunityBtn" class="btn btn-secondary px-4" @click="joinCommunity">
+            <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            参加
+          </button>
+          <button v-if="doesJoin" id="leaveCommunityBtn" class="btn btn-info px-4" @click="leaveCommunity">
+            <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            参加済み
+          </button>
         </div>
       </div>
       <div class="card-body">
@@ -104,7 +110,8 @@ export default {
         part22: null,
         part23: null
       },
-      doesJoin: false
+      doesJoin: false,
+      saving: false
     }
   },
   head () {
@@ -130,10 +137,11 @@ export default {
   },
   methods: {
     joinCommunity () {
-      $('#joinCommunityBtn').attr('disabled', 'disabled');
-
       const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
+
+      $('#joinCommunityBtn').attr('disabled', 'disabled');
+      this.saving = true;
 
       const now = new Date();
 
@@ -153,10 +161,12 @@ export default {
       })
       .finally(() => {
         $('#joinCommunityBtn').removeAttr('disabled');
+        this.saving = false;
       });
     },
     leaveCommunity () {
       $('#leaveCommunityBtn').attr('disabled', 'disabled');
+      this.saving = true;
 
       const params = {
         body: {
@@ -172,6 +182,7 @@ export default {
       })
       .finally(() => {
         $('#leaveCommunityBtn').removeAttr('disabled');
+        this.saving = false;
       });
     }
   }

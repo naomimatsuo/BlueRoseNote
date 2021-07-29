@@ -104,7 +104,10 @@
               </div>
             </div>
             <div class="row justify-content-end mr-0">
-              <button id="saveProfBtn" type="button" class="btn btn-secondary rounded-0 text-white px-4" @click="updateProfile">保存</button>
+              <button id="saveProfBtn" type="button" class="btn btn-secondary rounded-0 text-white px-4" @click="updateProfile">
+                <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                保存
+              </button>
             </div>
           </div>
         </div>
@@ -200,6 +203,7 @@ export default {
       backImg: null,
       selfImg: null,
       showLoader: true,
+      saving: false,
       yearRange
     };
   },
@@ -342,6 +346,7 @@ export default {
       if (!clientId) { return; }
 
       $('#saveProfBtn').attr('disabled', 'disabled');
+      this.saving = true;
 
       const params = {
         body: {
@@ -365,6 +370,7 @@ export default {
       API.put('BlueRoseNoteAPIs', '/UserProfile', params)
       .then(() => {
         $('#saveProfBtn').removeAttr('disabled');
+        this.saving = false;
       });
     }
   }

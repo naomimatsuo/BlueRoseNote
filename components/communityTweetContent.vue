@@ -97,7 +97,10 @@
                 </svg>
               </button>
             </div>
-            <button id="saveRecordBtn" type="button" class="btn btn-secondary rounded-0" style="width:10rem;" @click="saveRecord">つぶやく</button>
+            <button id="saveRecordBtn" type="button" class="btn btn-secondary rounded-0" style="width:10rem;" @click="saveRecord">
+              <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              つぶやく
+            </button>
           </div>
         </div>
       </div>
@@ -117,7 +120,10 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-info" data-dismiss="modal" style="width:9rem">キャンセル</button>
-            <button id="deleteModalBtn" type="button" class="btn btn-danger" style="width:9rem" @click="deleteRecord">削除</button>
+            <button id="deleteModalBtn" type="button" class="btn btn-danger" style="width:9rem" @click="deleteRecord">
+              <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              削除
+            </button>
           </div>
         </div>
       </div>
@@ -138,7 +144,8 @@ export default {
       },
       posts: [],
       showLoader: true,
-      lastEvaluatedKey: null
+      lastEvaluatedKey: null,
+      saving: false
     }
   },
   mounted () {
@@ -270,6 +277,7 @@ export default {
     },
     saveRecord () {
       $('#saveRecordBtn').attr('disabled', 'disabled');
+      this.saving = true;
 
       const image = $('#picTarget').attr('src');
       const now = new Date();
@@ -302,6 +310,7 @@ export default {
       })
       .finally(() => {
         $('#saveRecordBtn').removeAttr('disabled');
+        this.saving = false;
       });
     },
     showDeleteModal (post) {
@@ -314,10 +323,11 @@ export default {
       return post.clientId === this.$cookies.get('account_id')
     },
     deleteRecord () {
-      $('#deleteModalBtn').attr('disabled', 'disabled');
-
       const tweetId = $('#deleteModalBtn').attr('targetId');
       if (!tweetId) { return; }
+
+      $('#deleteModalBtn').attr('disabled', 'disabled');
+      this.saving = true;
 
       const params = {
         body: {
@@ -336,6 +346,7 @@ export default {
       .finally(() => {
         $('#deleteModalBtn').removeAttr('disabled');
         $('#deleteModal').modal('hide');
+        this.saving = false;
       });
     },
     likeThis (event, post) {

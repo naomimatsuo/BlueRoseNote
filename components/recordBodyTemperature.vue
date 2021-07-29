@@ -13,7 +13,10 @@
         </div>
       </div>
       <div class="d-flex justify-content-end mt-2">
-        <button id="saveRecordBtn" type="button" class="btn btn-lg btn-secondary text-white rounded-0" style="width:10rem;" @click="saveRecord">記録</button>
+        <button id="saveRecordBtn" type="button" class="btn btn-lg btn-secondary text-white rounded-0" style="width:10rem;" @click="saveRecord">
+          <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          記録
+        </button>
       </div>
     </div>
     <!-- Old post-->
@@ -47,7 +50,10 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-info" data-dismiss="modal" style="width:9rem">キャンセル</button>
-            <button id="deleteModalBtn" type="button" class="btn btn-danger" style="width:9rem" @click="deleteRecord">削除</button>
+            <button id="deleteModalBtn" type="button" class="btn btn-danger" style="width:9rem" @click="deleteRecord">
+              <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              削除
+            </button>
           </div>
         </div>
       </div>
@@ -179,7 +185,8 @@ export default {
         temperature: null
       },
       posts: [],
-      lastEvaluatedKey: null
+      lastEvaluatedKey: null,
+      saving: false
     }
   },
   beforeMount () {
@@ -278,6 +285,7 @@ export default {
       if (!clientId) { return; }
 
       $('#saveRecordBtn').attr('disabled', 'disabled');
+      this.saving = true;
 
       const now = new Date();
 
@@ -298,6 +306,7 @@ export default {
       })
       .finally(() => {
         $('#saveRecordBtn').removeAttr('disabled');
+        this.saving = false;
       });
     },
     showDeleteModal (post) {
@@ -307,10 +316,11 @@ export default {
       $('#deleteModal').modal('show');
     },
     deleteRecord () {
-      $('#deleteModalBtn').attr('disabled', 'disabled');
-
       const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
+
+      $('#deleteModalBtn').attr('disabled', 'disabled');
+      this.saving = true;
 
       const recordId = $('#deleteModalBtn').attr('targetId');
       if (!recordId) { return; }
@@ -332,6 +342,7 @@ export default {
       .finally(() => {
         $('#deleteModalBtn').removeAttr('disabled');
         $('#deleteModal').modal('hide');
+        this.saving = false;
       });
     }
   }

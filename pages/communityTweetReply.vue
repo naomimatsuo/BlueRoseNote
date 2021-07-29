@@ -4,7 +4,7 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
           <div class="row mx-0">
-            <NuxtLink to="/communityTweet" tag="button" class="btn btn-light rounded-circle" @click="gobackTo">
+            <NuxtLink to="/communityTweet" tag="button" class="btn btn-light rounded-circle">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
               </svg>
@@ -50,7 +50,10 @@
                 </svg>
               </button>
             </div>
-            <button id="saveRecordBtn" type="button" class="btn btn-secondary rounded-0" style="width:10rem;" @click="saveRecord">つぶやく</button>
+            <button id="saveRecordBtn" type="button" class="btn btn-secondary rounded-0" style="width:10rem;" @click="saveRecord">
+              <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              つぶやく
+            </button>
           </div>
         </li>
       </ul>
@@ -127,7 +130,10 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-info" data-dismiss="modal" style="width:9rem">キャンセル</button>
-            <button id="deleteModalBtn" type="button" class="btn btn-danger" style="width:9rem" @click="deleteRecord">削除</button>
+            <button id="deleteModalBtn" type="button" class="btn btn-danger" style="width:9rem" @click="deleteRecord">
+              <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              削除
+            </button>
           </div>
         </div>
       </div>
@@ -159,6 +165,7 @@ export default {
       },
       posts: [],
       showLoader: true,
+      saving: false,
       lastEvaluatedKey: null
     }
   },
@@ -304,6 +311,7 @@ export default {
     },
     saveRecord () {
       $('#saveRecordBtn').attr('disabled', 'disabled');
+      this.saving = true;
 
       const image = $('#picTarget').attr('src');
       const now = new Date();
@@ -338,6 +346,7 @@ export default {
       })
       .finally(() => {
         $('#saveRecordBtn').removeAttr('disabled');
+        this.saving = false;
       });
     },
     showDeleteModal (post) {
@@ -350,10 +359,11 @@ export default {
       return post.clientId === this.$cookies.get('account_id')
     },
     deleteRecord () {
-      $('#deleteModalBtn').attr('disabled', 'disabled');
-
       const tweetId = $('#deleteModalBtn').attr('targetId');
       if (!tweetId) { return; }
+
+      $('#deleteModalBtn').attr('disabled', 'disabled');
+      this.saving = true;
 
       const params = {
         body: {
@@ -372,6 +382,7 @@ export default {
       .finally(() => {
         $('#deleteModalBtn').removeAttr('disabled');
         $('#deleteModal').modal('hide');
+        this.saving = true;
       });
     },
     likeThis (event, post) {
