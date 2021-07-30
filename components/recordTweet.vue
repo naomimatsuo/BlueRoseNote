@@ -117,7 +117,7 @@ function getWH (width, height) {
   };
 }
 
-function getPreviewImg (data, callback) {
+function getPreviewImg (data) {
   if (!data) { return null; }
 
   const canvas = document.createElement('canvas');
@@ -274,6 +274,7 @@ export default {
             $('#picTarget').attr('originalSrc', originalSrc);
             $('#picTarget').attr('src', getPreviewImg(originalSrc));
           } else {
+            $('#picTarget').attr('originalSrc', img.src);
             $('#picTarget').attr('src', getPreviewImg(img.src));
           }
 
@@ -286,6 +287,7 @@ export default {
     },
     removePic () {
       $('#picTarget').attr('src', null);
+      $('#picTarget').attr('originalSrc', null);
       $('#removePicBtn').css('display', 'none');
     },
     saveRecord () {
