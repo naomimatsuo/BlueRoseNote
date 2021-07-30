@@ -31,8 +31,11 @@
         <div class="row justify-content-md-center container-inputgroup">
           <div id="userSettings" class="col-sm-12 col-md-12 col-lg-6">
             <div class="mb-2">
-              <label for="userName" class="mb-0"><small>コミュニティ名</small></label>
-              <input id="userName" v-model="communityName" type="text" class="form-control" maxlength="100" />
+              <label for="communityName" class="mb-0"><small>コミュニティ名</small></label>
+              <div class="input-group">
+                <input id="communityName" v-model="communityName" type="text" class="form-control" maxlength="100" />
+                <p class="invalid-feedback">コミュニティ名を入力してください。</p>
+              </div>
               <p class="text-right mb-0">
                 <span>
                   <small>{{ communityName? communityName.length : 0 }}/100</small>
@@ -475,6 +478,12 @@ export default {
       });
     },
     saveCommunity () {
+      if (!this.communityName) {
+        $('#communityName').addClass('is-invalid');
+        return;
+      }
+
+      $('#communityName').removeClass('is-invalid');
       $('#saveCommuBtn').attr('disabled', 'disabled');
 
       const now = new Date();
@@ -483,7 +492,7 @@ export default {
         body: {
           communityId: this.communityId ? this.communityId : now.getTime(),
           communityName: this.communityName.substring(0, 100),
-          description: this.description.substring(0, 300),
+          description: this.description ? this.description.substring(0, 300) : null,
           backImg: this.backImg,
           selfImg: this.selfImg,
           part1: this.part1,

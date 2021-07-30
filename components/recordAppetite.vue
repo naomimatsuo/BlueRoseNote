@@ -354,7 +354,7 @@ export default {
           fruits: this.newItem.fruits,
           sweets: this.newItem.sweets,
           alcohol: this.newItem.alcohol,
-          memo: this.newItem.memo.substring(0, 100),
+          memo: this.newItem.memo ? this.newItem.memo.substring(0, 100) : null,
           createdAt: this.$getNowString(now)
         }
       };

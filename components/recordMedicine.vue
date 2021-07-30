@@ -188,7 +188,7 @@ export default {
           clientId,
           recordId: now.getTime(),
           tookMedicine: this.newItem.tookMedicine,
-          memo: this.newItem.memo.substring(0, 100),
+          memo: this.newItem.memo ? this.newItem.memo.substring(0, 100) : null,
           createdAt: this.$getNowString(now)
         }
       };

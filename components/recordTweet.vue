@@ -77,6 +77,23 @@
 import API from '@aws-amplify/api';
 import croppie from 'croppie';
 
+function base64toBlob (base64) {
+  const bin = atob(base64.replace(/^.*,/, ''));
+  const buffer = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) {
+    buffer[i] = bin.charCodeAt(i);
+  }
+  try {
+    const blob = new Blob([buffer.buffer], {
+      type: 'image/jpeg'
+    });
+
+    return blob;
+  } catch (e) {
+    return false;
+  }
+}
+
 export default {
   data () {
     return {
@@ -158,23 +175,42 @@ export default {
     picOnChange (event) {
       const file = event.target.files[0];
       const reader = new FileReader();
+      const fileSize = file.size;
+      reader.readAsDataURL(file);
 
       reader.onload = function (e) {
-        $('#picTarget').one('load', function () {
-          const containerWidth = $('#picContainer').width();
-          const picWidth = $('#picTarget').width();
-          $('#removePicBtn').css('left', (containerWidth - picWidth) / 2.0 + 15);
-          $('#removePicBtn').css('display', 'block');
-        })
+        const img = new Image();
 
-        const image = e.target.result;
+        img.onload = function () {
+          const imgWidth = this.width;
+          const imgHeight = this.height;
 
-        $('#picTarget').attr('src', image);
-        $('#addImageBtn').addClass('disabled');
-        $('#addImageBtn').attr('aria-disabled', true);
-      }
+          $('#picTarget').one('load', function () {
+            const containerWidth = $('#picContainer').width();
+            const picWidth = $('#picTarget').width();
+            $('#removePicBtn').css('left', (containerWidth - picWidth) / 2.0 + 15);
+            $('#removePicBtn').css('display', 'block');
+          });
 
-      reader.readAsDataURL(file);
+          if (fileSize > 300000) {
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.sqrt(300000 / fileSize) * imgWidth;
+            canvas.height = Math.sqrt(300000 / fileSize) * imgHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+
+            const blob = base64toBlob(canvas.toDataURL("image/jpeg"));
+            $('#picTarget').attr('src', canvas.toDataURL("image/jpeg", 300000 / blob.size));
+          } else {
+            $('#picTarget').attr('src', img.src);
+          }
+
+          $('#addImageBtn').addClass('disabled');
+          $('#addImageBtn').attr('aria-disabled', true);
+        };
+
+        img.src = e.target.result;
+      };
     },
     removePic () {
       $('#picTarget').attr('src', null);
@@ -188,13 +224,14 @@ export default {
       this.saving = true;
 
       const image = $('#picTarget').attr('src');
+
       const now = new Date();
 
       const params = {
         body: {
           clientId,
           recordId: now.getTime(),
-          tweet: this.newItem.tweet.substring(0, 200),
+          tweet: this.newItem.tweet ? this.newItem.tweet.substring(0, 200) : null,
           tweetpic: (image === undefined) ? null : image,
           createdAt: this.$getNowString(now)
         }

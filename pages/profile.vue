@@ -38,7 +38,10 @@
             </div>
             <div class="mb-2">
               <label for="userName" class="mb-0"><small>ユーザー名</small></label>
-              <input id="userName" v-model="userName" type="text" class="form-control" maxlength="30" />
+              <div class="input-group">
+                <input id="userName" v-model="userName" type="text" class="form-control" maxlength="30" />
+                <p class="invalid-feedback">ユーザー名を入力してください。</p>
+              </div>
               <p class="text-right mb-0">
                 <span>
                   <small>{{ userName? userName.length : 0 }}/30</small>
@@ -360,6 +363,12 @@ export default {
       const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
 
+      if (!this.userName) {
+        $('#userName').addClass('is-invalid');
+        return;
+      }
+
+      $('#userName').removeClass('is-invalid');
       $('#saveProfBtn').attr('disabled', 'disabled');
       this.saving = true;
 
@@ -368,8 +377,8 @@ export default {
           clientId,
           accountId: this.$cookies.get('account_id'),
           userName: this.userName.substring(0, 30),
-          description: this.description.substring(0, 300),
-          location: this.location.substring(0, 100),
+          description: this.description ? this.description.substring(0, 300) : null,
+          location: this.location ? this.location.substring(0, 100) : null,
           gender: this.gender,
           userHeight: this.userHeight ? Number.parseFloat(this.userHeight).toFixed(1) : null,
           userWeight: this.userWeight ? Number.parseFloat(this.userWeight).toFixed(1) : null,
