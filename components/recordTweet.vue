@@ -9,7 +9,7 @@
         </span>
       </p>
       <div id="picContainer" class="d-flex justify-content-center" style="position: relative">
-        <img id="picTarget" class="rounded picImg">
+        <img id="picTarget" class="rounded picImg" @click="showNewPicModal($event)">
         <button id="removePicBtn" type="button" class="btn btn-sm btn-secondary rounded-circle px-2 py-0" style="position:absolute; top: 10px; z-index: 10; display: none;" @click="removePic">
           <span aria-hidden="true" style="font-size:1.2rem">&times;</span>
         </button>
@@ -42,12 +42,12 @@
         </div>
         <div class="text-dark text-break mb-0 u-pre-wrap">{{ post.tweet }}</div>
         <div class="d-flex justify-content-center">
-          <img v-if="post.tweetpic !== null" :src="post.tweetpic" class="picImg rounded" />
+          <img v-if="post.tweetpic !== null" :src="post.previewImg" class="picImg rounded" @click="showPicModal(post.tweetpic)" />
         </div>
       </li>
     </ul>
     <itemLoader v-if="showLoader" class="pt-4" />
-    <!-- Modal -->
+    <!-- Delete Modal -->
     <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -67,6 +67,17 @@
               削除
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+    <!-- Original pic Modal -->
+    <div id="picModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="picModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button id="hiddenPicModalBtn" type="button" class="btn btn-sm btn-secondary rounded-circle px-2 py-0" data-dismiss="modal" aria-label="Close" style="position:absolute; top: 10px; left: 10px; z-index: 10;">
+            <span aria-hidden="true" style="font-size:1.2rem">&times;</span>
+          </button>
+          <img />
         </div>
       </div>
     </div>
@@ -94,6 +105,52 @@ function base64toBlob (base64) {
   }
 }
 
+function getWH (width, height) {
+  let index = width;
+  for (index; index > 0; index--) {
+    if (index / 2 <= height) { break; }
+  }
+
+  return {
+    width: index,
+    height: index / 2
+  };
+}
+
+function getPreviewImg (data, callback) {
+  if (!data) { return null; }
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const targetWidth = $('#picContainer').width();
+  const targetHeight = targetWidth / 2.0;
+
+  canvas.width = targetWidth;
+  canvas.height = targetHeight;
+
+  const img = new Image();
+  img.src = data;
+
+  const ret = img.onload = (function () {
+    const imgWidth = img.width;
+    const imgHeight = img.height;
+
+    if (imgWidth > imgHeight) {
+      const wh = getWH(imgWidth, imgWidth);
+      ctx.drawImage(img,
+      (imgWidth - wh.width) / 2.0, (imgHeight - wh.height) / 2.0, wh.width, wh.height,
+      0, 0, targetWidth, targetHeight);
+    } else {
+      ctx.drawImage(img,
+      0, (imgHeight - imgWidth / 2.0) / 2.0, imgWidth, imgWidth / 2.0,
+      0, 0, targetWidth, targetHeight);
+    }
+
+    return canvas.toDataURL("image/jpeg");
+  })();
+
+  return ret;
+}
 export default {
   data () {
     return {
@@ -120,7 +177,13 @@ export default {
       .then((response) => {
         if (response.statusCode !== 200) { return; }
 
-        this.posts.push(...JSON.parse(response.body).Items);
+        const results = JSON.parse(response.body).Items;
+
+        results.forEach((item) => {
+         item.previewImg = getPreviewImg(item.tweetpic);
+        });
+
+        this.posts.push(...results);
         this.lastEvaluatedKey = JSON.parse(response.body).LastEvaluatedKey;
       })
       .catch((error) => {
@@ -156,7 +219,13 @@ export default {
       .then((response) => {
         if (response.statusCode !== 200) { return; }
 
-        this.posts.push(...JSON.parse(response.body).Items)
+        const results = JSON.parse(response.body).Items;
+
+        results.forEach((item) => {
+         item.previewImg = getPreviewImg(item.tweetpic);
+        });
+
+        this.posts.push(...results);
         this.lastEvaluatedKey = JSON.parse(response.body).LastEvaluatedKey;
       })
       .catch((error) => {
@@ -200,9 +269,12 @@ export default {
             ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
 
             const blob = base64toBlob(canvas.toDataURL("image/jpeg"));
-            $('#picTarget').attr('src', canvas.toDataURL("image/jpeg", 300000 / blob.size));
+
+            const originalSrc = canvas.toDataURL("image/jpeg", 300000 / blob.size);
+            $('#picTarget').attr('originalSrc', originalSrc);
+            $('#picTarget').attr('src', getPreviewImg(originalSrc));
           } else {
-            $('#picTarget').attr('src', img.src);
+            $('#picTarget').attr('src', getPreviewImg(img.src));
           }
 
           $('#addImageBtn').addClass('disabled');
@@ -220,7 +292,7 @@ export default {
       const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
 
-      const image = $('#picTarget').attr('src');
+      const image = $('#picTarget').attr('originalSrc');
       if (!this.newItem.tweet && !image) { return; }
 
       $('#saveRecordBtn').attr('disabled', 'disabled');
@@ -233,7 +305,7 @@ export default {
           clientId,
           recordId: now.getTime(),
           tweet: this.newItem.tweet ? this.newItem.tweet.substring(0, 200) : null,
-          tweetpic: (image === undefined) ? null : image,
+          tweetpic: image,
           createdAt: this.$getNowString(now)
         }
       };
@@ -241,6 +313,7 @@ export default {
       API.put('BlueRoseNoteAPIs', '/RecordTweet', params)
       .then((response) => {
         if (response.statusCode !== 200) { return; }
+        params.body.previewImg = getPreviewImg(params.body.tweetpic);
         this.posts.unshift(params.body);
 
         this.newItem.recordId = null;
@@ -291,6 +364,19 @@ export default {
         $('#deleteModal').modal('hide');
         this.saving = false;
       });
+    },
+    showPicModal (target) {
+      if (!target) { return; }
+
+      $('#picModal').find('img').attr('src', target);
+      $('#picModal').modal('show');
+    },
+    showNewPicModal (event) {
+      if (!event) { return; }
+
+      const img = $(event.target).attr('originalSrc');
+      $('#picModal').find('img').attr('src', img);
+      $('#picModal').modal('show');
     }
   }
 }
