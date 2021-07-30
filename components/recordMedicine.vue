@@ -178,6 +178,8 @@ export default {
       const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
 
+      if (!this.newItem.tookMedicine && !this.newItem.memo) { return; }
+
       $('#saveRecordBtn').attr('disabled', 'disabled');
       this.saving = true;
 

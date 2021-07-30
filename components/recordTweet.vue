@@ -220,10 +220,11 @@ export default {
       const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
 
+      const image = $('#picTarget').attr('src');
+      if (!this.newItem.tweet && !image) { return; }
+
       $('#saveRecordBtn').attr('disabled', 'disabled');
       this.saving = true;
-
-      const image = $('#picTarget').attr('src');
 
       const now = new Date();
 

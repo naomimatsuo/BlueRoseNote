@@ -338,6 +338,12 @@ export default {
       const clientId = this.$cookies.get('account_id');
       if (!clientId) { return; }
 
+      if (!this.newItem.stapleFood && !this.newItem.subSideDish && !this.newItem.mainDish &&
+      !this.newItem.dailyProducts && !this.newItem.fruits && !this.newItem.sweets && !this.newItem.alcohol &&
+      !this.newItem.memo) {
+        return;
+      }
+
       $('#saveRecordBtn').attr('disabled', 'disabled');
       this.saving = true;
 

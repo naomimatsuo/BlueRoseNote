@@ -317,10 +317,12 @@ export default {
       $('#removePicBtn').css('display', 'none');
     },
     saveRecord () {
+      const image = $('#picTarget').attr('src');
+      if (!this.newItem.tweet && !image) { return; }
+
       $('#saveRecordBtn').attr('disabled', 'disabled');
       this.saving = true;
 
-      const image = $('#picTarget').attr('src');
       const now = new Date();
 
       const params = {

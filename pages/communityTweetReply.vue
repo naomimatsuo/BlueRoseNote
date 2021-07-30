@@ -357,10 +357,12 @@ export default {
       $('#removePicBtn').css('display', 'none');
     },
     saveRecord () {
+      const image = $('#picTarget').attr('src');
+      if (!this.newItem.tweet && !image) { return; }
+
       $('#saveRecordBtn').attr('disabled', 'disabled');
       this.saving = true;
 
-      const image = $('#picTarget').attr('src');
       const now = new Date();
 
       const params = {
@@ -371,7 +373,7 @@ export default {
           tweetId: now.getTime(),
           clientId: this.$cookies.get('account_id'),
           tweet: this.newItem.tweet ? this.newItem.tweet.substring(0, 200) : null,
-          tweetpic: (image === undefined) ? null : image,
+          tweetpic: !image ? null : image,
           createdAt: this.$getNowString(now)
         }
       };
