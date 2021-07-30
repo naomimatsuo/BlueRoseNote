@@ -42,7 +42,7 @@
         </div>
         <div class="text-dark text-break mb-0 u-pre-wrap">{{ post.tweet }}</div>
         <div class="d-flex justify-content-center">
-          <img v-if="post.tweetpic !== null" :src="post.tweetpic" class="picImg" />
+          <img v-if="post.tweetpic !== null" :src="post.tweetpic" class="picImg rounded" />
         </div>
       </li>
     </ul>
