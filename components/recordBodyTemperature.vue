@@ -145,16 +145,16 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
       .text(function (d) { return d[0] + " 度"; });
   } else {
     postSvg.append("rect")
-    .attr("x", function (d) { return xScale(37.855); })
+    .attr("x", function (d) { return width - 60; })
     .attr("y", function (d) { return yScale(0.6) - 6.0; })
     .attr("height", 23)
-    .attr("width", 60)
+    .attr("width", 50)
     .style("stroke", "#E6739F")
     .style("fill", "#fafafa")
     .style("stroke-width", 1);
 
     postSvg.append("text")
-    .attr("x", function (d) { return xScale(37.88); })
+    .attr("x", function (d) { return width - 57; })
     .attr("y", function (d) { return yScale(0.6) + 6.0; })
     .attr("dy", ".30em")
     .attr("fill", "#E6739F")
