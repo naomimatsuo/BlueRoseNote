@@ -5,6 +5,7 @@
       <div class="bg-secondary border-secondary border-bottom py-1 mb-2 mx-n2 mt-n2" style="height:47px;">
         <button type="button" class="btn rounded ml-1" @click="openPhoneBurger">
           <img src="/icon-white.svg" width="25" height="25" />
+          <span class="text-white" style="font-family: 'Franklin Gothic'">MENU</span>
         </button>
       </div>
       <!-- phone humburger -->
