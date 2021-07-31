@@ -9,7 +9,7 @@
             <div class="input-group-append">
               <span id="bodytemp-addon" class="input-group-text bg-white">度</span>
             </div>
-            <p class="invalid-feedback">体温は35.0度から42.0度までの間で入力してください。</p>
+            <p class="invalid-feedback">体温は34.0度から42.0度までの間で入力してください。</p>
           </div>
         </div>
       </div>
@@ -138,12 +138,12 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
       ])
       .enter()
       .append("text")
-      .attr("x", function (d) { return xScale(d[0]) - 16; })
+      .attr("x", function (d) { return xScale(d[0]) - 17; })
       .attr("y", function (d) { return yScale(d[1]) + 40; })
       .attr("fill", "#31444e")
       .style("font-size", "0.8rem")
       .text(function (d) { return d[0] + "度"; });
-  } else {
+  } else if (data.temperature > 38.0) {
     postSvg.append("rect")
     .attr("x", function (d) { return width - 60; })
     .attr("y", function (d) { return yScale(0.6) - 6.0; })
@@ -158,6 +158,24 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
     .attr("y", function (d) { return yScale(0.6) + 6.0; })
     .attr("dy", ".30em")
     .attr("fill", "#E6739F")
+    .style("font-size", "0.8rem")
+    .style("font-weight", "bolder")
+    .text(data.temperature + "度");
+  } else {
+    postSvg.append("rect")
+    .attr("x", function (d) { return 1; })
+    .attr("y", function (d) { return yScale(0.6) - 1.0; })
+    .attr("height", 23)
+    .attr("width", 50)
+    .style("stroke", "#668f9c")
+    .style("fill", "#fafafa")
+    .style("stroke-width", 1);
+
+    postSvg.append("text")
+    .attr("x", function (d) { return 6; })
+    .attr("y", function (d) { return yScale(0.6) + 12.0; })
+    .attr("dy", ".30em")
+    .attr("fill", "#668f9c")
     .style("font-size", "0.8rem")
     .style("font-weight", "bolder")
     .text(data.temperature + "度");
@@ -307,7 +325,7 @@ export default {
 
       if (!this.newItem.temperature) { return; }
 
-      if ((this.newItem.temperature < 35.0) || (this.newItem.temperature > 42.0)) {
+      if ((this.newItem.temperature < 34.0) || (this.newItem.temperature > 42.0)) {
         $('#bodytemperature').addClass('is-invalid');
         return;
       }
