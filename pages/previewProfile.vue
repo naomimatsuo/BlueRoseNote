@@ -11,6 +11,11 @@
         </div>
       </div>
     </div>
+    <div v-if="!isYourself()" style="position:relative;">
+      <div class="mt-2 mr-3 mb-n5 d-flex justify-content-end">
+        <button class="btn btn-outline-secondary">記録閲覧を申請</button>
+      </div>
+    </div>
     <div class="container-inputgroup">
       <div class="ml-3">
         <p class="font-weight-bold mb-0">{{ userName }}
@@ -98,7 +103,7 @@ export default {
   },
   head () {
     return {
-      title: 'プロフィール'
+      title: 'ユーザプロフィール'
     }
   },
   mounted () {
@@ -135,6 +140,14 @@ export default {
       .finally(() => {
         this.showLoader = false;
       });
+  },
+  methods: {
+    isYourself () {
+      if (this.accountId === this.$cookies.get('account_id')) {
+        return true;
+      }
+      return false;
+    }
   }
 }
 </script>

@@ -14,7 +14,7 @@
     <div class="container-inputgroup">
       <div class="ml-3">
         <p class="font-weight-bold mb-0">{{ userName }}</p>
-        <p class="text-muted"><small>{{ '@' + accountId }}</small></p>
+        <p v-if="accountId" class="text-muted"><small>{{ '@' + accountId }}</small></p>
         <p>{{ description }}</p>
       </div>
     </div>
