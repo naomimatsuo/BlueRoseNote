@@ -125,10 +125,10 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
       ])
       .enter()
       .append("rect")
-      .attr("x", function (d) { return xScale(d[0]) - 30; })
+      .attr("x", function (d) { return xScale(d[0]) - 24; })
       .attr("y", function (d) { return yScale(d[1]) + 25; })
       .attr("height", 20)
-      .attr("width", 60)
+      .attr("width", 52)
       .attr("fill", "#fafafa")
 
     postSvg.append("g")
@@ -138,11 +138,11 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
       ])
       .enter()
       .append("text")
-      .attr("x", function (d) { return xScale(d[0]) - 18; })
+      .attr("x", function (d) { return xScale(d[0]) - 16; })
       .attr("y", function (d) { return yScale(d[1]) + 40; })
       .attr("fill", "#31444e")
       .style("font-size", "0.8rem")
-      .text(function (d) { return d[0] + " 度"; });
+      .text(function (d) { return d[0] + "度"; });
   } else {
     postSvg.append("rect")
     .attr("x", function (d) { return width - 60; })
@@ -154,18 +154,18 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
     .style("stroke-width", 1);
 
     postSvg.append("text")
-    .attr("x", function (d) { return width - 57; })
+    .attr("x", function (d) { return width - 54; })
     .attr("y", function (d) { return yScale(0.6) + 6.0; })
     .attr("dy", ".30em")
     .attr("fill", "#E6739F")
     .style("font-size", "0.8rem")
     .style("font-weight", "bolder")
-    .text(data.temperature + " 度");
+    .text(data.temperature + "度");
   }
 
   // add date
   postSvg.append("rect")
-    .attr("x", 20)
+    .attr("x", 24)
     .attr("y", 5)
     .attr("height", 23)
     .attr("width", 130)
@@ -174,7 +174,7 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
     .style("stroke-width", 1);
 
   postSvg.append("text")
-    .attr("x", 26)
+    .attr("x", 30)
     .attr("y", 17)
     .attr("dy", ".30em")
     .attr("fill", "#31444e")
@@ -198,7 +198,7 @@ export default {
       width: null,
       xAxisHeight: 30,
       postHeight: 90,
-      xAxisMargin: { top: 30, right: 17, left: 15 },
+      xAxisMargin: { top: 30, right: 20, left: 18 },
       xScale: null,
       yScale: null,
       xAxisSvg: null,

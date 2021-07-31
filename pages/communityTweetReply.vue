@@ -33,6 +33,7 @@
             <img v-if="targetTweet.tweetpic !== null" :src="targetTweet.tweetpic" class="picImg rounded" />
           </div>
         </li>
+        <!-- New post -->
         <li class="list-group-item">
           <textarea id="recordTweetTextArea" v-model="newItem.tweet" class="form-control overflow-hidden rounded-0" style="height:13vh;resize:none" rows="4" maxlength="200" />
           <p class="text-right mb-0">
@@ -41,7 +42,7 @@
             </span>
           </p>
           <div id="picContainer" class="d-flex justify-content-center" style="position: relative">
-            <img id="picTarget" class="rounded picImg mt-2">
+            <img id="picTarget" class="rounded picImg mt-2" @click="showNewPicModal($event)">
             <button id="removePicBtn" type="button" class="btn btn-sm btn-secondary rounded-circle px-2 py-0" style="position:absolute; top: 20px; z-index: 10; display: none;" @click="removePic">
               <span aria-hidden="true" style="font-size:1.2rem">&times;</span>
             </button>
@@ -91,7 +92,7 @@
         <div class="text-dark text-break mb-0 u-pre-wrap mt-2 mx-2">{{ post.tweet }}</div>
         <!-- Tweet Image -->
         <div class="d-flex justify-content-center">
-          <img v-if="post.tweetpic !== null" :src="post.tweetpic" class="picImg rounded" />
+          <img v-if="post.tweetpic !== null" :src="post.tweetpic" class="picImg rounded" @click="showPicModal(post.tweetpic)" />
         </div>
         <div class="d-flex justify-content-between mt-2 mx-0">
           <!-- Reply button -->
@@ -141,6 +142,17 @@
               削除
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+    <!-- Original pic Modal -->
+    <div id="picModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="picModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button id="hiddenPicModalBtn" type="button" class="btn btn-sm btn-secondary rounded-circle px-2 py-0" data-dismiss="modal" aria-label="Close" style="position:absolute; top: 10px; left: 10px; z-index: 10;">
+            <span aria-hidden="true" style="font-size:1.2rem">&times;</span>
+          </button>
+          <img />
         </div>
       </div>
     </div>
@@ -490,14 +502,27 @@ export default {
         $(targetBtn).removeAttr('disabled');
       });
     },
-    toReply (target) {
-      localStorage.setItem('targetTweet', JSON.stringify(target));
-      this.$router.go();
-    },
     isMyFavTweet (target) {
       const item = target.likes.find((val) => { return val.clientId === this.$cookies.get('account_id'); });
       if (item) { return true; }
       return false;
+    },
+    showPicModal (target) {
+      if (!target) { return; }
+
+      $('#picModal').find('img').attr('src', target);
+      $('#picModal').modal('show');
+    },
+    showNewPicModal (event) {
+      if (!event) { return; }
+
+      const img = $(event.target).attr('src');
+      $('#picModal').find('img').attr('src', img);
+      $('#picModal').modal('show');
+    },
+    toReply (target) {
+      localStorage.setItem('targetTweet', JSON.stringify(target));
+      this.$router.go();
     },
     gotoProfile (target) {
       localStorage.setItem('targetProfile', JSON.stringify(target.clientId));
@@ -506,3 +531,26 @@ export default {
   }
 }
 </script>
+
+<style>
+@media only screen and (max-width: 767px) {
+  .picImg  {
+    max-width: 300px;
+    max-height:25rem
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .picImg  {
+    max-width: 460px;
+    max-height:25rem
+  }
+}
+
+@media (min-width: 1024px){
+  .picImg  {
+    max-width: 460px;
+    max-height:25rem
+  }
+}
+</style>
