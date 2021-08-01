@@ -105,42 +105,42 @@ function base64toBlob (base64) {
   }
 }
 
-function getPreviewImg (data) {
-  if (!data) { return null; }
+// function getPreviewImg (data) {
+//   if (!data) { return null; }
 
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  const targetWidth = $('#picContainer').width();
-  const targetHeight = targetWidth;
+//   const canvas = document.createElement('canvas');
+//   const ctx = canvas.getContext('2d');
+//   const targetWidth = $('#picContainer').width();
+//   const targetHeight = targetWidth;
 
-  const img = new Image();
-  img.src = data;
+//   const img = new Image();
+//   img.src = data;
 
-  const ret = img.onload = (function () {
-    const imgWidth = img.width;
-    const imgHeight = img.height;
+//   const ret = img.onload = (function () {
+//     const imgWidth = img.width;
+//     const imgHeight = img.height;
 
-    if (imgWidth > imgHeight) {
-      canvas.width = targetWidth;
-      canvas.height = targetWidth * imgHeight / imgWidth;
+//     if (imgWidth > imgHeight) {
+//       canvas.width = targetWidth;
+//       canvas.height = targetWidth * imgHeight / imgWidth;
 
-      ctx.drawImage(img,
-      0, 0, imgWidth, imgHeight,
-      0, 0, targetWidth, targetWidth * imgHeight / imgWidth);
-    } else {
-      canvas.width = targetWidth;
-      canvas.height = targetHeight;
+//       ctx.drawImage(img,
+//       0, 0, imgWidth, imgHeight,
+//       0, 0, targetWidth, targetWidth * imgHeight / imgWidth);
+//     } else {
+//       canvas.width = targetWidth;
+//       canvas.height = targetHeight;
 
-      ctx.drawImage(img,
-      0, (imgHeight - imgWidth / 2.0) / 2.0, imgWidth, imgWidth / 2.0,
-      0, 0, targetWidth, targetHeight);
-    }
+//       ctx.drawImage(img,
+//       0, (imgHeight - imgWidth / 2.0) / 2.0, imgWidth, imgWidth / 2.0,
+//       0, 0, targetWidth, targetHeight);
+//     }
 
-    return canvas.toDataURL("image/jpeg");
-  })();
+//     return canvas.toDataURL("image/jpeg");
+//   })();
 
-  return ret;
-}
+//   return ret;
+// }
 export default {
   data () {
     return {

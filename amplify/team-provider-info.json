@@ -146,7 +146,11 @@
         },
         "getReviewer": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getReviewer-6f42737531702f665459-build.zip"
+          "s3Key": "amplify-builds/getReviewer-3372725a673331543659-build.zip"
+        },
+        "deleteReviewer": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/deleteReviewer-4a32684779626e55304c-build.zip"
         }
       }
     }

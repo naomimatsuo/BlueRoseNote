@@ -39,7 +39,7 @@
               記録
             </NuxtLink>
           </li>
-          <li class="phoneburger-item py-2" @click="closePhoneBurger">
+          <!-- <li class="phoneburger-item py-2" @click="closePhoneBurger">
             <NuxtLink to="/recordReviewers" tag="button" class="btn btn-secondary btn-block">
               <span class="float-left ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 20 20">
@@ -48,7 +48,7 @@
               </span>
               記録閲覧者
             </NuxtLink>
-          </li>
+          </li> -->
           <li class="phoneburger-item py-2" @click="closePhoneBurger">
             <NuxtLink to="/communities" tag="button" class="btn btn-secondary btn-block">
               <span class="float-left ml-2">
@@ -110,7 +110,7 @@
             <strong class="pc__item">記録</strong>
           </NuxtLink>
         </li>
-        <li class="list-group-item bg-transparent border-0 px-0 py-1">
+        <!-- <li class="list-group-item bg-transparent border-0 px-0 py-1">
           <NuxtLink to="/recordReviewers" tag="button" class="btn btn-lg btn-outline-primary btn-block rounded-0 border-0 p-2">
             <span class="float-left ml-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 20 20">
@@ -119,7 +119,7 @@
             </span>
             <strong class="pc__item">記録閲覧者</strong>
           </NuxtLink>
-        </li>
+        </li> -->
         <li class="list-group-item bg-transparent border-0 px-0 py-1">
           <NuxtLink to="/communities" tag="button" class="btn btn-lg btn-outline-primary btn-block rounded-0 border-0 p-2">
             <span class="float-left ml-2">

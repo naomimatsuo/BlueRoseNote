@@ -2,22 +2,21 @@
   <div>
     <nav class="nav">
       <li class="nav-item mx-1">
-        <a id="reviewer-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#reviewer-content" aria-controls="record-content" :aria-selected="{showReviewersTab}" :class="{ active: showReviewersTab}" @click="changeTab">許可者一覧</a>
+        <a id="application-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#application-content" aria-controls="community-content" :aria-selected="{showApplicationsTab}" :class="{ active: showApplicationsTab}" @click="changeTab">申請一覧</a>
       </li>
       <li class="nav-item mx-1">
-        <a id="application-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#application-content" aria-controls="community-content" :aria-selected="{showApplicationsTab}" :class="{ active: showApplicationsTab}" @click="changeTab">申請一覧</a>
+        <a id="reviewer-tab" data-toggle="pill" role="tab" class="nav-link text-center nav-link__top" href="#reviewer-content" aria-controls="record-content" :aria-selected="{showReviewersTab}" :class="{ active: showReviewersTab}" @click="changeTab">許可者一覧</a>
       </li>
     </nav>
     <!-- content area -->
     <div>
-      <ReviewerList v-if="showReviewersTab" />
       <ApplicationList v-if="showApplicationsTab" />
+      <ReviewerList v-if="showReviewersTab" />
     </div>
   </div>
 </template>
 
 <script>
-import { API } from 'aws-amplify';
 import ReviewerList from '~/components/reviewerList'
 import ApplicationList from '~/components/applicationList'
 
@@ -30,8 +29,8 @@ export default {
   middleware: 'authenticated',
   data () {
     return {
-      showReviewersTab: true,
-      showApplicationsTab: false
+      showApplicationsTab: true,
+      showReviewersTab: false
     }
   },
   head () {
