@@ -35,14 +35,14 @@ exports.handler = async (event) => {
         const likes = await docClient.scan({
             TableName: 'CommunityTweetLike',
             ScanIndexForward: false,
-            FilterExpression: "communityId = :comId and tweetId = :twId",
+            FilterExpression: "communityId = :comId and repTweetId = :twId",
             ExpressionAttributeValues: {
                 ":comId": val.Items[i].communityId,
-                ":twId": val.Items[i].tweetId
+                ":twId": val.Items[i].repTweetId + "_" + val.Items[i].tweetId
             }
         }).promise();
 
-        console.log(replys);
+        console.log(val.Items[i].repTweetId + "_" + val.Items[i].tweetId);
 
         if (!user.Item) {
             val.Items[i].clientInfo = {

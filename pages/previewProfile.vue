@@ -13,13 +13,21 @@
     </div>
     <div v-if="!isYourself()" style="position:relative;">
       <div class="mt-2 mr-3 mb-n5 d-flex justify-content-end">
-        <button class="btn btn-outline-secondary">記録閲覧を申請</button>
+        <button v-if="reviewStatus === null" class="btn btn-outline-secondary" @click="addReviewerApplication(0, $event)">
+          <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          記録閲覧を申請
+        </button>
+        <button v-if="reviewStatus === 0" class="btn btn-outline-warning">閲覧承認待ち</button>
+        <button v-if="reviewStatus === 1" class="btn btn-outline-danger" @click="addReviewerApplication(2, $event)">
+          <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          閲覧取り消し
+        </button>
       </div>
     </div>
     <div class="container-inputgroup">
       <div class="ml-3">
         <p class="font-weight-bold mb-0">{{ userName }}
-          <span class="text-muted ml-1"><small>{{ '@' + accountId }}</small></span>
+          <span v-if="accountId" class="text-muted ml-1"><small>{{ '@' + accountId }}</small></span>
         </p>
         <p class="mt-2">
           <span>
@@ -98,7 +106,9 @@ export default {
       birthDate: null,
       backImg: null,
       selfImg: null,
-      showLoader: true
+      showLoader: true,
+      reviewStatus: null,
+      saving: false
     }
   },
   head () {
@@ -140,6 +150,28 @@ export default {
       .finally(() => {
         this.showLoader = false;
       });
+
+    const anotherParams = {
+      body: {
+        TableName: 'Reviewer',
+        Limit: 1,
+        KeyConditionExpression: 'targetId = :tId and reviewerId = :rId',
+        ExpressionAttributeValues: { ":tId": this.accountId, ":rId": this.$cookies.get('account_id') }
+      }
+    };
+
+    API.post('BlueRoseNoteAPIs', '/Reviewer', anotherParams)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+
+        const ret = JSON.parse(response.body).Items;
+        if (ret && (ret.length > 0)) {
+          this.reviewStatus = ret[0].status;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   methods: {
     isYourself () {
@@ -147,6 +179,35 @@ export default {
         return true;
       }
       return false;
+    },
+    addReviewerApplication (statusNo, event) {
+      $(event.target).css('disabled', 'disabled');
+      this.saving = true;
+
+      const now = new Date();
+
+      const params = {
+        body: {
+          targetId: this.accountId,
+          reviewerId: this.$cookies.get('account_id'),
+          status: statusNo,
+          updatedAt: this.$getNowString(now)
+        }
+      };
+
+      API.put('BlueRoseNoteAPIs', '/Reviewer', params)
+      .then((response) => {
+        if (response.statusCode === 200) {
+          this.reviewStatus = statusNo;
+        }
+      })
+      .catch((error) => {
+        console.log(error.response);
+      })
+      .finally(() => {
+        $(event.target).removeAttr('disabled');
+        this.saving = false;
+      });
     }
   }
 }
