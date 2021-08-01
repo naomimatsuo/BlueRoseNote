@@ -10,7 +10,7 @@
       <p class="title text-success">SNS for your Health</p>
       <NuxtLink to="/signUp" tag="button" class="btn btn-light btn-lg">登録する</NuxtLink>
     </div>
-    <div class="text-white text-center bg-secondary border border-success my-2 innerborder" style="height:50vh;position:relative">
+    <div class="text-white text-center bg-secondary border border-success my-2 innerborder" style="height:42vh;position:relative">
       <p class="message align-items-center">CONTROL YOUR BODY</p>
       <img src="/bluerose.png" height="85%" class="img-responsive rose__img_left" style="position:absolute;bottom:0;" />
     </div>
@@ -19,12 +19,12 @@
         <div class="jumbotron text-center bg-yellow mb-2">
           <h2 class="text-primary">体調管理機能</h2>
           <div class="my-4">
-            <button class="btn btn-lg btn-light px-4">写真</button>
-            <button class="btn btn-lg btn-light px-4">体温</button>
-            <button class="btn btn-lg btn-light px-4">薬</button>
-            <button class="btn btn-lg btn-light px-4">食事</button>
+            <button class="btn btn-lg btn-light px-3">写真</button>
+            <button class="btn btn-lg btn-light px-3">体温</button>
+            <button class="btn btn-lg btn-light px-3">薬</button>
+            <button class="btn btn-lg btn-light px-3">食事</button>
           </div>
-          <p>体調が悪い時・良い時の記録を伝えることができる</p>
+          <p>記録をとって体調を詳細に伝えよう</p>
           <p>体調の変化に気が付く</p>
         </div>
       </div>
