@@ -25,7 +25,7 @@
             <button class="btn btn-lg btn-light px-3">食事</button>
           </div>
           <p>記録をとって体調を詳細に伝えよう</p>
-          <p>体調の変化に気が付く</p>
+          <p>体調の変化に目を向けよう</p>
         </div>
       </div>
       <div class="col-12 col-lg-6">
