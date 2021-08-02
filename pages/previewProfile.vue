@@ -12,7 +12,7 @@
           </div>
         </div>
       </div>
-      <div v-if="!isYourself()" style="position:relative;">
+      <!-- <div v-if="!isYourself()" style="position:relative;">
         <div class="mt-2 mr-3 mb-n5 d-flex justify-content-end">
           <button v-if="reviewStatus === null" class="btn btn-outline-secondary" @click="addReviewerApplication(0, $event)">
             <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -24,7 +24,7 @@
             閲覧取り消し
           </button>
         </div>
-      </div>
+      </div> -->
       <div class="container-inputgroup mb-2">
         <div class="ml-3">
           <p class="font-weight-bold mb-0">{{ userName }}
@@ -82,7 +82,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-2 mb-2 d-flex justify-content-between">
+    <!-- <div class="mt-2 mb-2 d-flex justify-content-between">
       <button v-if="reviewTweet" id="tweet_btn" type="button" class="btn btn-category bg-transparent border border-primary text-primary rounded-0 mr-1 px-5" @click="toggleTweetComponent">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
           <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
@@ -90,7 +90,6 @@
         </svg>
       </button>
       <button v-if="reviewTemperature" id="temp_btn" type="button" class="btn btn-category bg-transparent border border-primary rounded-0 mr-1 mt-0 px-5" @click="toggleTempComponent">体温</button>
-      <!-- <button id="sleep_btn" type="button" class="btn bgn-lg btn-block btn-category bg-gray border border-primary rounded-0 mr-1 mt-0" @click="toggleComponent">睡眠</button> -->
       <button v-if="reviewMeddicine" id="medicine_btn" type="button" class="btn btn-category bg-transparent border border-primary rounded-0 mr-1 mt-0 px-5" @click="toggleMedicineComponent">薬</button>
       <button v-if="reviewAppetite" id="appetite_btn" type="button" class="btn btn-category bg-transparent border border-primary rounded-0 mt-0 px-5" @click="toggleAppetiteComponent">食事</button>
     </div>
@@ -101,25 +100,25 @@
         <RecordMedicine v-if="showRecordMedicine" />
         <RecordAppetite v-if="showRecordAppetite" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import { API } from 'aws-amplify';
 
-import RecordTweet from '~/components/reviewTweet'
-import RecordBodyTemp from '~/components/reviewBodyTemperature'
-import RecordAppetite from '~/components/reviewAppetite'
-import RecordMedicine from '~/components/reviewMedicine'
+// import RecordTweet from '~/components/reviewTweet'
+// import RecordBodyTemp from '~/components/reviewBodyTemperature'
+// import RecordAppetite from '~/components/reviewAppetite'
+// import RecordMedicine from '~/components/reviewMedicine'
 
 export default {
-  components: {
-    RecordTweet,
-    RecordBodyTemp,
-    RecordAppetite,
-    RecordMedicine
-  },
+  // components: {
+  //   RecordTweet,
+  //   RecordBodyTemp,
+  //   RecordAppetite,
+  //   RecordMedicine
+  // },
   layout: 'user',
   middleware: 'authenticated',
   data () {
