@@ -458,7 +458,7 @@ export default {
       reader.readAsDataURL(event.target.files[0]);
     },
     selfImgApply () {
-      $('#uploadSelfImg').croppie('result', { type: 'canvas', circle: true })
+      $('#uploadSelfImg').croppie('result', { type: 'canvas', circle: true, quality: 0.85 })
       .then((result) => {
         this.selfImg = result;
         $('#selfImgTarget').attr('src', result);
