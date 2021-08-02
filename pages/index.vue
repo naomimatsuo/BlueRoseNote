@@ -5,6 +5,9 @@
         サインイン
       </NuxtLink>
     </div>
+    <div v-if="!isCookieEnabled" class="alert alert-danger mt-2" role="alert">
+      このサービスはCookieを使用します。Cookieを有効にしてください。
+    </div>
     <div class="jumbotron text-white text-center bg-primary border border-info mt-2 mb-2">
       <h1>BLUE ROSE NOTE</h1>
       <p class="title text-success">SNS for your Health</p>
@@ -32,7 +35,7 @@
         <div class="jumbotron text-center bg-yellow">
           <h2 class="text-primary">コミュニティ機能</h2>
           <div class="my-4">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 409.801 409.801" style="enable-background:new 0 0 409.801 409.801;" xml:space="preserve" fill="#4e7481">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 409.801 409.801" style="enable-background:new 0 0 409.801 409.801;" xml:space="preserve" fill="#85b8c9">
               <path d="M280.943,162.797c8.44,26.506,5.64,56.987-10.212,83.444c-15.32,25.562-39.688,42.149-65.99,47.81c40.53,15.133,83.655,4.941,102.642-26.743C326.678,235.106,314.632,191.378,280.943,162.797z" />
               <path d="M137.919,243.267c-14.476-26.047-16.657-55.443-8.407-81.053c-33.371,27.53-46.109,69.978-28.162,102.261c18.24,32.812,62.133,44.241,103.733,29.357C177.903,287.89,152.906,270.224,137.919,243.267z" />
               <path d="M206.905,129.736c29.794,0.483,56.346,13.299,74.396,33.245c-7.158-42.667-37.549-74.92-74.482-75.519c-37.538-0.61-69.38,31.685-77.288,75.152C148.266,142.052,176.065,129.235,206.905,129.736z" />
@@ -54,10 +57,18 @@
 
 <script>
 export default {
+  data () {
+    return {
+      isCookieEnabled: false
+    }
+  },
   head () {
     return {
       title: 'BLUE ROSE NOTE'
     }
+  },
+  mounted () {
+    this.isCookieEnabled = navigator.cookieEnabled;
   }
 }
 </script>
