@@ -41,7 +41,7 @@ export default {
   },
   head () {
     return {
-      title: 'Join BLUE ROSE NOTE'
+      title: '登録'
     }
   },
   mounted () {

@@ -72,6 +72,17 @@
               プロフィール
             </NuxtLink>
           </li>
+          <li class="phoneburger-item py-2" @click="closePhoneBurger">
+            <NuxtLink to="/help" tag="button" class="btn btn-secondary btn-block">
+              <span class="float-left ml-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-square" viewBox="0 0 20 20">
+                  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                </svg>
+              </span>
+              ヘルプ
+            </NuxtLink>
+          </li>
           <li class="phoneburger-item py-2 mb-2">
             <button type="button" class="btn btn-secondary btn-block" @click="signOut">
               <span class="float-left ml-2">
@@ -161,6 +172,17 @@
               </svg>
             </span>
             <strong class="pc__item">プロフィール</strong>
+          </NuxtLink>
+        </li>
+        <li class="list-group-item bg-transparent border-0 px-0 py-1">
+          <NuxtLink to="/help" tag="button" class="btn btn-lg btn-outline-primary btn-block rounded-0 border-0 p-2">
+            <span class="float-left ml-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-square" viewBox="0 0 20 20">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+              </svg>
+            </span>
+            <strong class="pc__item">ヘルプ</strong>
           </NuxtLink>
         </li>
         <li class="list-group-item bg-transparent border-0 px-0 py-1">

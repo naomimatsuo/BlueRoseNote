@@ -35,7 +35,7 @@ export default {
   },
   head () {
     return {
-      title: 'Sign In BLUE ROSE NOTE'
+      title: 'サインイン'
     }
   },
   methods: {

@@ -28,7 +28,7 @@
             <button type="button" class="btn btn-secondary btn-block rounded-0 text-white font-weight-bold" @click="signUp">アカウント作成</button>
             <div class="mt-4">
               <small>
-                <p class="mb-0">アカウント作成によりBlue Rose Noteの利用規約及びプライバシーポリシーを理解し、同意頂いたものとします。</p>
+                <p class="mb-0">アカウント作成によりBlue Rose Noteの<NuxtLink to="/agreement">利用規約</NuxtLink>及び<NuxtLink to="/privacyPolicy">プライバシーポリシー</NuxtLink>を理解し、同意頂いたものとします。</p>
               </small>
             </div>
           </div>
@@ -51,7 +51,7 @@ export default {
   },
   head () {
     return {
-      title: 'Join BLUE ROSE NOTE'
+      title: '登録'
     }
   },
   methods: {
