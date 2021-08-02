@@ -19,7 +19,7 @@
         <div class="jumbotron text-center bg-yellow mb-2">
           <h2 class="text-primary">体調管理機能</h2>
           <div class="my-4">
-            <button class="btn btn-lg btn-light px-3">写真</button>
+            <button class="btn btn-lg btn-light px-3">症状</button>
             <button class="btn btn-lg btn-light px-3">体温</button>
             <button class="btn btn-lg btn-light px-3">薬</button>
             <button class="btn btn-lg btn-light px-3">食事</button>
