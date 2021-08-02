@@ -3,10 +3,20 @@
     <!-- phone menu -->
     <div class="phone__item">
       <div class="bg-secondary border-secondary border-bottom py-1 mb-2 mx-n2 mt-n2" style="height:47px;">
-        <button type="button" class="btn rounded ml-1" @click="openPhoneBurger">
-          <img src="/icon-white.svg" width="25" height="25" />
-          <span class="text-white" style="font-family: 'Franklin Gothic'">MENU</span>
-        </button>
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn rounded ml-1" @click="openPhoneBurger">
+            <img src="/icon-white.svg" width="25" height="25" />
+            <span class="text-white" style="font-family: 'Franklin Gothic', cursive">MENU</span>
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-light text-white mr-2 my-1" @click="signOut">
+            <span class="mr-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 20 20">
+                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+              </svg>
+            </span>
+            ログアウト
+          </button>
+        </div>
       </div>
       <!-- phone humburger -->
       <div class="phoneburger-container back" @click="closePhoneBurger" />
@@ -81,16 +91,6 @@
               </span>
               ヘルプ
             </NuxtLink>
-          </li>
-          <li class="phoneburger-item py-2 mb-2">
-            <button type="button" class="btn btn-secondary btn-block" @click="signOut">
-              <span class="float-left ml-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-                </svg>
-              </span>
-              ログアウト
-            </button>
           </li>
         </ul>
       </div>
