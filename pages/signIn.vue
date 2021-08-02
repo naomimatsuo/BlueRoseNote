@@ -15,7 +15,11 @@
               <label for="password">パスワード</label>
               <input id="password" v-model="passWords" type="password" class="form-control" />
             </div>
-            <button type="button" class="btn btn-secondary btn-block rounded-0 text-white font-weight-bold" @click="signIn">サインイン</button>
+            <div class="alert alert-danger" role="alert" hidden>アカウントIDまたはパスワードが異なります。</div>
+            <button type="button" class="btn btn-secondary btn-block rounded-0 text-white font-weight-bold" @click="signIn">
+              <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              サインイン
+            </button>
           </div>
         </div>
       </div>
@@ -30,7 +34,8 @@ export default {
   data () {
     return {
       userName: null,
-      passWords: null
+      passWords: null,
+      saving: false
     }
   },
   head () {
@@ -40,8 +45,14 @@ export default {
   },
   methods: {
     async signIn () {
+      this.saving = true;
+      $('.alert').attr('hidden');
+
       try {
         const user = await Auth.signIn(this.userName, this.passWords);
+
+        this.saving = false;
+
         this.$store.commit('updateLoginUser', {
           loginUser: user,
           clientId: user.pool.clientId,
@@ -59,7 +70,10 @@ export default {
         });
 
         this.$router.push('/top');
-      } catch (error) {}
+      } catch (error) {
+        $('.alert').removeAttr('hidden');
+        this.saving = false;
+      }
     }
   }
 }
