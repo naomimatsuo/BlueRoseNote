@@ -7,7 +7,9 @@
       <li class="list-group-item">
         <NuxtLink to="/privacyPolicy">プライバシーポリシーについて</NuxtLink>
       </li>
-      <li class="list-group-item">退会について</li>
+      <li class="list-group-item">
+        <NuxtLink to="/leave">アカウントの削除について</NuxtLink>
+      </li>
     </ul>
   </div>
 </template>

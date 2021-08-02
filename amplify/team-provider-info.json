@@ -151,6 +151,14 @@
         "deleteReviewer": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
           "s3Key": "amplify-builds/deleteReviewer-4a32684779626e55304c-build.zip"
+        },
+        "deleteUserProfile": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/deleteUserProfile-536270332b636b47544c-build.zip"
+        },
+        "deleteCommunityTweetReply": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/deleteCommunityTweetReply-774a6a6a683065505052-build.zip"
         }
       }
     }
