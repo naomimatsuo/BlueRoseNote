@@ -61,12 +61,14 @@ export default {
 
         this.$cookies.set('client_id', user.pool.clientId, {
           expires: new Date(new Date().getTime() + 1000 * 3600 * 24 * 30),
-          secure: true
+          secure: true,
+          sameSite: 'lax'
         });
 
-        this.$cookies.set('account_id', this.userName, {
+        this.$cookies.set('account_id', this.$getAscii(this.userName), {
           expires: new Date(new Date().getTime() + 1000 * 3600 * 24 * 30),
-          secure: true
+          secure: true,
+          sameSite: 'lax'
         });
 
         this.$router.push('/top');

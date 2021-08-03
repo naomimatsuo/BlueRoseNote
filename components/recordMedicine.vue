@@ -110,6 +110,7 @@ import API from '@aws-amplify/api';
 export default {
   data () {
     return {
+      clientId: null,
       showLoader: true,
       newItem: {
         tookMedicine: null,
@@ -121,9 +122,11 @@ export default {
     }
   },
   mounted () {
+    this.clientId = String(this.$cookies.get('account_id'));
+
     const params = {
       body: {
-        clientId: this.$cookies.get('account_id'),
+        clientId: this.clientId,
         lastEvaluatedKey: null
       }
     };
@@ -154,7 +157,7 @@ export default {
 
       const params = {
         body: {
-          clientId: this.$cookies.get('account_id'),
+          clientId: this.clientId,
           lastEvaluatedKey: this.lastEvaluatedKey
         }
       };
@@ -175,9 +178,6 @@ export default {
       });
     },
     saveRecord () {
-      const clientId = this.$cookies.get('account_id');
-      if (!clientId) { return; }
-
       if (!this.newItem.tookMedicine && !this.newItem.memo) { return; }
 
       $('#saveRecordBtn').attr('disabled', 'disabled');
@@ -187,7 +187,7 @@ export default {
 
       const params = {
         body: {
-          clientId,
+          clientId: this.clientId,
           recordId: now.getTime(),
           tookMedicine: this.newItem.tookMedicine,
           memo: this.newItem.memo ? this.newItem.memo.substring(0, 100) : null,
@@ -216,9 +216,6 @@ export default {
       $('#deleteModal').modal('show');
     },
     deleteRecord () {
-      const clientId = this.$cookies.get('account_id');
-      if (!clientId) { return; }
-
       const recordId = $('#deleteModalBtn').attr('targetId');
       if (!recordId) { return; }
 
@@ -227,7 +224,7 @@ export default {
 
       const params = {
         body: {
-          clientId,
+          clientId: this.clientId,
           recordId: Number(recordId)
         }
       };

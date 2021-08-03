@@ -176,7 +176,7 @@
 </template>
 
 <script>
-import { API } from 'aws-amplify';
+import { API, Auth } from 'aws-amplify';
 import croppie from 'croppie';
 
 function getModalWidth () {
@@ -230,12 +230,16 @@ export default {
       title: 'プロフィール'
     }
   },
-  mounted () {
-    this.accountId = this.$cookies.get('account_id');
+  async mounted () {
+    const user = await Auth.currentAuthenticatedUser();
+    if (!user) { return; }
+
+    this.accountId = user.attributes.preferred_username;
+    this.clientId = String(this.$cookies.get('account_id'));
 
     const params = {
       body: {
-        clientId: this.$cookies.get('account_id')
+        clientId: this.clientId
       }
     }
 
@@ -340,7 +344,7 @@ export default {
       reader.readAsDataURL(event.target.files[0]);
     },
     selfImgApply () {
-      $('#uploadSelfImg').croppie('result', { type: 'canvas', circle: true, quality: 0.85 })
+      $('#uploadSelfImg').croppie('result', { type: 'canvas', circle: true, quality: 0.83 })
       .then((result) => {
         this.selfImg = result;
         $('#selfImgTarget').attr('src', result);
@@ -360,9 +364,6 @@ export default {
       });
     },
     updateProfile () {
-      const clientId = this.$cookies.get('account_id');
-      if (!clientId) { return; }
-
       if (!this.userName) {
         $('#userName').addClass('is-invalid');
         return;
@@ -374,8 +375,8 @@ export default {
 
       const params = {
         body: {
-          clientId,
-          accountId: this.$cookies.get('account_id'),
+          clientId: this.clientId,
+          accountId: this.accountId,
           userName: this.userName.substring(0, 30),
           description: this.description ? this.description.substring(0, 300) : null,
           location: this.location ? this.location.substring(0, 100) : null,
@@ -392,7 +393,7 @@ export default {
       };
 
       API.put('BlueRoseNoteAPIs', '/UserProfile', params)
-      .then(() => {
+      .then((response) => {
         $('#saveProfBtn').removeAttr('disabled');
         this.saving = false;
       });

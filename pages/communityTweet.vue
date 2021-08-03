@@ -111,7 +111,8 @@ export default {
         part23: null
       },
       doesJoin: false,
-      saving: false
+      saving: false,
+      clientId: null
     }
   },
   head () {
@@ -122,11 +123,12 @@ export default {
   async beforeMount () {
     const item = localStorage.getItem('communityInfo');
     this.communityInfo = JSON.parse(item);
+    this.clientId = String(this.$cookies.get('account_id'));
 
     const responseInfo = await API.post('BlueRoseNoteAPIs', '/CommunityMember', {
         body: {
           communityId: this.communityInfo.communityId,
-          clientId: this.$cookies.get('account_id')
+          clientId: this.clientId
         }
       });
 
@@ -137,9 +139,6 @@ export default {
   },
   methods: {
     joinCommunity () {
-      const clientId = this.$cookies.get('account_id');
-      if (!clientId) { return; }
-
       $('#joinCommunityBtn').attr('disabled', 'disabled');
       this.saving = true;
 
@@ -148,7 +147,7 @@ export default {
       const params = {
         body: {
           communityId: this.communityInfo.communityId,
-          clientId: this.$cookies.get('account_id'),
+          clientId: this.clientId,
           createdAt: this.$getNowString(now)
         }
       };
@@ -170,7 +169,7 @@ export default {
 
       const params = {
         body: {
-          clientId: this.$cookies.get('account_id'),
+          clientId: this.clientId,
           communityId: this.communityInfo.communityId
         }
       };

@@ -212,6 +212,7 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
 export default {
   data () {
     return {
+      clientId: null,
       showLoader: true,
       width: null,
       xAxisHeight: 30,
@@ -229,9 +230,11 @@ export default {
     }
   },
   beforeMount () {
+    this.clientId = String(this.$cookies.get('account_id'));
+
     const params = {
       body: {
-        clientId: this.$cookies.get('account_id'),
+        clientId: this.clientId,
         lastEvaluatedKey: null
       }
     };
@@ -299,7 +302,7 @@ export default {
 
       const params = {
         body: {
-          clientId: this.$cookies.get('account_id'),
+          clientId: this.clientId,
           lastEvaluatedKey: this.lastEvaluatedKey
         }
       };
@@ -320,9 +323,6 @@ export default {
       });
     },
     saveRecord () {
-      const clientId = this.$cookies.get('account_id');
-      if (!clientId) { return; }
-
       if (!this.newItem.temperature) { return; }
 
       if ((this.newItem.temperature < 34.0) || (this.newItem.temperature > 42.0)) {
@@ -339,7 +339,7 @@ export default {
 
       const params = {
         body: {
-          clientId,
+          clientId: this.clientId,
           recordId: now.getTime(),
           temperature: Number.parseFloat(this.newItem.temperature).toFixed(1),
           createdAt: this.$getNowString(now)
@@ -364,9 +364,6 @@ export default {
       $('#deleteModal').modal('show');
     },
     deleteRecord () {
-      const clientId = this.$cookies.get('account_id');
-      if (!clientId) { return; }
-
       $('#deleteModalBtn').attr('disabled', 'disabled');
       this.saving = true;
 
@@ -375,7 +372,7 @@ export default {
 
       const params = {
         body: {
-          clientId,
+          clientId: this.clientId,
           recordId: Number(recordId)
         }
       };

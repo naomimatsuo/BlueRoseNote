@@ -13,7 +13,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="stapleFoodLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="stapleFoodLabel" :class="{ active : newItem.stapleFood }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.stapleFood" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -36,7 +36,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="subSideDishLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="subSideDishLabel" :class="{ active : newItem.subSideDish }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.subSideDish" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -59,7 +59,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="mainDishLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="mainDishLabel" :class="{ active : newItem.mainDish }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.mainDish" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -80,7 +80,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="dailyProductsLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="dailyProductsLabel" :class="{ active : newItem.dailyProducts }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.dailyProducts" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -101,7 +101,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="fruitsLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="fruitsLabel" :class="{ active : newItem.fruits }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.fruits" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -122,7 +122,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="sweetsLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="sweetsLabel" :class="{ active : newItem.sweets }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.sweets" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -143,7 +143,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="alcoholLabel" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="alcoholLabel" :class="{ active : newItem.alcohol }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
               <input v-model="newItem.alcohol" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -263,6 +263,7 @@ import API from '@aws-amplify/api';
 export default {
   data () {
     return {
+      clientId: null,
       showLoader: true,
       newItem: {
         stapleFood: null,
@@ -280,9 +281,11 @@ export default {
     }
   },
   mounted () {
+    this.clientId = String(this.$cookies.get('account_id'));
+
     const params = {
       body: {
-        clientId: this.$cookies.get('account_id'),
+        clientId: this.clientId,
         lastEvaluatedKey: null
       }
     };
@@ -314,7 +317,7 @@ export default {
 
       const params = {
         body: {
-          clientId: this.$cookies.get('account_id'),
+          clientId: this.clientId,
           lastEvaluatedKey: this.lastEvaluatedKey
         }
       };
@@ -335,9 +338,6 @@ export default {
       });
     },
     saveRecord () {
-      const clientId = this.$cookies.get('account_id');
-      if (!clientId) { return; }
-
       if (!this.newItem.stapleFood && !this.newItem.subSideDish && !this.newItem.mainDish &&
       !this.newItem.dailyProducts && !this.newItem.fruits && !this.newItem.sweets && !this.newItem.alcohol &&
       !this.newItem.memo) {
@@ -351,7 +351,7 @@ export default {
 
       const params = {
         body: {
-          clientId,
+          clientId: this.clientId,
           recordId: now.getTime(),
           stapleFood: this.newItem.stapleFood,
           subSideDish: this.newItem.subSideDish,
@@ -371,19 +371,12 @@ export default {
 
           this.posts.unshift(params.body);
           this.newItem.stapleFood = null;
-          $('#stapleFoodLabel').removeClass('active');
           this.newItem.subSideDish = null;
-          $('#subSideDishLabel').removeClass('active');
           this.newItem.mainDish = null;
-          $('#mainDishLabel').removeClass('active');
           this.newItem.dailyProducts = null;
-          $('#dailyProductsLabel').removeClass('active');
           this.newItem.fruits = null;
-          $('#fruitsLabel').removeClass('active');
           this.newItem.sweets = null;
-          $('#sweetsLabel').removeClass('active');
           this.newItem.alcohol = null;
-          $('#alcoholLabel').removeClass('active');
           this.newItem.memo = null;
         })
         .finally(() => {
@@ -398,9 +391,6 @@ export default {
       $('#deleteModal').modal('show');
     },
     deleteRecord () {
-      const clientId = this.$cookies.get('account_id');
-      if (!clientId) { return; }
-
       $('#deleteModalBtn').attr('disabled', 'disabled');
       this.saving = true;
 
@@ -409,7 +399,7 @@ export default {
 
       const params = {
         body: {
-          clientId,
+          clientId: this.clientId,
           recordId: Number(recordId)
         }
       };

@@ -144,6 +144,7 @@ function base64toBlob (base64) {
 export default {
   data () {
     return {
+      clientId: null,
       showLoader: true,
       newItem: {
         recordId: null,
@@ -155,9 +156,11 @@ export default {
     };
   },
   mounted () {
+    this.clientId = String(this.$cookies.get('account_id'));
+
     const params = {
       body: {
-        clientId: this.$cookies.get('account_id'),
+        clientId: this.clientId,
         lastEvaluatedKey: null
       }
     };
@@ -194,7 +197,7 @@ export default {
 
       const params = {
         body: {
-          clientId: this.$cookies.get('account_id'),
+          clientId: this.clientId,
           lastEvaluatedKey: this.lastEvaluatedKey
         }
       };
@@ -266,9 +269,6 @@ export default {
       $('#removePicBtn').css('display', 'none');
     },
     saveRecord () {
-      const clientId = this.$cookies.get('account_id');
-      if (!clientId) { return; }
-
       const image = $('#picTarget').attr('src');
       if (!this.newItem.tweet && !image) { return; }
 
@@ -279,7 +279,7 @@ export default {
 
       const params = {
         body: {
-          clientId,
+          clientId: this.clientId,
           recordId: now.getTime(),
           tweet: this.newItem.tweet ? this.newItem.tweet.substring(0, 200) : null,
           tweetpic: (image === undefined) ? null : image,
@@ -312,9 +312,6 @@ export default {
       $('#deleteModal').modal('show');
     },
     deleteRecord () {
-      const clientId = this.$cookies.get('account_id');
-      if (!clientId) { return; }
-
       $('#deleteModalBtn').attr('disabled', 'disabled');
       this.saving = true;
 
@@ -323,7 +320,7 @@ export default {
 
       const params = {
         body: {
-          clientId,
+          clientId: this.clientId,
           recordId: Number(recordId)
         }
       };

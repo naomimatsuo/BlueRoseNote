@@ -160,7 +160,7 @@ export default {
 
     const params = {
       body: {
-        clientId: this.accountId
+        accountId: this.accountId
       }
     }
 

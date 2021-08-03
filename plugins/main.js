@@ -49,7 +49,18 @@ function getCommunityCategory (no) {
   return '';
 }
 
+function getAscii (userName) {
+  return userName.split('')
+    .map(function (char) {
+      return char.charCodeAt(0);
+    })
+    .reduce(function (current, previous) {
+      return String(previous) + String(current);
+    });
+}
+
 export default (context, inject) => {
   inject('getNowString', getNowString);
   inject('getCommunityCategory', getCommunityCategory);
+  inject('getAscii', getAscii);
 }

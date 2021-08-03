@@ -4,8 +4,6 @@ exports.handler = async (event) => {
 
     const docClient = new AWS.DynamoDB.DocumentClient();
 
-    console.log(event);
-
     const val = await docClient.query({
         TableName: 'CommunityTweetReply',
         Limit: 15,
@@ -14,6 +12,8 @@ exports.handler = async (event) => {
         ExpressionAttributeValues: { ":val": event.communityId + "_" + event.replyToTweetId },
         ExclusiveStartKey: event.lastEvaluatedKey
     }).promise();
+
+    let ret = [];
 
     for (let i = 0; i < val.Items.length; i++) {
         const cId = val.Items[i].clientId;
@@ -42,29 +42,48 @@ exports.handler = async (event) => {
             }
         }).promise();
 
-        console.log(val.Items[i].repTweetId + "_" + val.Items[i].tweetId);
+        let userInfo = {
+            accountId: cId,
+            selfImg: null,
+            userName: null
+        };
 
-        if (!user.Item) {
-            val.Items[i].clientInfo = {
-                clientId: cId,
-                selfImg: null,
-                userName: null
-            };
-        } else {
-            val.Items[i].clientInfo = {
-                clientId: user.Item.clientId,
+        if (user.Item) {
+            userInfo = {
+                accountId: user.Item.accountId,
                 selfImg: user.Item.selfImg,
                 userName: user.Item.userName
             };
         }
 
-        val.Items[i].likes = likes.Items;
-        val.Items[i].replys = replys.Items;
+        const idx = likes.Items.findIndex((item) => { return item.clientId === event.requestClientId; });
+
+        let likeInfo = {
+            num: likes.Items.length,
+            myfavarite: (idx !== -1)
+        };
+
+        let replyInfo = {
+            num: replys.Items.length,
+            tweetIds: replys.Items.map((item) => { return item.tweetId; })
+        };
+
+        ret.push({
+            communityId: val.Items[i].communityId,
+            createdAt: val.Items[i].createdAt,
+            tweetId: val.Items[i].tweetId,
+            tweet: val.Items[i].tweet,
+            tweetpic: val.Items[i].tweetpic,
+            clientInfo: userInfo,
+            likes: likeInfo,
+            replys: replyInfo,
+            isMyTweet: val.Items[i].clientId === event.requestClientId
+        });
     }
 
     const response = {
         statusCode: 200,
-        body: JSON.stringify(val)
+        body: JSON.stringify(ret)
     };
     return response;
 };

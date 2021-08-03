@@ -102,11 +102,11 @@ export default {
     }
   },
   async mounted () {
-    this.accountId = this.$cookies.get('account_id');
+    this.clientId = String(this.$cookies.get('account_id'));
 
     const params = {
       body: {
-        clientId: this.$cookies.get('account_id')
+        clientId: this.clientId
       }
     }
 
@@ -117,6 +117,7 @@ export default {
     if (!response.body) { return; }
 
     const res = JSON.parse(response.body);
+    this.accountId = res.accountId;
     this.userName = res.userName;
     this.description = res.description;
     this.location = res.location;
