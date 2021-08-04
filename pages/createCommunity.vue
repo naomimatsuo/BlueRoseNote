@@ -250,14 +250,12 @@
     <div id="uploadBackImgModal" class="modal fade" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <div class="modal-title">
-              <button type="button" class="close d-inline" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+          <div class="p-2">
+            <div class="row d-flex justify-content-between mx-0">
+              <button type="button" class="btn btn-secondary rounded-0 d-inline" data-dismiss="modal" aria-label="Close">戻る</button>
               <h5 class="d-inline">メディアを編集</h5>
+              <button type="button" class="btn btn-secondary rounded-0" @click="backImgApply">設定</button>
             </div>
-            <button type="button" class="btn btn-secondary rounded-0" @click="backImgApply">設定</button>
           </div>
           <div class="modal-body p-0">
             <div class="d-flex justify-content-center">
@@ -270,14 +268,12 @@
     <div id="uploadSelfImgModal" class="modal fade" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <div class="modal-title">
-              <button type="button" class="close d-inline" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+          <div class="p-2">
+            <div class="row d-flex justify-content-between mx-0">
+              <button type="button" class="btn btn-secondary rounded-0 d-inline" data-dismiss="modal" aria-label="Close">戻る</button>
               <h5 class="d-inline">メディアを編集</h5>
+              <button type="button" class="btn btn-secondary rounded-0" @click="selfImgApply">設定</button>
             </div>
-            <button type="button" class="btn btn-secondary rounded-0" @click="selfImgApply">設定</button>
           </div>
           <div class="modal-body p-0">
             <div class="d-flex justify-content-center">
