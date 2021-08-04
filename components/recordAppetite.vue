@@ -2,6 +2,20 @@
   <div>
     <!-- New post -->
     <div class="bg-white p-2">
+      <div class="btn-group btn-group-toggle mb-2" data-toggle="buttons">
+        <label id="tookLabel" class="btn btn-outline-success px-4">
+          <input v-model="newItem.gohanTime" type="radio" name="options" value="0" />
+          朝ごはん
+        </label>
+        <label id="forgotLabel" class="btn btn-outline-secondary px-4">
+          <input v-model="newItem.gohanTime" type="radio" name="options" value="1" />
+          昼ごはん
+        </label>
+        <label id="forgotLabel" class="btn btn-outline-primary px-4">
+          <input v-model="newItem.gohanTime" type="radio" name="options" value="2" />
+          夜ごはん
+        </label>
+      </div>
       <div class="row mx-0 mb-2">
         <div class="col-6 col-sm-6 col-lg-8 px-1">
           <span class="mr-2">
@@ -177,7 +191,12 @@
     <ul class="list-group mt-2">
       <li v-for="post in posts" :key="post.recordId" class="list-group-item rounded-0 bg-transparent">
         <div class="d-flex justify-content-between">
-          <p class="text-gray mb-0">{{ post.createdAt }}</p>
+          <div class="d-flex">
+            <p class="text-gray mb-0 mr-3">{{ post.createdAt }}</p>
+            <button v-if="post.gohanTime == 0" class="btn btn-sm btn-success">朝ごはん</button>
+            <button v-if="post.gohanTime == 1" class="btn btn-sm btn-secondary">昼ごはん</button>
+            <button v-if="post.gohanTime == 2" class="btn btn-sm btn-primary">夜ごはん</button>
+          </div>
           <button type="button" class="btn btn-sm px-1 py-0" @click="showDeleteModal(post)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
               <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
@@ -266,6 +285,7 @@ export default {
       clientId: null,
       showLoader: true,
       newItem: {
+        gohanTime: null,
         stapleFood: null,
         subSideDish: null,
         mainDish: null,
@@ -353,6 +373,7 @@ export default {
         body: {
           clientId: this.clientId,
           recordId: now.getTime(),
+          gohanTime: this.newItem.gohanTime,
           stapleFood: this.newItem.stapleFood,
           subSideDish: this.newItem.subSideDish,
           mainDish: this.newItem.mainDish,
@@ -370,6 +391,7 @@ export default {
           if (response.statusCode !== 200) { return; }
 
           this.posts.unshift(params.body);
+          this.newItem.gohanTime = null;
           this.newItem.stapleFood = null;
           this.newItem.subSideDish = null;
           this.newItem.mainDish = null;
