@@ -15,7 +15,7 @@ exports.handler = async (event) => {
         ExclusiveStartKey: event.lastEvaluatedKey
     }).promise();
 
-    let ret = [];
+    const ret = [];
 
     for (let i = 0; i < val.Items.length; i++) {
         const cId = val.Items[i].clientId;
@@ -31,7 +31,7 @@ exports.handler = async (event) => {
             ExpressionAttributeValues: {
                 ":id": val.Items[i].communityId + "_" + val.Items[i].tweetId
             },
-            ProjectionExpression: "communityId, tweetId, clientId",
+            ProjectionExpression: "communityId, tweetId, clientId"
         }).promise();
 
         const likes = await docClient.scan({
@@ -60,12 +60,12 @@ exports.handler = async (event) => {
 
         const idx = likes.Items.findIndex((item) => { return item.clientId === event.requestClientId; });
 
-        let likeInfo = {
+        const likeInfo = {
             num: likes.Items.length,
             myfavarite: (idx !== -1)
         };
 
-        let replyInfo = {
+        const replyInfo = {
             num: replys.Items.length,
             tweetIds: replys.Items.map((item) => { return item.tweetId; })
         };

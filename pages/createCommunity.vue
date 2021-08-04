@@ -519,7 +519,8 @@ export default {
           part22: this.part22,
           part23: this.part23,
           clientId: String(this.$cookies.get('account_id')),
-          updatedAt: this.$getNowString(now)
+          updatedAt: this.$getNowString(now),
+          updateClientId: this.$cookies.get('account_id')
         }
       };
 

@@ -59,37 +59,81 @@ export default {
       this.saving = true;
 
       const user = await Auth.currentAuthenticatedUser();
+      if (!user) { return; }
 
-      if (user) {
-        user.deleteUser((error) => {
-            if (error) {
-                return reject(error);
-            }
-            if (this.props.onSessionChange) {
-                this.props.onSessionChange();
-            }
+      const accountId = user.attributes.preferred_username;
 
-            // const param = {
-            //   body: {
-            //     clientId: ''
-            //   }
-            // };
+      const param = {
+        body: {
+          clientId: String(this.$getAscii(accountId))
+        }
+      };
 
-            // API.del('BlueRoseNoteAPIs', '/UserProfile');
-            // API.del('BlueRoseNoteAPIs', '/CommunityMember');
-            // API.del('BlueRoseNoteAPIs', '/CommunityTweet');
-            // API.del('BlueRoseNoteAPIs', '/CommunityTweetLike');
-            // API.del('BlueRoseNoteAPIs', '/CommunityTweetReply');
-            // API.del('BlueRoseNoteAPIs', '/RecordTweet');
-            // API.del('BlueRoseNoteAPIs', '/RecordMedicine');
-            // API.del('BlueRoseNoteAPIs', '/RecordTemperature');
-            // API.del('BlueRoseNoteAPIs', '/RecordTweet');
-            // API.del('BlueRoseNoteAPIs', '/Reviewer');
+      let ret = await API.del('BlueRoseNoteAPIs', '/UserProfile', param);
 
-            this.$cookies.removeAll();
-            this.$router.push('/seeyou');
-        });
-      }
+      ret = await API.del('BlueRoseNoteAPIs', '/DeleteUserRecord', {
+        body: {
+          tableName: 'RecordTweet',
+          clientId: String(this.$cookies.get('account_id'))
+        }
+      });
+
+      ret = await API.del('BlueRoseNoteAPIs', '/DeleteUserRecord', {
+        body: {
+          tableName: 'RecordMedicine',
+          clientId: String(this.$cookies.get('account_id'))
+        }
+      });
+
+      ret = await API.del('BlueRoseNoteAPIs', '/DeleteUserRecord', {
+        body: {
+          tableName: 'RecordTemperature',
+          clientId: String(this.$cookies.get('account_id'))
+        }
+      });
+
+      ret = await API.del('BlueRoseNoteAPIs', '/DeleteUserRecord', {
+        body: {
+          tableName: 'RecordAppetite',
+          clientId: String(this.$cookies.get('account_id'))
+        }
+      });
+
+      ret = await API.del('BlueRoseNoteAPIs', '/Deleteusercommuactivity', {
+        body: {
+          tableName: 'CommunityMember',
+          clientId: String(this.$cookies.get('account_id'))
+        }
+      });
+
+      ret = await API.del('BlueRoseNoteAPIs', '/Deleteusercommuactivity', {
+        body: {
+          tableName: 'CommunityTweet',
+          clientId: String(this.$cookies.get('account_id'))
+        }
+      });
+
+      ret = await API.del('BlueRoseNoteAPIs', '/Deleteusercommuactivity', {
+        body: {
+          tableName: 'CommunityTweetLike',
+          clientId: String(this.$cookies.get('account_id'))
+        }
+      });
+
+      ret = await API.del('BlueRoseNoteAPIs', '/Deleteusercommuactivity', {
+        body: {
+          tableName: 'CommunityTweetReply',
+          clientId: String(this.$cookies.get('account_id'))
+        }
+      });
+
+      ret = await user.deleteUser();
+
+      $('#deleteModal').modal('hide');
+      this.$cookies.removeAll();
+      localStorage.clear();
+      this.saving = false;
+      this.$router.push('/');
     }
   }
 }

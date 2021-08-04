@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { Auth } from 'aws-amplify';
+import { API, Auth } from 'aws-amplify';
 
 export default {
   data () {
@@ -56,7 +56,27 @@ export default {
         await Auth.confirmSignUp(
           this.userName, this.valificationCode
         ).then((ret) => {
-          this.$router.push('/top');
+          const params = {
+            body: {
+              clientId: this.$getAscii(this.userName),
+              accountId: this.userName,
+              userName: null,
+              description: null,
+              location: null,
+              gender: this.gender,
+              userHeight: null,
+              userWeight: null,
+              birthYear: null,
+              birthMonth: null,
+              birthDate: null,
+              backImg: null,
+              selfImg: null,
+              updatedAt: this.$getNowString(new Date())
+            }
+          };
+
+          API.put('BlueRoseNoteAPIs', '/UserProfile', params);
+          this.$router.push('/signIn');
         });
       } catch (error) {
         $('.alert').html(error.message);

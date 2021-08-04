@@ -18,7 +18,7 @@
       "function": {
         "getUserProfile": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getUserProfile-567870326b6846363344-build.zip"
+          "s3Key": "amplify-builds/getUserProfile-52534778336931712f31-build.zip"
         },
         "updateUserProfile": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
@@ -58,11 +58,11 @@
         },
         "getCommunityTweetReply": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getCommunityTweetReply-74685957664d2b744e70-build.zip"
+          "s3Key": "amplify-builds/getCommunityTweetReply-32683972695a544d557a-build.zip"
         },
         "getCommunityTweet": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
-          "s3Key": "amplify-builds/getCommunityTweet-5a352f6a4b6d46345132-build.zip"
+          "s3Key": "amplify-builds/getCommunityTweet-674a756b4e75504c7357-build.zip"
         },
         "getCommunityMember": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
@@ -159,6 +159,14 @@
         "deleteCommunityTweetReply": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
           "s3Key": "amplify-builds/deleteCommunityTweetReply-774a6a6a683065505052-build.zip"
+        },
+        "deleteUserRecords": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/deleteUserRecords-75494d312f4359444969-build.zip"
+        },
+        "deleteUserCommuActivity": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/deleteUserCommuActivity-63777070794741672f49-build.zip"
         }
       }
     }

@@ -43,6 +43,12 @@ export default {
       title: 'サインイン'
     }
   },
+  mounted () {
+    if (!this.$store.state.loginUser) {
+      return;
+    }
+    this.userName = this.$store.state.loginUser.username;
+  },
   methods: {
     async signIn () {
       this.saving = true;

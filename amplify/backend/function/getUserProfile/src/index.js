@@ -4,14 +4,36 @@ exports.handler = async (event) => {
 
     const docClient = new AWS.DynamoDB.DocumentClient();
 
-    const val = await docClient.get({
-        TableName: 'UserProfile',
-        Key: event
-    }).promise();
+    let val = null;
+
+    console.log(event);
+
+    if (event.clientId) {
+        const ret = await docClient.get({
+            TableName: 'UserProfile',
+            Key: event
+        }).promise();
+
+        val = ret.Item;
+    } else {
+        const ret = await docClient.scan({
+            TableName: 'UserProfile',
+            Limit: 1,
+            FilterExpression: "accountId = :val",
+            ExpressionAttributeValues: { ":val": event.accountId }
+        }).promise();
+
+        if (ret.Items.length < 1) {
+            val = null;
+        } else {
+            ret.Items[0].clientId = null;
+            val = ret.Items[0];
+        }
+    }
 
     const response = {
         statusCode: 200,
-        body: JSON.stringify(val.Item)
+        body: JSON.stringify(val)
     };
     return response;
 };

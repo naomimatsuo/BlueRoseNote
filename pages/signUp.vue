@@ -67,7 +67,7 @@ export default {
         });
 
         if (user !== undefined) {
-          this.$store.commit('update', user);
+          this.$store.commit('updateLoginUser', user);
           this.$router.push('/signUpConfirm');
         }
       } catch (error) {
