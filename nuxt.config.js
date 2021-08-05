@@ -3,12 +3,13 @@ import webpack from 'webpack'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'bluerosenote',
+    title: 'BlueRoseNote',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'ブルーローズノート 病気SNS' },
-      { hid: 'og:description', name: 'og:description', property: 'og:description', content: 'ブルーローズノート 病気SNS' }
+      { name: 'keywords', content: 'bluerosenote,ブルーローズノート,体温記録,食事記録,症状記録,薬記録,病気SNS' },
+      { hid: 'description', name: 'description', content: 'BLUE ROSE NOTEは日々の健康記録と病気に関するコミュニティ機能を提供します。' },
+      { hid: 'og:description', name: 'og:description', property: 'og:description', content: 'BLUE ROSE NOTEは日々の健康記録と病気に関するコミュニティ機能を提供します。' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
