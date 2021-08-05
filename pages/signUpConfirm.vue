@@ -17,8 +17,8 @@
               <input id="email" v-model="userName" type="text" class="form-control" />
             </div>
             <div class="mt-1 mb-4">
-              <label for="email">確認コード</label>
-              <input id="email" v-model="valificationCode" type="text" class="form-control" />
+              <label for="valificationCode">確認コード</label>
+              <input id="valificationCode" v-model="valificationCode" type="text" class="form-control" />
             </div>
             <div class="alert alert-danger" role="alert" style="display:none;" />
             <button type="button" class="btn btn-secondary btn-block rounded-0 text-white font-weight-bold" @click="completeSineUp">アカウント登録</button>

@@ -24,6 +24,9 @@
         </div>
       </div>
     </div>
+    <div class="d-flex justify-content-center">
+      <NuxtLink to="forgetPassWords" class="text-secondary"><small>パスワードを忘れましたか？</small></NuxtLink>
+    </div>
   </div>
 </template>
 
