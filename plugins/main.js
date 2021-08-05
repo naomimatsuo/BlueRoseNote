@@ -64,3 +64,7 @@ export default (context, inject) => {
   inject('getCommunityCategory', getCommunityCategory);
   inject('getAscii', getAscii);
 }
+
+window.addEventListener('popstate', function () {
+  $('.modal').modal('hide');
+});
