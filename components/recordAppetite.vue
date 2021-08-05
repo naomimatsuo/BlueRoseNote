@@ -2,16 +2,16 @@
   <div>
     <!-- New post -->
     <div class="bg-white p-2">
-      <div class="btn-group btn-group-toggle mb-2" data-toggle="buttons">
-        <label id="tookLabel" class="btn btn-outline-success px-4">
+      <div class="col-12 col-lg-6 btn-group btn-group-toggle mb-3 px-0" data-toggle="buttons">
+        <label id="tookLabel" class="btn btn-sm btn-outline-success px-4">
           <input v-model="newItem.gohanTime" type="radio" name="options" value="0" />
           朝ごはん
         </label>
-        <label id="forgotLabel" class="btn btn-outline-secondary px-4">
+        <label id="forgotLabel" class="btn btn-sm btn-outline-secondary px-4">
           <input v-model="newItem.gohanTime" type="radio" name="options" value="1" />
           昼ごはん
         </label>
-        <label id="forgotLabel" class="btn btn-outline-primary px-4">
+        <label id="forgotLabel" class="btn btn-sm btn-outline-primary px-4">
           <input v-model="newItem.gohanTime" type="radio" name="options" value="2" />
           夜ごはん
         </label>
