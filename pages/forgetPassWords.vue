@@ -6,14 +6,14 @@
       </div>
     </div>
     <p class="text-center text-primary mt-3">パスワードをリセットします。</p>
-    <p class="text-center text-primary">メールアドレスを入力してください。</p>
+    <p class="text-center text-primary">アカウントIDを入力してください。</p>
     <div class="row mt-3">
       <div class="container d-flex justify-content-center">
         <div class="card border-secondary rounded-0 cl-sm-12 col-md-6 col-lg-5" style="border-width:3px">
           <div class="card-body">
-            <label for="userName">アカウント名</label>
+            <label for="userName">アカウントID</label>
             <input id="userName" v-model="userName" type="text" class="form-control" />
-            <div class="alert alert-danger mt-3" role="alert" hidden>アカウント名が存在しません。</div>
+            <div class="alert alert-danger mt-3" role="alert" hidden>アカウントIDが存在しません。</div>
             <button type="button" class="btn btn-secondary btn-block rounded-0 text-white font-weight-bold mt-3" @click="sendComfirmCode">
               <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               確認コードを送信

@@ -12,7 +12,7 @@
             <div class="alert alert-secondary" role="alert">
               メールを確認してください。
             </div>
-            <label for="userName">アカウント名</label>
+            <label for="userName">アカウントID</label>
             <input id="userName" v-model="userName" type="text" class="form-control" />
             <div class="mt-1">
               <label for="valificationCode">確認コード</label>
@@ -22,7 +22,7 @@
               <label for="passwords">新しいパスワード</label>
               <input id="passwords" v-model="passwords" type="text" class="form-control" />
             </div>
-            <div class="alert alert-danger mt-3" role="alert" hidden>アカウント名と確認コードが正しくありません。</div>
+            <div class="alert alert-danger mt-3" role="alert" hidden>アカウントIDと確認コードが正しくありません。</div>
             <button type="button" class="btn btn-secondary btn-block rounded-0 text-white font-weight-bold mt-3" @click="sendComfirmCode">
               <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               パスワードを設定
