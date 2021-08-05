@@ -193,9 +193,9 @@
         <div class="d-flex justify-content-between">
           <div class="d-flex">
             <p class="text-gray mb-0 mr-3">{{ post.createdAt }}</p>
-            <button v-if="post.gohanTime == 0" class="btn btn-sm btn-success">朝ごはん</button>
-            <button v-if="post.gohanTime == 1" class="btn btn-sm btn-secondary">昼ごはん</button>
-            <button v-if="post.gohanTime == 2" class="btn btn-sm btn-primary">夜ごはん</button>
+            <button v-if="post.gohanTime == 0" class="btn btn-sm btn-success py-0">朝ごはん</button>
+            <button v-if="post.gohanTime == 1" class="btn btn-sm btn-secondary py-0">昼ごはん</button>
+            <button v-if="post.gohanTime == 2" class="btn btn-sm btn-primary py-0">夜ごはん</button>
           </div>
           <button type="button" class="btn btn-sm px-1 py-0" @click="showDeleteModal(post)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
