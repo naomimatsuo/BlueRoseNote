@@ -6,7 +6,7 @@
         <div class="d-flex justify-content-between">
           <button type="button" class="btn rounded ml-1" @click="openPhoneBurger">
             <img src="/icon-white.svg" width="25" height="25" />
-            <span class="text-white" style="font-family: 'Franklin Gothic', cursive">MENU</span>
+            <span class="text-white" style="font-family: 'Franklin Gothic'">MENU</span>
           </button>
           <button type="button" class="btn btn-sm btn-outline-light text-white mr-2 my-1" @click="signOut">
             <span class="mr-1">
