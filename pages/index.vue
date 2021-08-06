@@ -49,9 +49,9 @@
         </div>
       </div>
     </div>
-    <div class="d-flex justify-content-end mt-n4 mb-1 mr-1">
+    <!-- <div class="d-flex justify-content-end mt-n4 mb-1 mr-1">
       <a class="btn btn-secondary" href="https://twitter.com/BRoseNote" role="button">@Blue Rose Note</a>
-    </div>
+    </div> -->
   </b-container>
 </template>
 
