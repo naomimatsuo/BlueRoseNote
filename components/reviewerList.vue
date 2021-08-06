@@ -77,23 +77,24 @@ import { API } from 'aws-amplify';
 export default {
   data () {
     return {
+      clientId: null,
       showLoader: true,
       applications: []
     }
   },
   mounted () {
-    this.accountId = JSON.parse(localStorage.getItem('targetProfile'));
-    if (!this.accountId) { return; }
+    this.clientId = String(this.$cookies.get('account_id'));
+    if (!this.clientId) { return; }
 
-    const anotherParams = {
+    const params = {
       body: {
         TableName: 'Reviewer',
         FilterExpression: 'targetId = :tId and reviewStatus = :st',
-        ExpressionAttributeValues: { ":tId": this.$cookies.get('account_id'), ":st": 1 }
+        ExpressionAttributeValues: { ":tId": this.clientId, ":st": 1 }
       }
     };
 
-    API.post('BlueRoseNoteAPIs', '/Reviewer', anotherParams)
+    API.post('BlueRoseNoteAPIs', '/Reviewer', params)
       .then((response) => {
         if (response.statusCode !== 200) { return; }
 

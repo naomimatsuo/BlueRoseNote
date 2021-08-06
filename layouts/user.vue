@@ -49,7 +49,7 @@
               記録
             </NuxtLink>
           </li>
-          <!-- <li class="phoneburger-item py-2" @click="closePhoneBurger">
+          <li class="phoneburger-item py-2" @click="closePhoneBurger">
             <NuxtLink to="/recordReviewers" tag="button" class="btn btn-secondary btn-block">
               <span class="float-left ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 20 20">
@@ -58,8 +58,18 @@
               </span>
               記録閲覧者
             </NuxtLink>
-          </li> -->
+          </li>
           <li class="phoneburger-item py-2" @click="closePhoneBurger">
+            <NuxtLink to="/searchUser" tag="button" class="btn btn-secondary btn-block">
+              <span class="float-left ml-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+              </span>
+              ユーザー検索
+            </NuxtLink>
+          </li>
+          <!-- <li class="phoneburger-item py-2" @click="closePhoneBurger">
             <NuxtLink to="/communities" tag="button" class="btn btn-secondary btn-block">
               <span class="float-left ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 20 20">
@@ -70,7 +80,7 @@
               </span>
               コミュニティ
             </NuxtLink>
-          </li>
+          </li> -->
           <li class="phoneburger-item py-2" @click="closePhoneBurger">
             <NuxtLink to="/profile" tag="button" class="btn btn-secondary btn-block">
               <span class="float-left ml-2">
@@ -120,7 +130,7 @@
             <strong class="pc__item">記録</strong>
           </NuxtLink>
         </li>
-        <!-- <li class="list-group-item bg-transparent border-0 px-0 py-1">
+        <li class="list-group-item bg-transparent border-0 px-0 py-1">
           <NuxtLink to="/recordReviewers" tag="button" class="btn btn-lg btn-outline-primary btn-block rounded-0 border-0 p-2">
             <span class="float-left ml-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 20 20">
@@ -129,8 +139,18 @@
             </span>
             <strong class="pc__item">記録閲覧者</strong>
           </NuxtLink>
-        </li> -->
+        </li>
         <li class="list-group-item bg-transparent border-0 px-0 py-1">
+          <NuxtLink to="/searchUser" tag="button" class="btn btn-lg btn-outline-primary btn-block rounded-0 border-0 p-2">
+            <span class="float-left ml-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+              </svg>
+            </span>
+            <strong class="pc__item">ユーザー検索</strong>
+          </NuxtLink>
+        </li>
+        <!-- <li class="list-group-item bg-transparent border-0 px-0 py-1">
           <NuxtLink to="/communities" tag="button" class="btn btn-lg btn-outline-primary btn-block rounded-0 border-0 p-2">
             <span class="float-left ml-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 20 20">
@@ -141,7 +161,7 @@
             </span>
             <strong class="pc__item">コミュニティ</strong>
           </NuxtLink>
-        </li>
+        </li> -->
         <!-- <li class="list-group-item bg-transparent border-0 px-0 py-1">
           <NuxtLink to="/scholarSearch" tag="button" class="btn btn-lg btn-outline-primary btn-block rounded-0 border-0 p-2">
             <span class="float-left ml-2">
