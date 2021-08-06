@@ -49,9 +49,9 @@
         </div>
       </div>
     </div>
-    <!-- <div class="rounded bg-author">
-      <p style="position:absolute;bottom:1vh;right:1vw">Created by meeeeeee</p>
-    </div> -->
+    <div class="d-flex justify-content-end mt-n4 mb-1 mr-1">
+      <a class="btn btn-secondary" href="https://twitter.com/BRoseNote" role="button">@Blue Rose Note</a>
+    </div>
   </b-container>
 </template>
 
