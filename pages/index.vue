@@ -27,13 +27,13 @@
             <button class="btn btn-lg btn-light px-3">薬</button>
             <button class="btn btn-lg btn-light px-3">食事</button>
           </div>
-          <p>記録をとって体調を詳細に伝えよう</p>
+          <p>体調を詳細に記録しよう</p>
           <p>体調の変化に目を向けよう</p>
         </div>
       </div>
       <div class="col-12 col-lg-6">
         <div class="jumbotron text-center bg-yellow">
-          <h2 class="text-primary">コミュニティ機能</h2>
+          <h2 class="text-primary">共有機能</h2>
           <div class="my-4">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 409.801 409.801" style="enable-background:new 0 0 409.801 409.801;" xml:space="preserve" fill="#85b8c9">
               <path d="M280.943,162.797c8.44,26.506,5.64,56.987-10.212,83.444c-15.32,25.562-39.688,42.149-65.99,47.81c40.53,15.133,83.655,4.941,102.642-26.743C326.678,235.106,314.632,191.378,280.943,162.797z" />
@@ -44,8 +44,8 @@
               <path d="M208.622,246.876c27.534-4.553,48.258-24.336,48.258-48.049c0-23.332-20.059-42.857-46.931-47.817c12.41,11.608,20.229,28.509,20.229,47.334C230.176,217.823,221.796,235.247,208.622,246.876z" />
             </svg>
           </div>
-          <p>同じ病気の人と気軽に話してみよう</p>
-          <p>情報を集めよう</p>
+          <p>家族や友人と体調を共有しよう</p>
+          <br />
         </div>
       </div>
     </div>
