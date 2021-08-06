@@ -5,7 +5,7 @@
         <img src="/icon.svg" width="50" height="50" alt="" />
       </div>
     </div>
-    <p class="text-center text-primary mt-3">パスワードをリセットします。</p>
+    <p class="text-center text-primary mt-3">登録されたメールアドレスにパスワード再設定の確認コードを送ります。</p>
     <p class="text-center text-primary">アカウントIDを入力してください。</p>
     <div class="row mt-3">
       <div class="container d-flex justify-content-center">
