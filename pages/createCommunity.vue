@@ -304,6 +304,23 @@ function getModalWidth () {
   return 500;
 };
 
+function base64toBlob (base64) {
+  const bin = atob(base64.replace(/^.*,/, ''));
+  const buffer = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) {
+    buffer[i] = bin.charCodeAt(i);
+  }
+  try {
+    const blob = new Blob([buffer.buffer], {
+      type: 'image/jpeg'
+    });
+
+    return blob;
+  } catch (e) {
+    return false;
+  }
+};
+
 export default {
   layout: 'user',
   middleware: 'authenticated',
@@ -380,81 +397,151 @@ export default {
   },
   methods: {
     selfImgOnChange (event) {
-      $('#uploadSelfImg').croppie('destroy');
+      if (event.target.files.length < 1) { return; }
+
+      const file = event.target.files[0];
+      const fileSize = file.size;
+
       let modalWidth = getModalWidth();
       const reader = new FileReader();
 
+      $('#uploadSelfImg').croppie('destroy');
+
+      // ファイル読み込み
       reader.onload = function (e) {
         const image = new Image();
-        image.src = e.target.result;
+
+        // 画像読み込み
         image.onload = function () {
+          let imgWidth = this.width;
+          let imgHeight = this.height;
+
+          let ImgSrc = e.target.result;
+
           if (this.width < modalWidth) {
             modalWidth = this.width;
           }
 
+          if (fileSize > 30000) {
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.sqrt(30000 / fileSize) * imgWidth;
+            canvas.height = Math.sqrt(30000 / fileSize) * imgHeight;
+            imgWidth = canvas.width;
+            imgHeight = canvas.height;
+
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+
+            const blob = base64toBlob(canvas.toDataURL("image/jpeg"));
+            ImgSrc = canvas.toDataURL("image/jpeg", 30000 / blob.size);
+
+            if (imgWidth < modalWidth) {
+              modalWidth = imgWidth;
+            }
+          }
+
           $('#uploadSelfImg').croppie({
-            viewport: { width: modalWidth - 30, height: modalWidth - 30 },
-            size: { width: modalWidth - 30, height: modalWidth - 30 },
+            viewport: { width: 200, height: 200 },
+            // size: { width: modalWidth - 30, height: modalWidth - 30 },
             boundary: { width: modalWidth, height: modalWidth },
+            customClass: 'img-responsive',
             enableOrientation: true
           });
 
           $('#uploadSelfImg').croppie('bind', {
-            url: e.target.result,
-            points: [this.width / 2, -this.height / 2, this.width / 2 + modalWidth, -(this.height / 2 + modalWidth)]
+            url: ImgSrc,
+            points: [imgWidth / 2, -imgHeight / 2, imgWidth / 2 + modalWidth, -(imgHeight / 2 + modalWidth)]
           });
 
           $('#uploadSelfImgModal').modal('show');
 
           $('.cr-slider').attr({
-            'min': modalWidth / this.width * 0.5000,
-            'max': modalWidth / this.width * 1.5000
+            'min': modalWidth / imgWidth * 0.5000,
+            'max': modalWidth / imgWidth * 1.5000
           });
 
-          $('#uploadSelfImg').croppie('setZoom', (modalWidth / this.width * 0.5000 + modalWidth / this.width * 1.5000) / 2.0);
-        }
+          $('#uploadSelfImg').croppie('setZoom', (modalWidth / imgWidth * 0.5000 + modalWidth / imgWidth * 1.5000) / 2.0);
+        };
+
+        image.src = e.target.result;
       };
-      reader.readAsDataURL(event.target.files[0]);
+
+      reader.readAsDataURL(file);
     },
     backImgOnChange (event) {
-      $('#uploadBackImg').croppie('destroy');
+      if (event.target.files.length < 1) { return; }
+
+      const file = event.target.files[0];
+      const fileSize = file.size;
+
       let modalWidth = getModalWidth();
       const reader = new FileReader();
 
+      $('#uploadBackImg').croppie('destroy');
+
+      // ファイル読み込み
       reader.onload = function (e) {
         const image = new Image();
-        image.src = e.target.result;
+
+        // 画像読み込み
         image.onload = function () {
+          let imgWidth = this.width;
+          let imgHeight = this.height;
+
+          let ImgSrc = e.target.result;
+
           if (this.width < modalWidth) {
             modalWidth = this.width;
           }
 
+          if (fileSize > 100000) {
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.sqrt(100000 / fileSize) * imgWidth;
+            canvas.height = Math.sqrt(100000 / fileSize) * imgHeight;
+            imgWidth = canvas.width;
+            imgHeight = canvas.height;
+
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+
+            const blob = base64toBlob(canvas.toDataURL("image/jpeg"));
+            ImgSrc = canvas.toDataURL("image/jpeg", 300000 / blob.size);
+
+            if (imgWidth < modalWidth) {
+              modalWidth = imgWidth;
+            }
+          }
+
           $('#uploadBackImg').croppie({
-            viewport: { width: modalWidth - 30, height: (modalWidth - 30) * 0.27 },
-            size: { width: modalWidth - 30, height: modalWidth - 30 },
+            viewport: { width: modalWidth, height: modalWidth * 0.25 },
+            size: { width: modalWidth, height: modalWidth * 0.25 },
             boundary: { width: modalWidth, height: modalWidth },
+            customClass: 'img-responsive',
             enableOrientation: true
           });
 
           $('#uploadBackImg').croppie('bind', {
-            url: e.target.result,
-            points: [this.width / 2, -this.height / 2, this.width / 2 + modalWidth, -(this.height / 2 + modalWidth)]
+            url: ImgSrc,
+            points: [imgWidth / 2, -imgHeight / 2, imgWidth / 2 + modalWidth, -(imgHeight / 2 + modalWidth)]
           });
 
           $('#uploadBackImgModal').modal('show');
 
           $('.cr-slider').attr({
-            'min': modalWidth / this.width * 0.5000,
-            'max': modalWidth / this.width * 1.5000
+            'min': modalWidth / imgWidth * 0.3000,
+            'max': modalWidth / imgWidth * 1.5000
           });
 
-          $('#uploadBackImg').croppie('setZoom', (modalWidth / this.width * 0.5000 + modalWidth / this.width * 1.5000) / 2.0);
-        }
+          $('#uploadBackImg').croppie('setZoom', (modalWidth / imgWidth * 0.5000 + modalWidth / imgWidth * 1.5000) / 2.0);
+        };
+
+        image.src = e.target.result;
       };
-      reader.readAsDataURL(event.target.files[0]);
+
+      reader.readAsDataURL(file);
     },
     selfImgApply () {
-      $('#uploadSelfImg').croppie('result', { type: 'canvas', circle: true, quality: 0.85 })
+      $('#uploadSelfImg').croppie('result', { type: 'canvas', circle: true, quality: 0.70 })
       .then((result) => {
         this.selfImg = result;
         $('#selfImgTarget').attr('src', result);
@@ -464,7 +551,7 @@ export default {
       });
     },
     backImgApply () {
-      $('#uploadBackImg').croppie('result', { type: 'canvas', format: 'jpeg', quality: 0.85 })
+      $('#uploadBackImg').croppie('result', { type: 'canvas', format: 'jpeg', quality: 0.95 })
       .then((result) => {
         this.backImg = result;
         $('#backImgTarget').attr('src', result);
@@ -489,8 +576,8 @@ export default {
           communityId: this.communityId ? this.communityId : now.getTime(),
           communityName: this.communityName.substring(0, 100),
           description: this.description ? this.description.substring(0, 300) : null,
-          backImg: this.backImg,
-          selfImg: this.selfImg,
+          backImg: $('#backImgTarget').attr('src'),
+          selfImg: $('#selfImgTarget').attr('src'),
           part1: this.part1,
           part2: this.part2,
           part3: this.part3,
