@@ -8,8 +8,8 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'keywords', content: 'bluerosenote,ブルーローズノート,体温記録,食事記録,症状記録,薬記録,病気SNS' },
-      { hid: 'description', name: 'description', content: 'BLUE ROSE NOTEは日々の健康記録と病気に関するコミュニティ機能を提供します。' },
-      { hid: 'og:description', name: 'og:description', property: 'og:description', content: 'BLUE ROSE NOTEは日々の健康記録と病気に関するコミュニティ機能を提供します。' }
+      { hid: 'description', name: 'description', content: 'ブルーローズノートは日々の健康記録と病気に関するコミュニティ機能を提供します。' },
+      { hid: 'og:description', name: 'og:description', property: 'og:description', content: 'ブルーローズノートは日々の健康記録と病気に関するコミュニティ機能を提供します。' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
