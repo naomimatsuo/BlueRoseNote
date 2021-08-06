@@ -3,12 +3,12 @@
     <div class="bg-transparent">
       <div class="d-none d-lg-block">
         <div class="d-flex justify-content-end mb-2">
-          <button class="btn btn-secondary rounded-pill px-4" data-toggle="modal" data-target="#newTweetModal">つぶやく</button>
+          <button class="btn btn-secondary rounded px-5" data-toggle="modal" data-target="#newTweetModal">つぶやく</button>
         </div>
       </div>
       <div class="d-xl-none d-lg-none">
         <div style="position:fixed; bottom: 10px; right: 20px; z-index: 10">
-          <button class="btn btn-lg btn-secondary rounded-pill px-4" data-toggle="modal" data-target="#newTweetModal">つぶやく</button>
+          <button class="btn btn-lg btn-secondary rounded px-5" data-toggle="modal" data-target="#newTweetModal">つぶやく</button>
         </div>
       </div>
       <!-- Old Posts-->
@@ -102,7 +102,7 @@
                 </svg>
               </button>
             </div>
-            <button id="saveRecordBtn" type="button" class="btn btn-secondary rounded-0" style="width:10rem;" @click="saveRecord">
+            <button id="saveRecordBtn" type="button" class="btn btn-secondary rounded" style="width:10rem;" @click="saveRecord">
               <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               つぶやく
             </button>

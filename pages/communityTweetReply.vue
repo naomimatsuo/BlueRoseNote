@@ -57,7 +57,7 @@
                 </svg>
               </button>
             </div>
-            <button id="saveRecordBtn" type="button" class="btn btn-secondary rounded-0" style="width:10rem;" @click="saveRecord">
+            <button id="saveRecordBtn" type="button" class="btn btn-secondary rounded" style="width:10rem;" @click="saveRecord">
               <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               つぶやく
             </button>

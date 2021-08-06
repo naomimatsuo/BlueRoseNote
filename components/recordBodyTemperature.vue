@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="d-flex justify-content-end mt-2">
-        <button id="saveRecordBtn" type="button" class="btn btn-lg btn-secondary text-white rounded-0" style="width:10rem;" @click="saveRecord">
+        <button id="saveRecordBtn" type="button" class="btn btn-secondary text-white rounded py-2" style="width:10rem;" @click="saveRecord">
           <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           記録
         </button>

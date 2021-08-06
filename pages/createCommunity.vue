@@ -239,8 +239,8 @@
                 </div>
               </div>
             </div>
-            <div class="row justify-content-end mr-0">
-              <button id="saveCommuBtn" type="button" class="btn btn-secondary rounded-0 text-white px-4" @click="saveCommunity">保存</button>
+            <div class="row justify-content-end mr-n1 mt-4">
+              <button id="saveCommuBtn" type="button" class="btn btn-secondary rounded text-white" style="width:9.3rem" @click="saveCommunity">保存</button>
             </div>
           </div>
         </div>
@@ -252,9 +252,9 @@
         <div class="modal-content">
           <div class="p-2">
             <div class="row d-flex justify-content-between mx-0">
-              <button type="button" class="btn btn-secondary rounded-0 d-inline" data-dismiss="modal" aria-label="Close">戻る</button>
+              <button type="button" class="btn btn-secondary rounded d-inline" data-dismiss="modal" aria-label="Close">戻る</button>
               <h5 class="d-inline">メディアを編集</h5>
-              <button type="button" class="btn btn-secondary rounded-0" @click="backImgApply">設定</button>
+              <button type="button" class="btn btn-secondary rounded" @click="backImgApply">設定</button>
             </div>
           </div>
           <div class="modal-body p-0">
@@ -270,9 +270,9 @@
         <div class="modal-content">
           <div class="p-2">
             <div class="row d-flex justify-content-between mx-0">
-              <button type="button" class="btn btn-secondary rounded-0 d-inline" data-dismiss="modal" aria-label="Close">戻る</button>
+              <button type="button" class="btn btn-secondary rounded d-inline" data-dismiss="modal" aria-label="Close">戻る</button>
               <h5 class="d-inline">メディアを編集</h5>
-              <button type="button" class="btn btn-secondary rounded-0" @click="selfImgApply">設定</button>
+              <button type="button" class="btn btn-secondary rounded" @click="selfImgApply">設定</button>
             </div>
           </div>
           <div class="modal-body p-0">
