@@ -1,8 +1,10 @@
 <template>
-  <div id="postsCotainer" class="row mx-0 mt-2 bg-transparent">
-    <div id="xAxis" />
-    <div v-for="post in posts" :key="post.recordId" style="position: relative">
-      <div :id="'no_' + post.recordId" />
+  <div class="w-100 mt-2">
+    <div id="postsCotainer" class="row mx-0 mt-2 bg-transparent">
+      <div id="xAxis" />
+      <div v-for="post in posts" :key="post.recordId" style="position: relative">
+        <div :id="'no_' + post.recordId" />
+      </div>
     </div>
     <itemLoader v-if="showLoader" class="pt-4" />
   </div>
@@ -11,7 +13,7 @@
 <script>
 import API from '@aws-amplify/api';
 
-function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, data) {
+function drawPost (width, xAxisHeight, postHeight, xScale, yScale, colorScale, xAxisSvg, data) {
   // posts
   const postSvg = d3.select(`#no_${data.recordId}`)
     .append("svg")
@@ -38,7 +40,7 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
 
   // add data and tip
   if ((data.temperature >= 35.0) && (data.temperature <= 38.0)) {
-    postSvg.append("g")
+    const dataCircles = postSvg.append("g")
       .selectAll("circle")
       .data([
         [data.temperature, 0.5]
@@ -47,21 +49,26 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
       .append("circle")
       .attr("cx", function (d) { return xScale(d[0]); })
       .attr("cy", function (d) { return yScale(d[1]); })
-      .attr("fill", "#73b3b3")
+      .attr("fill", colorScale(data.temperature))
       .style("opacity", 0.70)
+      .attr("r", 10);
+
+    blinkingDataCircles();
+
+    function blinkingDataCircles () {
+      dataCircles
       .attr("r", 10)
-      .on("mouseover", function (d, i) {
-        d3.select(this).transition()
-          .duration('500')
-          .style("opacity", 0.60)
-          .attr('r', 13);
-      })
-      .on("mouseout", function () {
-        d3.select(this).transition()
-          .duration('500')
-          .style("opacity", 0.70)
-          .attr('r', 10);
-      });
+      .style("opacity", 0.75)
+      .transition()
+      .duration(2000)
+      .attr("r", 11.5)
+      .style("opacity", 0.55)
+      .transition()
+      .duration(2000)
+      .attr("r", 10)
+      .style("opacity", 0.75)
+      .on("end", blinkingDataCircles);
+    };
 
     // tip
     postSvg.append("g")
@@ -156,6 +163,7 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, xAxisSvg, dat
 }
 
 export default {
+  props: { clientid: { type: String, default: null } },
   data () {
     return {
       showLoader: true,
@@ -165,13 +173,14 @@ export default {
       xAxisMargin: { top: 30, right: 20, left: 18 },
       xScale: null,
       yScale: null,
+      colorScale: null,
       xAxisSvg: null,
       posts: [],
       lastEvaluatedKey: null
     }
   },
   beforeMount () {
-    const accountId = JSON.parse(localStorage.getItem('targetProfile'));
+    const accountId = this.clientid;
     if (!accountId) { return; }
 
     const params = {
@@ -205,27 +214,31 @@ export default {
         .attr("viewBox", `0 0 ${this.width} ${this.xAxisHeight}`)
         .attr("preserveAspectRatio", "xMidYMid");
 
-        this.xScale = d3.scaleLinear()
-          .domain([35.0, 38.0])
-          .range([this.xAxisMargin.left, this.width - this.xAxisMargin.right]);
+      this.xScale = d3.scaleLinear()
+        .domain([35.0, 38.0])
+        .range([this.xAxisMargin.left, this.width - this.xAxisMargin.right]);
 
-        this.xAxis = this.xAxisSvg.append("g")
-          .attr("transform", "translate(0," + this.xAxisMargin.top + ")")
-          .call(d3.axisTop(this.xScale).ticks(7).tickPadding(10).tickFormat(d3.format(".1f")));
+      this.xAxis = this.xAxisSvg.append("g")
+        .attr("transform", "translate(0," + this.xAxisMargin.top + ")")
+        .call(d3.axisTop(this.xScale).ticks(7).tickPadding(10).tickFormat(d3.format(".1f")));
 
-        this.xAxis.select(".domain").attr("visibility", "hidden");
-        this.xAxis.selectAll(".tick").select("line").attr("stroke", "#C4C4C4").attr("stroke-width", 2.0);
-        this.xAxis.selectAll("text").attr("font-size", 16);
+      this.colorScale = d3.scaleLinear()
+        .domain([35.0, 36.0, 37.0, 37.5, 38.0])
+        .range(['#85c9c9', '#85b8c9', '#85a0c9', '#8577b3', '#a577b3']);
 
-        this.yScale = d3.scaleLinear()
-          .domain([0, 1])
-          .range([this.postHeight, 0]);
+      this.xAxis.select(".domain").attr("visibility", "hidden");
+      this.xAxis.selectAll(".tick").select("line").attr("stroke", "#C4C4C4").attr("stroke-width", 2.0);
+      this.xAxis.selectAll("text").attr("font-size", 16);
+
+      this.yScale = d3.scaleLinear()
+        .domain([0, 1])
+        .range([this.postHeight, 0]);
     }
 
     for (let index = 0; index < this.posts.length; index++) {
       if ($(`#no_${this.posts[index].recordId}`).children().length === 0) {
         drawPost(this.width, this.xAxisHeight,
-          this.postHeight, this.xScale, this.yScale, this.xAxisSvg,
+          this.postHeight, this.xScale, this.yScale, this.colorScale, this.xAxisSvg,
           this.posts[index]);
       }
     }

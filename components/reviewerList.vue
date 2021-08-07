@@ -9,7 +9,7 @@
           <div class="ml-2 w-100">
             <div class="row mx-0">
               <span><strong>{{ application.userName }}</strong></span>
-              <span class="ml-1">@{{ application.reviewerId }}</span>
+              <span class="ml-1"><small>@{{ application.accountId }}</small></span>
             </div>
             <div class="row mx-0">
               <small>{{ application.description.substr(0, 35) }}</small>
@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="row mx-0 mt-3 d-flex justify-content-end">
-          <button class="btn btn-sm btn-secondary rounded-0 px-4" @click="saveApplication(application, $event)">
+          <button class="btn btn-sm btn-secondary rounded px-4" @click="saveApplication(application, $event)">
             <span v-if="application.saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             保存
           </button>
@@ -88,9 +88,12 @@ export default {
 
     const params = {
       body: {
-        TableName: 'Reviewer',
-        FilterExpression: 'targetId = :tId and reviewStatus = :st',
-        ExpressionAttributeValues: { ":tId": this.clientId, ":st": 1 }
+        target: 'reviewer',
+        params: {
+          TableName: 'Reviewer',
+          FilterExpression: 'targetId = :tId and reviewStatus = :st',
+          ExpressionAttributeValues: { ":tId": this.clientId, ":st": 1 }
+        }
       }
     };
 
@@ -143,7 +146,9 @@ export default {
         API.put('BlueRoseNoteAPIs', '/Reviewer', params)
           .then((response) => {
             if (response.statusCode === 200) {
-              this.applications.splice(targetApIdx, 1);
+              if (target.answer === "0") {
+                this.applications.splice(targetApIdx, 1);
+              }
             }
           })
           .catch((error) => {

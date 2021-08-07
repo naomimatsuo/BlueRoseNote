@@ -67,6 +67,27 @@
         <div class="text-break u-pre-wrap">{{ description }}</div>
       </div>
     </div>
+    <ul v-if="previews.length > 0" class="list-group-item rounded p-1 my-1 mx-2">
+      <li v-for="preview in previews" :key="preview.targetId+preview.reviewerId" class="list-group-item border-0 p-1">
+        <button type="button" class="btn btn-block d-flex" @click="gotoProfile(preview)">
+          <div class="d-flex">
+            <div class="image">
+              <img :src="preview.selfImg" class="rounded-circle bg-gray" width="55" />
+            </div>
+            <div class="ml-2 w-100">
+              <div class="row mx-0">
+                <span><strong>{{ preview.userName }}</strong></span>
+                <span class="ml-1"><small>@{{ preview.accountId }}</small></span>
+              </div>
+              <div class="row mx-0">
+                <small>{{ preview.description.substr(0, 35) }}</small>
+                <small v-if="preview.description.length > 35">...</small>
+              </div>
+            </div>
+          </div>
+        </button>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -93,7 +114,8 @@ export default {
       birthDate: null,
       backImg: null,
       selfImg: null,
-      showLoader: true
+      showLoader: true,
+      previews: []
     }
   },
   head () {
@@ -111,7 +133,6 @@ export default {
     }
 
     const response = await API.post('BlueRoseNoteAPIs', '/UserProfile', params);
-    this.showLoader = false;
 
     if (response.statusCode !== 200) { return; }
     if (!response.body) { return; }
@@ -129,6 +150,31 @@ export default {
     this.birthDate = res.birthDate;
     this.backImg = res.backImg;
     this.selfImg = res.selfImg;
+
+    const previewParams = {
+      body: {
+        target: 'target',
+        params: {
+          TableName: 'Reviewer',
+          FilterExpression: 'reviewerId = :rId and reviewStatus = :st',
+          ExpressionAttributeValues: { ":rId": this.clientId, ":st": 1 }
+        }
+      }
+    };
+
+    API.post('BlueRoseNoteAPIs', '/Reviewer', previewParams)
+      .then((response) => {
+        if (response.statusCode !== 200) { return; }
+
+        const ret = JSON.parse(response.body).Items;
+        this.previews = ret;
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        this.showLoader = false;
+      });
   },
   methods: {
     changeTab (event) {
@@ -145,6 +191,10 @@ export default {
         return;
       }
       this.showScholorTab = true;
+    },
+    gotoProfile (target) {
+      localStorage.setItem('targetProfile', JSON.stringify(target.accountId));
+      this.$router.push('/previewProfile');
     }
   }
 }

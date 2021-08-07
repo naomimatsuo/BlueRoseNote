@@ -1,5 +1,5 @@
 <template>
-  <div class="row mx-0 mt-2 bg-transparent">
+  <div class="w-100 mt-2">
     <ul class="list-group mt-2">
       <li v-for="post in posts" :key="post.recordId" class="list-group-item rounded-0 bg-transparent">
         <div class="d-flex justify-content-between">
@@ -64,6 +64,7 @@
 import API from '@aws-amplify/api';
 
 export default {
+  props: { clientid: { type: String, default: null } },
   data () {
     return {
       showLoader: true,
@@ -72,7 +73,7 @@ export default {
     }
   },
   mounted () {
-    const accountId = JSON.parse(localStorage.getItem('targetProfile'));
+    const accountId = this.clientid;
     if (!accountId) { return; }
 
     const params = {

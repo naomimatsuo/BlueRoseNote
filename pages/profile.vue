@@ -37,7 +37,7 @@
               <p for="accountId" class="ml-1">{{ accountId }}</p>
             </div>
             <div class="mb-2">
-              <label for="userName" class="mb-0"><small>ユーザー名</small></label>
+              <label for="userName" class="mb-0"><small>ユーザー名</small><span class="ml-1 badge badge-warning">必須</span></label>
               <div class="input-group">
                 <input id="userName" v-model="userName" type="text" class="form-control" maxlength="30" />
                 <p class="invalid-feedback">ユーザー名を入力してください。</p>
@@ -104,17 +104,17 @@
             <div class="mb-2">
               <label class="mb-0"><small>生年月日</small></label>
               <div class="row mx-1">
-                <div class="col-sm-4 col-md-3 pl-0">
+                <div class="col-sm-4 col-md-3 pl-0 mb-1">
                   <select v-model="birthYear" class="custom-select">
                     <option v-for="no in yearRange" :key="no" :value="no">{{ no }}年</option>
                   </select>
                 </div>
-                <div class="col-sm-4 col-md-3 pl-0">
+                <div class="col-sm-4 col-md-3 pl-0 mb-1">
                   <select v-model="birthMonth" class="custom-select">
                     <option v-for="no in 12" :key="no" :value="no">{{ no }}月</option>
                   </select>
                 </div>
-                <div class="col-sm-4 col-md-3 pl-0">
+                <div class="col-sm-4 col-md-3 pl-0 mb-1">
                   <select v-model="birthDate" class="custom-select">
                     <option v-for="no in 31" :key="no" :value="no">{{ no }}日</option>
                   </select>

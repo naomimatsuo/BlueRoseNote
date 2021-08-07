@@ -6,8 +6,6 @@ exports.handler = async (event) => {
 
     let val = null;
 
-    console.log(event);
-
     if (event.clientId) {
         const ret = await docClient.get({
             TableName: 'UserProfile',
@@ -18,7 +16,6 @@ exports.handler = async (event) => {
     } else {
         const ret = await docClient.scan({
             TableName: 'UserProfile',
-            Limit: 1,
             FilterExpression: "accountId = :val",
             ExpressionAttributeValues: { ":val": event.accountId }
         }).promise();

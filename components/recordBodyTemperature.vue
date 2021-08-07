@@ -105,7 +105,7 @@ function drawPost (width, xAxisHeight, postHeight, xScale, yScale, colorScale, x
       .style("opacity", 0.70)
       .attr("r", 10);
 
-      blinkingDataCircles();
+    blinkingDataCircles();
 
     function blinkingDataCircles () {
       dataCircles

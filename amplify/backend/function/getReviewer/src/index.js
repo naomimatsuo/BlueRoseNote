@@ -4,14 +4,17 @@ exports.handler = async (event) => {
 
     const docClient = new AWS.DynamoDB.DocumentClient();
 
-    console.log(event);
+    const request = JSON.parse(JSON.stringify(event));
 
     const val = await docClient.scan(
-        event
+        request.params
     ).promise();
 
     for (let i = 0; i < val.Items.length; i++) {
-        const cId = val.Items[i].reviewerId;
+        let cId = val.Items[i].reviewerId;
+        if (request.target === 'target') {
+            cId = val.Items[i].targetId;
+        }
 
         const user = await docClient.get({
             TableName: 'UserProfile',
@@ -22,10 +25,12 @@ exports.handler = async (event) => {
             val.Items[i].userName = null;
             val.Items[i].selfImg = null;
             val.Items[i].description = null;
+            val.Items[i].accountId = null;
         } else {
             val.Items[i].userName = user.Item.userName;
             val.Items[i].selfImg = user.Item.selfImg;
             val.Items[i].description = user.Item.description;
+            val.Items[i].accountId = user.Item.accountId;
         }
     }
 

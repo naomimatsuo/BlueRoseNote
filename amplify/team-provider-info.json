@@ -167,6 +167,10 @@
         "deleteUserCommuActivity": {
           "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
           "s3Key": "amplify-builds/deleteUserCommuActivity-63777070794741672f49-build.zip"
+        },
+        "searchUser": {
+          "deploymentBucketName": "amplify-amplifyfbe781a77c4c4-staging-93754-deployment",
+          "s3Key": "amplify-builds/searchUser-6645565a7172766c4e30-build.zip"
         }
       }
     }

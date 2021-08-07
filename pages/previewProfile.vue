@@ -12,7 +12,7 @@
           </div>
         </div>
       </div>
-      <!-- <div v-if="!isYourself()" style="position:relative;">
+      <div v-if="!isYourself" style="position:relative;">
         <div class="mt-2 mr-3 mb-n5 d-flex justify-content-end">
           <button v-if="reviewStatus === null" class="btn btn-outline-secondary" @click="addReviewerApplication(0, $event)">
             <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -24,7 +24,7 @@
             閲覧取り消し
           </button>
         </div>
-      </div> -->
+      </div>
       <div class="container-inputgroup mb-2">
         <div class="ml-3">
           <p class="font-weight-bold mb-0">{{ userName }}
@@ -82,48 +82,50 @@
         </div>
       </div>
     </div>
-    <!-- <div class="mt-2 mb-2 d-flex justify-content-between">
-      <button v-if="reviewTweet" id="tweet_btn" type="button" class="btn btn-category bg-transparent border border-primary text-primary rounded-0 mr-1 px-5" @click="toggleTweetComponent">
+    <div class="mt-2 mb-2 d-flex justify-content-between">
+      <button v-if="reviewTweet" id="tweet_btn" type="button" class="btn btn-lg btn-block btn-category bg-transparent border border-primary text-primary rounded-0 mr-1" @click="toggleTweetComponent">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
           <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
           <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
         </svg>
       </button>
-      <button v-if="reviewTemperature" id="temp_btn" type="button" class="btn btn-category bg-transparent border border-primary rounded-0 mr-1 mt-0 px-5" @click="toggleTempComponent">体温</button>
-      <button v-if="reviewMeddicine" id="medicine_btn" type="button" class="btn btn-category bg-transparent border border-primary rounded-0 mr-1 mt-0 px-5" @click="toggleMedicineComponent">薬</button>
-      <button v-if="reviewAppetite" id="appetite_btn" type="button" class="btn btn-category bg-transparent border border-primary rounded-0 mt-0 px-5" @click="toggleAppetiteComponent">食事</button>
+      <button v-if="reviewTemperature" id="temp_btn" type="button" class="btn btn-lg btn-block btn-category bg-transparent border border-primary rounded-0 mr-1 mt-0" @click="toggleTempComponent">体温</button>
+      <button v-if="reviewMedicine" id="medicine_btn" type="button" class="btn btn-lg btn-block btn-category bg-transparent border border-primary rounded-0 mr-1 mt-0" @click="toggleMedicineComponent">薬</button>
+      <button v-if="reviewAppetite" id="appetite_btn" type="button" class="btn btn-lg btn-block btn-category bg-transparent border border-primary rounded-0 mt-0" @click="toggleAppetiteComponent">食事</button>
     </div>
-    <div class="h-100">
+    <div class="w-100 h-100">
       <div>
-        <RecordTweet v-if="showRecordTweet" />
-        <RecordBodyTemp v-if="showRecordBodyTemp" />
-        <RecordMedicine v-if="showRecordMedicine" />
-        <RecordAppetite v-if="showRecordAppetite" />
+        <RecordTweet v-if="showRecordTweet" :clientid="clientId" />
+        <RecordBodyTemp v-if="showRecordBodyTemp" :clientid="clientId" />
+        <RecordMedicine v-if="showRecordMedicine" :clientid="clientId" />
+        <RecordAppetite v-if="showRecordAppetite" :clientid="clientId" />
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
 import { API } from 'aws-amplify';
 
-// import RecordTweet from '~/components/reviewTweet'
-// import RecordBodyTemp from '~/components/reviewBodyTemperature'
-// import RecordAppetite from '~/components/reviewAppetite'
-// import RecordMedicine from '~/components/reviewMedicine'
+import RecordTweet from '~/components/reviewTweet'
+import RecordBodyTemp from '~/components/reviewBodyTemperature'
+import RecordAppetite from '~/components/reviewAppetite'
+import RecordMedicine from '~/components/reviewMedicine'
 
 export default {
-  // components: {
-  //   RecordTweet,
-  //   RecordBodyTemp,
-  //   RecordAppetite,
-  //   RecordMedicine
-  // },
+  components: {
+    RecordTweet,
+    RecordBodyTemp,
+    RecordAppetite,
+    RecordMedicine
+  },
   layout: 'user',
   middleware: 'authenticated',
   data () {
     return {
+      isYourself: true,
       accountId: null,
+      clientId: null,
       userName: null,
       description: null,
       location: null,
@@ -139,7 +141,7 @@ export default {
       reviewStatus: null,
       reviewTweet: false,
       reviewTemperature: false,
-      reviewMeddicine: false,
+      reviewMedicine: false,
       reviewAppetite: false,
       showRecordTweet: false,
       showRecordBodyTemp: false,
@@ -154,7 +156,7 @@ export default {
       title: 'ユーザプロフィール'
     }
   },
-  mounted () {
+  async mounted () {
     this.accountId = JSON.parse(localStorage.getItem('targetProfile'));
     if (!this.accountId) { return; }
 
@@ -164,36 +166,33 @@ export default {
       }
     }
 
-    API
-      .post('BlueRoseNoteAPIs', '/UserProfile', params)
-      .then((response) => {
-         if (response.statusCode !== 200) { return; }
+    const response = await API.post('BlueRoseNoteAPIs', '/UserProfile', params);
+    if (response.statusCode !== 200) { return; }
 
-        const res = JSON.parse(response.body);
-        this.userName = res.userName;
-        this.description = res.description;
-        this.location = res.location;
-        this.gender = res.gender;
-        this.userHeight = res.userHeight;
-        this.userWeight = res.userWeight;
-        this.birthYear = res.birthYear;
-        this.birthMonth = res.birthMonth;
-        this.birthDate = res.birthDate;
-        this.backImg = res.backImg;
-        this.selfImg = res.selfImg;
-      })
-      .catch((error) => {
-        console.log(error.response);
-      })
-      .finally(() => {
-        this.showLoader = false;
-      });
+    const res = JSON.parse(response.body);
+    this.clientId = res.clientId;
+    this.userName = res.userName;
+    this.description = res.description;
+    this.location = res.location;
+    this.gender = res.gender;
+    this.userHeight = res.userHeight;
+    this.userWeight = res.userWeight;
+    this.birthYear = res.birthYear;
+    this.birthMonth = res.birthMonth;
+    this.birthDate = res.birthDate;
+    this.backImg = res.backImg;
+    this.selfImg = res.selfImg;
+
+    this.isYourself = this.clientId === String(this.$cookies.get('account_id'));
 
     const anotherParams = {
       body: {
-        TableName: 'Reviewer',
-        FilterExpression: 'targetId = :tId and reviewerId = :rId',
-        ExpressionAttributeValues: { ":tId": this.accountId, ":rId": this.$cookies.get('account_id') }
+        target: 'reviewer',
+        params: {
+          TableName: 'Reviewer',
+          FilterExpression: 'targetId = :tId and reviewerId = :rId',
+          ExpressionAttributeValues: { ":tId": this.clientId, ":rId": String(this.$cookies.get('account_id')) }
+        }
       }
     };
 
@@ -221,18 +220,15 @@ export default {
             this.showRecordAppetite = true;
           }
         }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          this.showLoader = false;
+        });
   },
   methods: {
-    isYourself () {
-      if (this.accountId === this.$cookies.get('account_id')) {
-        return true;
-      }
-      return false;
-    },
     toggleTweetComponent () {
       this.showRecordTweet = true;
       this.showRecordBodyTemp = false;
@@ -265,8 +261,8 @@ export default {
 
       const params = {
         body: {
-          targetId: this.accountId,
-          reviewerId: this.$cookies.get('account_id'),
+          targetId: this.clientId,
+          reviewerId: String(this.$cookies.get('account_id')),
           reviewStatus: statusNo,
           updatedAt: this.$getNowString(now)
         }
@@ -309,6 +305,11 @@ export default {
   .container-inputgroup {
     margin-top: 3.0rem;
   }
+
+  .btn-category {
+    font-size: 0.75rem;
+    background-color: transparent;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -329,6 +330,11 @@ export default {
 
   .container-inputgroup {
     margin-top: 4.5rem;
+  }
+
+  .btn-category {
+    font-size: 1.0rem;
+    background-color: transparent;
   }
 }
 
@@ -363,6 +369,11 @@ export default {
     position: absolute;
     top: 45%;
     z-index: 100;
+  }
+
+  .btn-category {
+    font-size: 1.0rem;
+    background-color: transparent;
   }
 }
 </style>
