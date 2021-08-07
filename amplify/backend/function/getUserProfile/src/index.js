@@ -23,7 +23,6 @@ exports.handler = async (event) => {
         if (ret.Items.length < 1) {
             val = null;
         } else {
-            ret.Items[0].clientId = null;
             val = ret.Items[0];
         }
     }

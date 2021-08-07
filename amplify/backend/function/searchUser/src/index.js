@@ -4,8 +4,9 @@ exports.handler = async (event) => {
 
     const docClient = new AWS.DynamoDB.DocumentClient();
 
-    const records = await docClient.scan(event.body).promise();
-    const ret = records.Items.map((item) => {
+    const records = await docClient.scan(event).promise();
+
+    records.Items = records.Items.map((item) => {
         return {
             accountId: item.accountId,
             selfImg: item.selfImg,
@@ -16,12 +17,12 @@ exports.handler = async (event) => {
 
     const response = {
         statusCode: 200,
-    //  Uncomment below to enable CORS requests
-    //  headers: {
-    //      "Access-Control-Allow-Origin": "*",
-    //      "Access-Control-Allow-Headers": "*"
-    //  },
-        body: JSON.stringify(ret)
+        //  Uncomment below to enable CORS requests
+        //  headers: {
+        //      "Access-Control-Allow-Origin": "*",
+        //      "Access-Control-Allow-Headers": "*"
+        //  },
+        body: JSON.stringify(records)
     };
     return response;
 };

@@ -18,8 +18,8 @@
       <img src="/bluerose.png" height="85%" class="img-responsive rose__img_left" style="position:absolute;bottom:0;" />
     </div>
     <div class="row">
-      <div class="col-12 col-lg-6">
-        <div class="jumbotron text-center bg-yellow mb-2">
+      <div class="col-12 col-lg-6 mb-2">
+        <div class="jumbotron text-center bg-yellow mb-2 h-100">
           <h2 class="text-primary">体調管理機能</h2>
           <div class="my-4">
             <button class="btn btn-lg btn-light px-3">症状</button>
@@ -31,8 +31,8 @@
           <p>体調の変化に目を向けよう</p>
         </div>
       </div>
-      <div class="col-12 col-lg-6">
-        <div class="jumbotron text-center bg-yellow">
+      <div class="col-12 col-lg-6 mb-2">
+        <div class="jumbotron text-center bg-yellow h-100">
           <h2 class="text-primary">共有機能</h2>
           <div class="my-4">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 409.801 409.801" style="enable-background:new 0 0 409.801 409.801;" xml:space="preserve" fill="#85b8c9">
@@ -45,7 +45,6 @@
             </svg>
           </div>
           <p>家族や友人と体調を共有しよう</p>
-          <br />
         </div>
       </div>
     </div>
