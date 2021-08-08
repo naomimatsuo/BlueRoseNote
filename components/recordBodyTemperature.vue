@@ -4,7 +4,7 @@
     <div class="bg-white p-2">
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4">
-          <div class="input-group mb-3">
+          <div class="input-group">
             <input id="bodytemperature" v-model="newItem.temperature" type="number" min="35.0" max="42.0" class="form-control" aria-label="体温" aria-describedby="bodytemp-addon" />
             <div class="input-group-append">
               <span id="bodytemp-addon" class="input-group-text bg-white" style="border-radius: 0 .25em .25em 0">度</span>
@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="d-flex justify-content-end mt-2">
-        <button id="saveRecordBtn" type="button" class="btn btn-secondary text-white rounded py-2" style="width:10rem;" @click="saveRecord">
+        <button id="saveRecordBtn" type="button" class="btn btn-secondary text-white rounded" style="width:10rem;" @click="saveRecord">
           <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           記録
         </button>

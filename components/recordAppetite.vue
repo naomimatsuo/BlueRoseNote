@@ -176,12 +176,10 @@
         <input v-model="newItem.memo" type="text" class="form-control" aria-label="gohan" aria-describedby="memo-addon" maxlength="100" />
       </div>
       <p class="text-right mb-0">
-        <span>
-          <small>{{ newItem.memo ? newItem.memo.length : 0 }}/100</small>
-        </span>
+        <small>{{ newItem.memo ? newItem.memo.length : 0 }}/100</small>
       </p>
       <div class="d-flex justify-content-end mt-2">
-        <button id="saveRecordBtn" type="button" class="btn btn-secondary text-white rounded py-2" style="width:10rem;" @click="saveRecord">
+        <button id="saveRecordBtn" type="button" class="btn btn-secondary text-white rounded" style="width:10rem;" @click="saveRecord">
           <span v-if="saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           記録
         </button>

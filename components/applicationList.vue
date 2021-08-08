@@ -22,7 +22,7 @@
           <!-- moblie -->
           <div class="d-block d-sm-none">
             <div class="btn-group btn-group-toggle mr-3 w-100" data-toggle="buttons">
-              <label class="btn btn-sm btn-outline-primary">
+              <label class="btn btn-sm btn-outline-primary" style="border-color: #ced4da">
                 <input v-model="application.answer" type="radio" name="options" value="1" />
                 <span class="mr-3 text-success">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -31,7 +31,7 @@
                 </span>
                 許可
               </label>
-              <label class="btn btn-sm btn-outline-primary">
+              <label class="btn btn-sm btn-outline-primary" style="border-color: #ced4da">
                 <input v-model="application.answer" type="radio" name="options" value="0" />
                 <span class="mr-3 text-danger">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
@@ -42,9 +42,10 @@
               </label>
             </div>
           </div>
+          <!-- pc -->
           <div class="d-none d-sm-block">
             <div class="btn-group btn-group-toggle mr-3" data-toggle="buttons">
-              <label class="btn btn-sm btn-outline-primary px-5">
+              <label class="btn btn-sm btn-outline-primary px-5" style="border-color: #ced4da">
                 <input v-model="application.answer" type="radio" name="options" value="1" />
                 <span class="mr-3 text-success">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -53,7 +54,7 @@
                 </span>
                 許可
               </label>
-              <label class="btn btn-sm btn-outline-primary px-5">
+              <label class="btn btn-sm btn-outline-primary px-5" style="border-color: #ced4da">
                 <input v-model="application.answer" type="radio" name="options" value="0" />
                 <span class="mr-3 text-danger">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
@@ -90,7 +91,7 @@
           </div>
         </div>
         <div class="row mx-0 mt-1 d-flex justify-content-end">
-          <button class="btn btn-sm btn-secondary rounded px-5" @click="saveApplication(application, $event)">
+          <button class="btn btn-secondary rounded px-5" @click="saveApplication(application, $event)">
             <span v-if="application.saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             保存
           </button>

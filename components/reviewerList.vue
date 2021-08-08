@@ -9,7 +9,7 @@
           <div class="ml-2 w-100">
             <div class="row mx-0">
               <span><strong>{{ application.userName }}</strong></span>
-              <span class="ml-1"><small>@{{ application.accountId }}</small></span>
+              <span class="text-muted ml-1"><small>@{{ application.accountId }}</small></span>
             </div>
             <div class="row mx-0">
               <small>{{ application.description.substr(0, 35) }}</small>
@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="btn-group btn-group-toggle mt-2" data-toggle="buttons">
-          <label :class="{ active: application.answer == '1' }" class="btn btn-sm btn-outline-primary px-4">
+          <label :class="{ active: application.answer == '1' }" class="btn btn-sm btn-outline-primary px-4" style="border-color: #ced4da">
             <input v-model="application.answer" type="radio" name="options" value="1" />
             <span class="mr-3 text-success">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -27,7 +27,7 @@
             </span>
             許可
           </label>
-          <label class="btn btn-sm btn-outline-primary px-4">
+          <label class="btn btn-sm btn-outline-primary px-4" style="border-color: #ced4da">
             <input v-model="application.answer" type="radio" name="options" value="0" />
             <span class="mr-3 text-danger">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="row mx-0 mt-3 d-flex justify-content-end">
-          <button class="btn btn-sm btn-secondary rounded px-4" @click="saveApplication(application, $event)">
+          <button class="btn btn-secondary rounded px-4" @click="saveApplication(application, $event)">
             <span v-if="application.saving" span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             保存
           </button>
