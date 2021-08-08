@@ -11,7 +11,7 @@
           <input v-model="newItem.gohanTime" type="radio" name="options" value="1" />
           昼ごはん
         </label>
-        <label id="forgotLabel" class="btn btn-sm btn-outline-primary px-4">
+        <label id="forgotLabel" class="btn btn-sm btn-outline-primary px-4" style="border-color: #999ea3">
           <input v-model="newItem.gohanTime" type="radio" name="options" value="2" />
           夜ごはん
         </label>
@@ -27,7 +27,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="stapleFoodLabel" :class="{ active : newItem.stapleFood }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="stapleFoodLabel" :class="{ active : newItem.stapleFood }" class="btn btn-outline-primary btn-block btn-eat rounded-0" style="border-color: #ced4da">
               <input v-model="newItem.stapleFood" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -50,7 +50,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="subSideDishLabel" :class="{ active : newItem.subSideDish }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="subSideDishLabel" :class="{ active : newItem.subSideDish }" class="btn btn-outline-primary btn-block btn-eat rounded-0" style="border-color: #ced4da">
               <input v-model="newItem.subSideDish" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -73,7 +73,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="mainDishLabel" :class="{ active : newItem.mainDish }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="mainDishLabel" :class="{ active : newItem.mainDish }" class="btn btn-outline-primary btn-block btn-eat rounded-0" style="border-color: #ced4da">
               <input v-model="newItem.mainDish" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -94,7 +94,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="dailyProductsLabel" :class="{ active : newItem.dailyProducts }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="dailyProductsLabel" :class="{ active : newItem.dailyProducts }" class="btn btn-outline-primary btn-block btn-eat rounded-0" style="border-color: #ced4da">
               <input v-model="newItem.dailyProducts" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -115,7 +115,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="fruitsLabel" :class="{ active : newItem.fruits }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="fruitsLabel" :class="{ active : newItem.fruits }" class="btn btn-outline-primary btn-block btn-eat rounded-0" style="border-color: #ced4da">
               <input v-model="newItem.fruits" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -136,7 +136,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="sweetsLabel" :class="{ active : newItem.sweets }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="sweetsLabel" :class="{ active : newItem.sweets }" class="btn btn-outline-primary btn-block btn-eat rounded-0" style="border-color: #ced4da">
               <input v-model="newItem.sweets" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -157,7 +157,7 @@
         </div>
         <div class="col-6 col-sm-6 col-lg-4 pr-0">
           <div class="btn-group-toggle" data-toggle="buttons">
-            <label id="alcoholLabel" :class="{ active : newItem.alcohol }" class="btn btn-outline-primary btn-block btn-eat rounded-0">
+            <label id="alcoholLabel" :class="{ active : newItem.alcohol }" class="btn btn-outline-primary btn-block btn-eat rounded-0" style="border-color: #ced4da">
               <input v-model="newItem.alcohol" type="checkbox" autocomplete="off" value="1">
               <span class="mr-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">

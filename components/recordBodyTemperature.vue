@@ -7,7 +7,7 @@
           <div class="input-group mb-3">
             <input id="bodytemperature" v-model="newItem.temperature" type="number" min="35.0" max="42.0" class="form-control" aria-label="体温" aria-describedby="bodytemp-addon" />
             <div class="input-group-append">
-              <span id="bodytemp-addon" class="input-group-text bg-white">度</span>
+              <span id="bodytemp-addon" class="input-group-text bg-white" style="border-radius: 0 .25em .25em 0">度</span>
             </div>
             <p class="invalid-feedback">体温は34.0度から42.0度までの間で入力してください。</p>
           </div>

@@ -3,7 +3,7 @@
     <!-- New post-->
     <div class="bg-white p-2">
       <div class="col-12 col-lg-6 btn-group btn-group-toggle px-0" data-toggle="buttons">
-        <label id="tookLabel" class="btn btn-outline-primary px-4">
+        <label id="tookLabel" class="btn btn-outline-primary px-4" style="border-color: #ced4da">
           <input v-model="newItem.tookMedicine" type="radio" name="options" value="1" />
           <span class="mr-3 text-success">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -12,7 +12,7 @@
           </span>
           飲んだ
         </label>
-        <label id="forgotLabel" class="btn btn-outline-primary px-4">
+        <label id="forgotLabel" class="btn btn-outline-primary px-4" style="border-color: #ced4da">
           <input v-model="newItem.tookMedicine" type="radio" name="options" value="0" />
           <span class="mr-3 text-danger">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
