@@ -69,7 +69,7 @@
     </div>
     <ul v-if="previews.length > 0" class="list-group-item rounded p-1 my-1 mx-2">
       <li v-for="preview in previews" :key="preview.targetId+preview.reviewerId" class="list-group-item border-0 p-1">
-        <button type="button" class="btn btn-block d-flex" @click="gotoProfile(preview)">
+        <label type="button" class="btn btn-block d-flex" @click="gotoProfile(preview)">
           <div class="d-flex">
             <div class="image">
               <img :src="preview.selfImg" class="rounded-circle bg-gray" width="55" />
@@ -77,7 +77,7 @@
             <div class="ml-2 w-100">
               <div class="row mx-0">
                 <span><strong>{{ preview.userName }}</strong></span>
-                <span class="ml-1"><small>@{{ preview.accountId }}</small></span>
+                <span class="text-muted ml-1"><small>@{{ preview.accountId }}</small></span>
               </div>
               <div class="row mx-0">
                 <small>{{ preview.description.substr(0, 35) }}</small>
@@ -85,7 +85,7 @@
               </div>
             </div>
           </div>
-        </button>
+        </label>
       </li>
     </ul>
   </div>
